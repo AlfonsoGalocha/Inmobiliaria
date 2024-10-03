@@ -1,0 +1,39 @@
+.card{
+    background-color: white;
+    width: 400px;
+    height: 400px;
+
+    border: 1px solid black;
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.card .card-image{
+    height: 70%;
+    width: 100%;
+    background-color: rgba(165, 42, 42, 0.44);
+    overflow: hidden;
+    
+    /* border: 1px solid black; */
+}
+.card .card-info{
+    height: 30%;
+    width: 100%;
+    color: black;
+}
+.card .card-info h2,
+.card .card-info p{
+    
+    margin-left: 5px;
+    font-family: Arial, Helvetica, sans-serif;
+
+}
+.card .card-info h2{
+    
+    
+    font-size: 22px;
+    font-weight: bold;
+
+}
