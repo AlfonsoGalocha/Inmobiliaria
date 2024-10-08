@@ -1,54 +1,46 @@
-/* src/App.css */
-
 * {
-  padding: 0;
   margin: 0;
+  padding: 0;
   box-sizing: border-box;
 }
 
+html, body, #root, .App {
+  height: 100%;
+  font-family: Arial, sans-serif;
+}
+
 .App {
-  text-align: center;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  height: auto;
-  width: 100%;
+  scroll-snap-type: y mandatory;
+  overflow-y: scroll;
 }
 
-/* La imagen de fondo */
-.foto {
-  position: relative;
-  height: 90vh; /* La imagen ocupa el 90% de la altura de la pantalla */
-  width: 100%;
-  background-image: url("./public/static/img/casa.webp");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  z-index: 1; /* Colocar la imagen detrás de la sección 'subida' */
+.section {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  scroll-snap-align: start;
+  font-size: 2rem;
+  color: white;
 }
 
-.foto h1 {
-  padding: 20px;
-  font-size: 44px;
-  color: white; /* Si el fondo es oscuro, el texto será visible */
-  text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.6);
-}
-.foto h2 {
-  margin-top: 25vh;
-  text-transform: uppercase;
-  font-size: 60px;
-  color: rgba(255, 255, 255, 0.892); /* Color del texto */  
-  
-  /* Sombra al texto */
-  text-shadow: 5px 10px 5px rgb(0, 0, 0); /* (x-offset, y-offset, blur, color) */
+.section1 {
+  background-color: #3498db;
 }
 
-/* La sección que se coloca por encima de la foto */
-.subida {
-  position: absolute; /* Hacemos que 'subida' esté encima de 'foto' */
-  top: 85vh; /* Se posiciona 60% desde la parte superior de la pantalla */
-  height: 110vh; /* Menor altura que 'foto' */
-  width: 100%;
-  background-color: white;
-  z-index: 2; /* La 'subida' debe estar por encima de la imagen */
-  box-shadow: 0px -10px 20px rgba(0, 0, 0, 0.3); /* Añadimos sombra para mayor contraste */
-  border-radius: 20px;
+.section2 {
+  background-color: #2ecc71;
+}
+
+.section3 {
+  background-color: #e74c3c;
+}
+
+.section4 {
+  background-color: #f39c12;
+}
+
+.section5 {
+  background-color: #9b59b6;
 }

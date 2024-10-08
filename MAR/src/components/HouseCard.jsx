@@ -1,8 +1,8 @@
-// src/components/PropertyCard.js
+// src/components/HouseCard.js
 import PropTypes from 'prop-types'; // Añadir prop-types para la validación de props
-import '../styles/PropertyCard.css'
+import '../styles/HouseCard.css'
 
-const PropertyCard = ({ image, title, location, price }) => {
+const HouseCard = ({ image, title, location, price }) => {
   return (
 
     <div className="card">
@@ -20,11 +20,11 @@ const PropertyCard = ({ image, title, location, price }) => {
 };
 
 // Añadimos la validación de props con PropTypes
-PropertyCard.propTypes = {
+HouseCard.propTypes = {
   image: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   location: PropTypes.string.isRequired,
   price: PropTypes.string.isRequired,
 };
 
-export default PropertyCard;
+export default HouseCard;
