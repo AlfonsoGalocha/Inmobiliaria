@@ -7,7 +7,7 @@
 
 import  { useEffect } from 'react';
 import './styles/App.css';
-import './components/NavBar.jsx';
+import NavBar from './components/NavBar.jsx';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
@@ -46,6 +46,7 @@ function App() {
 
   return (
     <div className="App">
+      <NavBar />
       <div className="section section1">
         <h1>Sección 1</h1>
       </div>
