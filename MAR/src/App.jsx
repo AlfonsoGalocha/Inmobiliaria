@@ -48,7 +48,11 @@ function App() {
     <div className="App">
       <NavBar />
       <div className="section section1">
-        <h1>Sección 1</h1>
+        <div className="title">
+          
+          <h1>Donde cada casa es un nuevo comienzo</h1>
+
+        </div>
       </div>
       <div className="section section2">
         <h1>Sección 2</h1>

@@ -26,7 +26,49 @@ html, body, #root, .App {
 }
 
 .section1 {
-  background-color: #3498db;
+  background-image: url('../../public/static/img/casa_pricipio_movil.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  position: relative;
+  overflow: hidden; /* Asegúrate de que los hijos no se vean fuera de la sección */
+}
+
+.section1::before {
+  content: "";
+  position: absolute; /* Cambia a absolute para que quede fijo solo dentro de la sección */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 15%;
+  background: linear-gradient(
+      to bottom,
+      rgba(33, 33, 33, 0.7),
+      rgba(33, 33, 33, 0.5) 40%,
+      rgba(33, 33, 33, 0.3) 60%,
+      rgba(33, 33, 33, 0.1) 80%,
+      rgba(33, 33, 33, 0) 100%
+    );
+  z-index: 1;
+}
+
+.section1 .title {
+  width: 90%;
+  height: 20%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.section1 .title h1 {
+  position: absolute; /* Fijo solo dentro de la sección */
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  font-weight: 300;
+  font-size: 30px;
+  text-align: center;
 }
 
 .section2 {
@@ -43,18 +85,4 @@ html, body, #root, .App {
 
 .section5 {
   background-color: #9b59b6;
-}
-
-.navbar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  background-color: #333;
-  z-index: 1000; /* Asegúrate de que la navbar esté encima del contenido */
-  padding: 10px 20px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  color: white;
 }

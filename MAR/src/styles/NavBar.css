@@ -3,13 +3,12 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #202020; /* Dark background */
+  background-color: #ffffff00; /* Dark background */
   padding: 10px 20px;
   position: fixed;
   top: 0;
   width: 100%;
   z-index: 1000;
-  box-shadow: 0 4px 6px rgba(7, 7, 7, 0.479); /* Shadow for modern look */
   transition: background-color 0.3s ease; /* Smooth transition when changing color */
 }
 
@@ -19,6 +18,7 @@
   font-size: 24px;
   letter-spacing: 2px;
   margin: 0;
+  font-weight: 10;
   font-family: 'Poppins', sans-serif;
 }
 
