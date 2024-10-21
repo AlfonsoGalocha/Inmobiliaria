@@ -9,9 +9,20 @@ html, body, #root, .App {
   font-family: Arial, sans-serif;
 }
 
-.App {
-  scroll-snap-type: y mandatory;
-  overflow-y: scroll;
+body{
+  display: flex; /* Asegura que el contenedor se ajuste */
+  justify-content: center;
+  align-items: center;
+  background-color: #FFFCF6;
+}
+.contenedor {
+  width: 370px;
+  height: 20px;
+
+  display: flex; /* Asegura que el contenedor se ajuste */
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .section {
@@ -24,6 +35,11 @@ html, body, #root, .App {
   font-size: 2rem;
   color: white;
 }
+
+
+/* Estilo del contenido del home */
+
+/* ---------------- Style for the section 1 (Principal) ---------------- */
 
 .section1 {
   background-image: url('../../public/static/img/casa_pricipio_movil.jpg');
@@ -53,36 +69,203 @@ html, body, #root, .App {
   z-index: 1;
 }
 
-.section1 .title {
+.section1 .title{
   width: 90%;
   height: 20%;
   display: flex;
+  flex-direction: column; /* Cambia a column para apilar los elementos verticalmente */
   justify-content: center;
   align-items: center;
-}
-.section1 .title h1 {
-  position: absolute; /* Fijo solo dentro de la sección */
+  position: absolute;
   top: 30%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 2;
-  font-weight: 300;
-  font-size: 30px;
+}
+
+.section1 .title h2.eslogan{
+  order: 1;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-weight: lighter;
+  font-size: smaller;
+  color: #7189A2;
+  margin-bottom: 4%;
+}
+
+.section1 .title .categories{
+  order: 2;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-weight: normal;
+  font-size: 90%;
+  color: #354F92;
+  text-shadow: 1px 1px 2.5px rgba(0, 0, 0, 0.5);
+}
+
+.section1 .categories .category-link{
+  text-decoration: none;
+  color: #354F92;
+}
+
+.section1 .categories .category-link:hover{
+  color: #4371e2;
+}
+
+
+
+/* ---------------- Style for the section 2 (Viviendas destacadas) ---------------- */
+
+.section2 {
+  background-color: #FFFCF6;
+  position: relative;
+  top: -18%;
+  border-top-left-radius: 3%;
+  border-top-right-radius: 3%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+.section2 h1{
+  text-align: center;
+  font-size: 90%;
+  color: #354F92;
+  margin-bottom: 15%;
+  margin-top: 60%;
+  font-family: 'Piazzolla'; /* Cambiar en función de gustos grupales */
+}
+
+.section2 .down_indicator{
+  color: #354F92;
+  transform: rotate(90deg);
+  font-size: 4rem;
+  position: absolute;
+  top: 3.5%;
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
+}
+
+.section2 .house-card{
+  margin-top: 20px; /* Añade un margen superior a la carta */
+  max-width: 350px; /* Limita el ancho de la carta */
+}
+
+
+
+/* ---------------- Style for the section 3 (Nosotros) ---------------- */
+
+.section3 {
+  background-color: #FFFCF6;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  text-align: center; /* Asegura que todo esté centrado */
+  margin-top: -30%;
+}
+
+.section3 h1 {
+  font-size: 2rem; /* Ajusta el tamaño del título si es necesario */
+  color: #354F92;
+  margin-bottom: 20px; /* Espacio entre el título y el texto */
+  font-family: 'Piazzolla'; /* Estilo del título */
+}
+
+.section3 p {
+  font-size: 1.2rem; /* Ajusta el tamaño del texto */
+  font-family: serif;
+  font-style: italic;
+  color: black;
+  max-width: 600px; /* Limita el ancho del texto para mejorar legibilidad */
+  line-height: 1.5; /* Aumenta el espacio entre líneas para mejor lectura */
   text-align: center;
 }
 
-.section2 {
-  background-color: #2ecc71;
-}
 
-.section3 {
-  background-color: #e74c3c;
-}
+
+/* ---------------- Style for the section 4 (Nuestra misión) ---------------- */
 
 .section4 {
-  background-color: #f39c12;
+  background-color: #FFFCF6;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  text-align: center; /* Asegura que todo esté centrado */
+  margin-top: -30%;
 }
 
-.section5 {
-  background-color: #9b59b6;
+.section4 h1 {
+  font-size: 2rem; /* Ajusta el tamaño del título si es necesario */
+  color: #354F92;
+  margin-bottom: 20px; /* Espacio entre el título y el texto */
+  font-family: 'Piazzolla'; /* Estilo del título */
+}
+
+.section4 p {
+  font-size: 1.2rem; /* Ajusta el tamaño del texto */
+  font-family: serif;
+  font-style: italic;
+  color: black;
+  max-width: 600px; /* Limita el ancho del texto para mejorar legibilidad */
+  line-height: 1.5; /* Aumenta el espacio entre líneas para mejor lectura */
+  text-align: center;
+}
+
+
+
+/* ---------------- Style for the section 5 (footer) ---------------- */
+
+.footer {
+  text-align: center;
+  padding: 20px;
+  color: white;
+  background-color: #E2E2E2;
+}
+
+.footer h6 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+  color: black;
+}
+
+.footer p {
+  margin: 5px 0;
+  font-size: 1rem;
+  color: #858585;
+}
+
+.social-links {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+.social-links a {
+  margin: 0 10px;
+}
+
+.social-links img {
+  width: 30px;
+  height: 30px;
+  vertical-align: middle;
+  margin: 0 10px;
+}
+
+.social-links .tiktok_logo {
+  width: 40px;
+  height: 40px;
+}
+
+.footer-links {
+  display: flex;           /* Activa Flexbox */
+  justify-content: center;  /* Centra los elementos horizontalmente */
+  gap: 20px;                /* Define el espacio entre los enlaces */
+  margin-top: 20px;
+  font-size: medium;
+}
+
+.footer-links a {
+  color: white;             /* Color del texto de los enlaces */
+  text-decoration: none;    /* Elimina el subrayado de los enlaces */
+}
+
+.footer-links a:hover {
+  text-decoration: underline; /* Agrega subrayado al pasar el mouse */
 }

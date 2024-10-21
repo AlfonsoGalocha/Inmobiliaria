@@ -2,6 +2,14 @@ import { useState } from 'react';
 import '../styles/NavBar.css';
 import '@fortawesome/fontawesome-free/css/all.min.css'; // Importa Font Awesome si lo instalaste con npm
 
+
+/*
+
+  Meter la LUPA en la NAV
+
+*/
+
+
 const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 

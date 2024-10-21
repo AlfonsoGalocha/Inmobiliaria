@@ -1,39 +1,143 @@
-.card{
-    background-color: white;
-    width: 400px;
-    height: 400px;
+/* src/styles/HouseCard.css */
 
-    border: 1px solid black;
-    
+.card {
+    width: 100%;
+    height: 100%;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
     display: flex;
     flex-direction: column;
+    box-sizing: border-box;
+}
+
+.card-image {
+    flex: 6;
+    width: 100%;
+    display: flex;
     align-items: center;
     justify-content: center;
-}
-.card .card-image{
-    height: 70%;
-    width: 100%;
-    background-color: rgba(165, 42, 42, 0.44);
     overflow: hidden;
-    
-    /* border: 1px solid black; */
 }
-.card .card-info{
-    height: 30%;
+
+.card-image img {
     width: 100%;
-    color: black;
+    height: 100%;
+    object-fit: cover;
 }
-.card .card-info h2,
-.card .card-info p{
-    
-    margin-left: 5px;
-    font-family: Arial, Helvetica, sans-serif;
 
+.card-info {
+    flex: 4; 
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-sizing: border-box;
+    margin-left: 12px;
+    margin-right: 12px;
 }
-.card .card-info h2{
-    
-    
-    font-size: 22px;
+
+.card-info h2 {
+    font-size: 1.2rem;
+    margin-bottom: 8px;
+    line-height: 1.2;
+    white-space: normal;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.card-info .property-description {
+    font-size: 0.9rem;
+    margin-bottom: 8px;
+    color: #666;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal;
+}
+
+.card-info p {
+    margin: 2px 0;
+    color: #555;
+}
+
+.property-details-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-top: auto;
+    color: #555
+}
+
+.property-details {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+}
+
+.property-details span {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.property-price {
+    font-size: 1.2rem;
     font-weight: bold;
+    color: #007BFF;
+    text-align: right;
+    white-space: nowrap;
+}
+@media (max-width: 768px) {
+    .card-info {
+        margin-left: 8px;
+        margin-right: 8px;
+    }
 
+    .card-info h2 {
+        font-size: 1.1rem; 
+        margin-bottom: 6px; 
+    }
+
+    .card-info .property-description {
+        font-size: 0.85rem; 
+        margin-bottom: 6px;
+    }
+
+    .property-details-container {
+        gap: 12px; 
+    }
+
+    .property-details {
+        gap: 8px; 
+    }
+
+    .property-price {
+        font-size: 1.1rem; 
+    }
+}
+
+
+@media (max-width: 480px) {
+
+    .card-info h2 {
+        font-size: 1rem; 
+        margin-bottom: 4px;
+    }
+
+    .card-info .property-description {
+        font-size: 0.8rem;
+        margin-bottom: 4px;
+    }
+
+    .property-details-container {
+        gap: 8px; 
+    }
+
+    .property-details {
+        gap: 4px;
+    }
+
+    .property-price {
+        font-size: 1.1rem;
+    }
 }
