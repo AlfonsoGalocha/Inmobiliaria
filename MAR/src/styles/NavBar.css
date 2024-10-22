@@ -4,18 +4,12 @@
 
 */
 
-
-
-
-
-
-
 /* General styles for the navbar */
 .navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #ffffff00; /* Dark background */
+  background-color: #1012a300; /* Dark background */
   padding: 10px 20px;
   position: fixed;
   top: 0;
@@ -31,7 +25,15 @@
   letter-spacing: 2px;
   margin: 0;
   font-weight: 10;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Piazzolla';
+}
+
+.navbar-logo h1:hover {
+  font-weight: bold;
+}
+
+.navbar-logo .home_title{
+  text-decoration: none;
 }
 
 /* Navbar links for desktop */
@@ -68,26 +70,41 @@
   cursor: pointer;
 }
 
+.close-menu-icon{
+  position: absolute;
+  top: 5%;
+  right: 10%;
+  display: none;
+  font-size: 25px;
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
 /* Responsive styles for mobile */
 @media (max-width: 768px) {
   .navbar-links {
     display: none; /* Hide the navbar links in mobile */
+    height: auto;
   }
 
   .navbar-links-mobile {
     display: flex;
     flex-direction: column;
     position: absolute;
-    top: 60px;
-    left: 0;
-    background-color: #0d0d0d;
-    width: 100%;
-    height: 100vh;
-    justify-content: center;
-    align-items: center;
-    gap: 20px;
-    z-index: 999;
+    top: 670%; /* Posiciona el menú en el medio verticalmente */
+    left: 50%; /* Posiciona el menú en el medio horizontalmente */
+    transform: translate(-50%, -50%); /* Ajusta la posición para que quede centrado */
+    background-color: #4E6682; /* Color de fondo del menú */
+    width: 65%; /* Ancho del menú */
+    height: 350px; /* Altura del menú */
+    justify-content: center; /* Centra el contenido en el eje vertical */
+    align-items: center; /* Centra el contenido en el eje horizontal */
+    gap: 35px; /* Espaciado entre elementos */
+    z-index: 999; /* Asegura que el menú esté encima del fondo */
+    border-radius: 15px; /* Bordes redondeados */
   }
+  
 
   .navbar-links-mobile li {
     padding: 10px 0;
@@ -97,12 +114,17 @@
     display: block; /* Show the hamburger icon on mobile */
   }
 
+  .close-menu-icon {
+    display: block; 
+  }
+
   /* Animate the mobile menu links */
   .navbar-links-mobile a {
     text-decoration: none;
     font-size: 20px;
     color: #fff;
     transition: color 0.3s ease;
+    font-family: 'Piazzolla';
   }
 
   .navbar-links-mobile a:hover {
@@ -114,3 +136,30 @@
 .navbar.scrolled {
   background-color: #706f6f; /* Darker background when scrolling */
 }
+
+/* Estilos generales para el overlay */
+.overlay {
+  position: fixed; /* Fija el overlay en toda la pantalla */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  backdrop-filter: blur(5px); /* Aplica un efecto de blur al fondo */
+  z-index: 998; /* Debe estar por debajo del menú pero por encima del contenido */
+}
+
+/* Estilo para la barra de navegación
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #1012a300;
+  padding: 10px 20px;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  transition: background-color 0.3s ease;
+} */
+
+/* Otros estilos que ya tienes... */

@@ -11,7 +11,7 @@ const HouseCard = ({ image, title, description, location, size, bathrooms, bedro
       <div className="card-info">
         <h2>{title}</h2>
         <p className="property-description">{description}</p>
-        <p>{location}</p>
+        <p className="property-location">{location}</p>
 
         <div className="property-details-container">
           <div className="property-details">

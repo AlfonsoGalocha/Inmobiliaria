@@ -147,6 +147,20 @@ body{
 }
 
 
+.container-card{
+  width: 370px;
+  height: 390px;
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 0 0 15px rgba(0, 0, 0, 0), 
+                -15px 0 30px -10px rgba(0, 0, 0, 0.3), 
+                15px 0 30px -10px rgba(0, 0, 0, 0.3); 
+
+  border:none;
+}
+
 
 /* ---------------- Style for the section 3 (Nosotros) ---------------- */
 
@@ -214,9 +228,12 @@ body{
 
 .footer {
   text-align: center;
-  padding: 20px;
+  padding: 100px 20px;
   color: white;
   background-color: #E2E2E2;
+  border-top-left-radius: 7%;
+  border-top-right-radius: 7%;
+  margin-top: -15%;
 }
 
 .footer h6 {
@@ -248,11 +265,6 @@ body{
   margin: 0 10px;
 }
 
-.social-links .tiktok_logo {
-  width: 40px;
-  height: 40px;
-}
-
 .footer-links {
   display: flex;           /* Activa Flexbox */
   justify-content: center;  /* Centra los elementos horizontalmente */
@@ -264,8 +276,26 @@ body{
 .footer-links a {
   color: white;             /* Color del texto de los enlaces */
   text-decoration: none;    /* Elimina el subrayado de los enlaces */
+  color: black;
 }
 
 .footer-links a:hover {
   text-decoration: underline; /* Agrega subrayado al pasar el mouse */
 }
+
+
+
+@media(max-width : 738px) {
+
+  .container-card{
+    
+    width: 100%;
+    max-width: 370px;
+    max-height: 390px;
+    height: auto; 
+    max-width: 390px;
+    
+  }
+
+}
+
