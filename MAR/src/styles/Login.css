@@ -1,0 +1,84 @@
+/* Login.css */
+body {
+    background-color: #f0f2f5; /* Color de fondo suave */
+    font-family: Arial, sans-serif; /* Fuente legible */
+}
+
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Altura completa de la ventana */
+    background-color: #f0f2f5;
+}
+
+.login-form {
+    background-color: #fff; /* Fondo blanco para el formulario */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    width: 300px; /* Ancho del formulario */
+    position: relative;
+    margin-bottom: 100px;
+    
+}
+
+h2 {
+    text-align: center; /* Centra el título */
+    color: #333; /* Color del título */
+    margin-bottom: 15px; /* Espacio inferior */
+}
+
+.form-group {
+    margin-bottom: 15px; /* Espacio entre los campos */
+}
+
+label {
+    display: block;
+    margin-bottom:5px; /* Espacio entre el label y el input */
+    color: #555; /* Color del texto */
+}
+
+input[type="text"],
+input[type="password"] {
+    background-color: transparent; /* Fondo transparente */
+    border: none; /* Elimina el borde por defecto */
+    border-bottom: 2px solid #000; /* Barra inferior visible */
+    padding: 10px 0; /* Espaciado interno (padding) para que la barra no esté pegada al texto */
+    outline: none; /* Elimina el contorno cuando el input está enfocado */
+    width: 100%; /* Hace que el input ocupe todo el ancho disponible */
+    font-size: 16px; /* Ajusta el tamaño de la fuente */
+    color: #000; /* Color del texto */
+}
+
+input[type="text"],
+input[type="password"] {
+    border-bottom: 1px solid #000000; /* Cambia el color de la barra cuando el input está enfocado */
+
+}
+
+input[type="submit"] {
+    background-color: #007bff; /* Color del botón */
+    color: white; /* Color del texto del botón */
+    border: none; /* Sin borde */
+    padding: 10px; /* Espacio interno */
+    border-radius: 4px; /* Bordes redondeados */
+    cursor: pointer; /* Cursor de puntero */
+    width: 100%; /* Ancho completo */
+}
+
+input[type="submit"]:hover {
+    background-color: #0056b3; /* Color al pasar el mouse */
+}
+
+.register-link {
+    display: block;
+    text-align: center; /* Centra el enlace */
+    margin-top: 15px; /* Espacio superior */
+    color: #007bff; /* Color del enlace */
+    text-decoration: none; /* Sin subrayado */
+}
+
+.register-link:hover {
+    text-decoration: underline; /* Subrayado al pasar el mouse */
+}

@@ -65,10 +65,12 @@ const Home = () => {
           <h1>Nuestra misión</h1>
           <p>{our_mission}</p>
         </div>
-        <footer className='footer'>
-          <h6>Contáctanos</h6>
-          <p>mar.soporte@gmail.com</p>
-          <p>+34 642 773 127</p>
+        <footer className='footer' id= 'footer'>
+          <div className="contact-section">
+            <p id='contact'>Contáctanos</p>
+            <p>mar.soporte@gmail.com</p>
+            <p>+34 642 773 127</p>
+          </div>
           <div className="social-links">
             <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer">
               <img src="../../public/static/img/instagram_logo.webp" alt="Instagram" />

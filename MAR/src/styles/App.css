@@ -7,6 +7,7 @@
 html, body, #root, .App {
   height: 100%;
   font-family: Arial, sans-serif;
+  background-color: #FFFCF6;
 }
 
 body{
@@ -27,7 +28,6 @@ body{
 
 .section {
   width: 100vw;
-  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -37,6 +37,7 @@ body{
 }
 
 
+
 /* Estilo del contenido del home */
 
 /* ---------------- Style for the section 1 (Principal) ---------------- */
@@ -44,11 +45,13 @@ body{
 .section1 {
   background-image: url('../../public/static/img/casa_pricipio_movil.jpg');
   background-size: cover;
-  background-position: center;
+  background-position: center -70px;
   background-repeat: no-repeat;
   background-attachment: fixed;
   position: relative;
   overflow: hidden; /* Asegúrate de que los hijos no se vean fuera de la sección */
+  height: 100%;
+
 }
 
 .section1::before {
@@ -114,32 +117,33 @@ body{
 .section2 {
   background-color: #FFFCF6;
   position: relative;
-  top: -18%;
-  border-top-left-radius: 3%;
-  border-top-right-radius: 3%;
+  top: -16%;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 20px;
-}
-
-.section2 h1{
-  text-align: center;
-  font-size: 90%;
-  color: #354F92;
-  margin-bottom: 15%;
-  margin-top: 60%;
-  font-family: 'Piazzolla'; /* Cambiar en función de gustos grupales */
+  height: 75%;
 }
 
 .section2 .down_indicator{
   color: #354F92;
   transform: rotate(90deg);
-  font-size: 4rem;
+  font-size: 2.5rem;
   position: absolute;
   top: 3.5%;
   text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
 }
+.section2 h1{
+  text-align: center;
+  font-size: 90%;
+  color: #354F92;
+  margin-bottom: 10%;
+  margin-top: 35%;
+  font-family: 'Piazzolla'; /* Cambiar en función de gustos grupales */
+}
+
 
 .section2 .house-card{
   margin-top: 20px; /* Añade un margen superior a la carta */
@@ -152,7 +156,6 @@ body{
   height: 390px;
   border-radius: 8px;
   display: flex;
-  justify-content: center;
   align-items: center;
   box-shadow: 0 0 0 15px rgba(0, 0, 0, 0), 
                 -15px 0 30px -10px rgba(0, 0, 0, 0.3), 
@@ -171,7 +174,8 @@ body{
   align-items: center;
   padding: 20px;
   text-align: center; /* Asegura que todo esté centrado */
-  margin-top: -30%;
+  margin-top: 5%;
+  height: 40%;
 }
 
 .section3 h1 {
@@ -203,6 +207,7 @@ body{
   padding: 20px;
   text-align: center; /* Asegura que todo esté centrado */
   margin-top: -30%;
+  height: 100%;
 }
 
 .section4 h1 {
@@ -228,18 +233,30 @@ body{
 
 .footer {
   text-align: center;
-  padding: 100px 20px;
-  color: white;
-  background-color: #E2E2E2;
+  padding: 90px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #e2e2e2e8;
+  box-shadow: none;
   border-top-left-radius: 7%;
   border-top-right-radius: 7%;
   margin-top: -15%;
 }
-
-.footer h6 {
-  font-size: 1.5rem;
-  margin-bottom: 10px;
-  color: black;
+.contact-section{
+  display: flex;
+  flex-direction: column;
+  height: auto;
+  align-items: center;
+  justify-content: space-around;
+  width: 100%;
+}
+.footer .contact-section #contact {
+  font-size: 1.1rem;
+  font-weight: 400;
+  margin-bottom: 5px;
+  color: #0e0e0e;
 }
 
 .footer p {
@@ -250,8 +267,16 @@ body{
 
 .social-links {
   display: flex;
-  justify-content: center;
-  margin: 20px 0;
+  justify-content: space-around;
+  width: 70%;
+  margin: 30px 0;
+}
+.social-links img{
+  max-width: 30px;
+  max-height: 30px;
+  border-radius: 5px;
+  background-position: center;
+  background-size: cover;
 }
 
 .social-links a {
@@ -280,7 +305,7 @@ body{
 }
 
 .footer-links a:hover {
-  text-decoration: underline; /* Agrega subrayado al pasar el mouse */
+  color: rgb(70, 70, 70);
 }
 
 

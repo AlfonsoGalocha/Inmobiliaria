@@ -10,9 +10,9 @@
   justify-content: space-between;
   align-items: center;
   background-color: #1012a300; /* Dark background */
-  padding: 10px 20px;
-  position: fixed;
-  top: 0;
+  padding: 10px 25px;
+  position: absolute;
+  top: 2.5%;
   width: 100%;
   z-index: 1000;
   transition: background-color 0.3s ease; /* Smooth transition when changing color */
@@ -21,16 +21,14 @@
 /* Logo */
 .navbar-logo h1 {
   color: #ffffff; /* Accent color for the logo */
-  font-size: 24px;
+  font-size: 28px;
   letter-spacing: 2px;
-  margin: 0;
+  margin: 1%;
   font-weight: 10;
   font-family: 'Piazzolla';
 }
 
-.navbar-logo h1:hover {
-  font-weight: bold;
-}
+
 
 .navbar-logo .home_title{
   text-decoration: none;
@@ -54,6 +52,7 @@
   text-transform: uppercase;
   font-family: 'Poppins', sans-serif;
   transition: color 0.3s ease; /* Smooth transition when hovering */
+  text-align: center;
 }
 
 .navbar-links a:hover {

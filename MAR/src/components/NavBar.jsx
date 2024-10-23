@@ -1,13 +1,29 @@
 import { useState } from 'react';
+import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import '../styles/NavBar.css';
-import '@fortawesome/fontawesome-free/css/all.min.css'; // Importa Font Awesome si lo instalaste con npm
 
-const Navbar = () => {
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+// import Login from './Login';
+
+
+  const Navbar = ({setIsFromNavbar}) => {
+    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
+
+  // Función para cerrar el menú al hacer clic en un enlace
+  const handleLinkClick = (event) => {
+    const path = event.target.getAttribute('href');
+    setIsFromNavbar(path === '/iniciodesesion');
+
+    if (isMobileMenuOpen) {
+      toggleMobileMenu(); // Cierra el menú si está abierto
+    }
+  };
+
+
 
   return (
     <nav className={`navbar ${isMobileMenuOpen ? 'menu-active' : ''}`}>
@@ -33,13 +49,16 @@ const Navbar = () => {
             &#10005; {/* X para cerrar */}
           </button>
         )}
-        <a href="/registro"><i className="fas fa-home"></i> Registrarse</a>
-        <a href="/iniciodesesion"><i className="fas fa-user"></i> Iniciar Sesion</a>
-        <a href="/favoritos"><i className="fas fa-concierge-bell"></i> Favoritos</a>
-        <a href="/contacto"><i className="fas fa-envelope"></i> Contacto</a>
+        <Link to="/registro" onClick={handleLinkClick}> Registrarse</Link>
+        <Link to="/login" onClick={handleLinkClick}> Iniciar Sesion</Link> 
+        <Link to="/favoritos" onClick={handleLinkClick}> Favoritos</Link>
+        <Link to="#footer" onClick={handleLinkClick}>Contacto</Link>
       </div>
     </nav>
   );
+};
+Navbar.propTypes = {
+  setIsFromNavbar: PropTypes.func.isRequired,
 };
 
 export default Navbar;
