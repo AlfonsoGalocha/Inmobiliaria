@@ -56,7 +56,7 @@
 }
 
 .navbar-links a:hover {
-  color: #818180; /* Accent color on hover */
+  color: #4371e2; /* Accent color on hover */
 }
 
 /* Mobile menu icon (hamburger) */
@@ -127,7 +127,9 @@
   }
 
   .navbar-links-mobile a:hover {
-    color: #8a8989; /* Accent color on hover */
+    color: rgb(175, 190, 200); /* Accent color on hover */
+    transform: scale(1.04);
+    transition: transform 0.1s ease;
   }
 }
 
