@@ -3,6 +3,8 @@ import { Link,useNavigate} from 'react-router-dom';
 import { useState } from 'react'
 import axios from 'axios';
 
+import BackLink from '../../public/static/img/backlink.png' // Importa el componente BackLink'
+
 const Register = () => {
   
   const [formData, setFormData] = useState({
@@ -41,6 +43,7 @@ const Register = () => {
   
   return (
     <div className="login-container">
+      <Link to="/" className="back-link"><img src={BackLink} alt="Volver" /> </Link>
       <div className="login-form">
         <h2>Crear Cuenta</h2>
         <form onSubmit={handleSubmit}>

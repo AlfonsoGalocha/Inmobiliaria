@@ -47,6 +47,8 @@ const Login = () => {
   return (
     <div className="login-container">
       <form className="login-form" onSubmit={handleSubmit}>
+        {/* flecha para volver a la ruta anterior */}
+        <Link to="/" className="back-link">{'<='} </Link>
         <h2>Iniciar Sesión</h2>
         <div className="form-group">
           <label htmlFor="username">Usuario</label>

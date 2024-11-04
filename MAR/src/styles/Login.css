@@ -20,6 +20,7 @@ body {
     width: 300px; /* Ancho del formulario */
     position: relative;
     margin-bottom: 100px;
+    align-items: center;
     
 }
 
@@ -81,4 +82,23 @@ input[type="submit"]:hover {
 
 .register-link:hover {
     text-decoration: underline; /* Subrayado al pasar el mouse */
+}
+
+
+.back-link {
+    position: absolute;
+    top: 30px; /* Espacio desde la parte superior */
+    left: 20px; /* Espacio desde el borde izquierdo */
+    display: flex;
+    align-items: center;
+    text-decoration: none; /* Sin subrayado */
+}
+
+.back-link img {
+    width: 24px; /* Ajusta el tamaño de la flecha */
+    height: 24px;
+}
+
+.back-link:hover {
+    opacity: 0.8; /* Efecto al pasar el ratón */
 }
