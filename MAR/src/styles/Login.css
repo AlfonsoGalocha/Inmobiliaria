@@ -1,49 +1,25 @@
-/* Login.css */
-body {
-    background-image: url('../../public/static/img/casa_pricipio_movil.jpg'); /* Ruta a la imagen de fondo del home */
-    font-family: Arial, sans-serif; /* Fuente legible */
-    backdrop-filter: blur(5px); /* Aplica un efecto de blur al fondo */
-    z-index: 998; /* Debe estar por debajo del menú pero por encima del contenido */
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    position: relative;
-    overflow: hidden; /* Asegúrate de que los hijos no se vean fuera de la sección */
-    height: 100%;
-    
-}
 
 body {
+    background-image: url('../../public/static/img/casa_pricipio_movil.jpg'); 
+    font-family: Arial, sans-serif; 
+    background-size: cover;
+    background-repeat: no-repeat;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh; /* Ocupa toda la altura de la ventana */
-    position: relative; /* Necesario para posicionar el overlay */
-    overflow: hidden; /* Evita que el overlay se salga del contenedor */
   }
   
+
 .overlay {
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-
-    backdrop-filter: blur(5px); /* Aplica el efecto de desenfoque */
-    z-index: 1; /* Asegura que el overlay esté por encima del fondo */
-  }
+    backdrop-filter: blur(10px); 
+    z-index: 1; 
+}
   
-.login-container {
-    background-color: white; /* Fondo del contenedor de login */
-    padding: 20px;
-    border-radius: 8px;
-    position: relative; /* Necesario para que se mantenga encima del overlay */
-    z-index: 2; /* Asegura que el formulario esté por encima del overlay */
-  }
-  
-/* Mantén el resto de los estilos de tu navbar y otros elementos */
-
-
 #root {
     display: flex;
     justify-content: center;
@@ -52,72 +28,84 @@ body {
     height: 100vh;
     position: relative;
     width: 100%;
-}
+} 
 
-
-.login-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background:none;
-    position: relative;
-}
 
 .login-form {
-    background-color: #fff; /* Fondo blanco para el formulario */
+    z-index: 2;
+    background-color: #fff; 
     padding: 20px;
-    border-radius: 16px; /* Bordes redondeados */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
-    width: 280px; /* Ancho del formulario */
+    border-radius: 25px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+    max-width: 320px;
+    max-height: 350px;
+    height: 100dvh;
+    width: 100dvw;
     position: relative;
-    text-align: center; /* Centra el contenido */
+    text-align: center; 
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.top{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.back-link {
+    position: absolute;
+    left: 3%;
+}
+.back-link:hover {
+    opacity: 0.8;
 }
 
 h2 {
-    font-size: 24px;
+    font-size: 28px;
     font-weight: bold;
     color: #333;
-    margin-bottom: 20px;
+    margin-left: 3%;
 }
 
 .form-group {
-    margin-bottom: 20px; /* Espacio entre los campos */
+    margin-bottom: 20px; 
 }
 
-label {
-    display: block;
-    text-align: left;
-    font-size: 14px;
-    color: #333;
-    margin-bottom: 5px;
-}
 
 input[type="text"],
 input[type="password"] {
     background-color: transparent;
     border: none;
     border-bottom: 1px solid #000;
-    padding: 10px 0;
+    padding-bottom: 10px;
     outline: none;
-    width: 100%;
+    width: 90%;
     font-size: 16px;
     color: #333;
 }
 
 input[type="submit"] {
-    background-color: #4E6682; /* Color del botón similar al de la imagen */
+    background-color: #4E6682; 
     color: white;
     border: none;
-    padding: 10px;
-    border-radius: 20px; /* Bordes redondeados para el botón */
+    padding-top: 12px;
+    padding-bottom: 12px;
+    padding-left: 24px;
+    padding-right: 24px;
+    border-radius: 20px;
     cursor: pointer;
-    width: 100%;
     font-weight: bold;
     font-size: 16px;
+    margin-top: 20px;
 }
 
 input[type="submit"]:hover {
-    background-color: #3a4f5b; /* Color al pasar el mouse */
+    background-color: #465f6e; 
 }
 
 .register-link {
@@ -133,15 +121,4 @@ input[type="submit"]:hover {
     text-decoration: underline;
 }
 
-.back-link {
-    position: absolute;
-    top: 15px;
-    left: 15px;
-    font-size: 18px;
-    color: #333;
-    text-decoration: none;
-}
 
-.back-link:hover {
-    opacity: 0.7;
-}

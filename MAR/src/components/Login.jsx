@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
-import BackLink from '../../public/static/img/backlink.png'; // Importa el componente BackLink
+import BackLink from '../../public/static/img/go-back.png'; // Importa el componente BackLink
 
 const Login = () => {
 
@@ -42,26 +42,23 @@ const Login = () => {
   };
 
   return (
-    <div className="root">
-       <div className="overlay"></div> {/*Este es el overlay que desenfocará el fondo */}
-      <div className="login-container">
-        <form className="login-form" onSubmit={handleSubmit}>
-        <Link to="/" className="back-link"><img src={BackLink} alt="Volver" /> </Link>
-
+      <>
+      <div className="overlay"></div>
+      <form className="login-form" onSubmit={handleSubmit}>
+        <div className="top">
+          <Link to="/" className="back-link"><img src={BackLink} alt="Volver" /> </Link>
           <h2>Iniciar Sesión</h2>
-          <div className="form-group">
-            <label htmlFor="username">Usuario</label>
-            <input type="text" id="username" value={formData.username} onChange={handleChange} required />
-          </div>
-          <div className="form-group">
-            <label htmlFor="password">Contraseña</label>
-            <input type="password" id="password" value={formData.password} onChange={handleChange} required />
-          </div>
-          <input type="submit" value="Iniciar Sesión" />
-          <Link to="/signup" className="register-link">¿No tienes una cuenta? Regístrate aquí</Link>
-        </form>
-      </div>
-    </div>
+        </div>
+        <div className="form-group">
+          <input placeholder='Usuario' type="text" id="username" value={formData.username} onChange={handleChange} required />
+        </div>
+        <div className="form-group">
+          <input placeholder='Contraseña' type="password" id="password" value={formData.password} onChange={handleChange} required />
+        </div>
+        <Link to="/signup" className="register-link">¿No tienes una cuenta? Regístrate aquí</Link>
+        <input type="submit" value="Iniciar Sesión" />
+      </form>
+      </>
   );
 };
 

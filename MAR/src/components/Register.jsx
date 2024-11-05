@@ -3,7 +3,7 @@ import { Link,useNavigate} from 'react-router-dom';
 import { useState } from 'react'
 import axios from 'axios';
 
-import BackLink from '../../public/static/img/backlink.png' // Importa el componente BackLink'
+import BackLink from '../../public/static/img/go-back.png' // Importa el componente BackLink'
 
 const Register = () => {
   
@@ -42,34 +42,28 @@ const Register = () => {
   };
   
   return (
-    <div className="root">
+    <>
        <div className="overlay"></div> {/*Este es el overlay que desenfocará el fondo */}
-    <div className="login-container">
-      <div className="login-form">
-      <Link to="/" className="back-link"><img src={BackLink} alt="Volver" /> </Link>
-
-        <h2>Crear Cuenta</h2>
-        <form onSubmit={handleSubmit}>
-          <div className="form-group">
-            <label htmlFor="username">Nombre de usuario</label>
-            <input type="text" id="username" placeholder="Introduce tu usuario" value={formData.username} onChange={handleChange} required />
+        <form className="login-form" onSubmit={handleSubmit}>
+          <div className="top">
+            <Link to="/" className="back-link"><img src={BackLink} alt="Volver" /> </Link>
+            <h2>Crear Cuenta</h2>
           </div>
           <div className="form-group">
-            <label htmlFor="email">Correo electrónico</label>
-            <input type="text" id="email" placeholder="Introduce tu correo" value={formData.email} onChange={handleChange} required />
+            <input type="text" id="username" placeholder="Usuario" value={formData.username} onChange={handleChange} required />
           </div>
           <div className="form-group">
-            <label htmlFor="password">Contraseña</label>
-            <input type="password" id="password" placeholder="Introduce tu contraseña" value={formData.password} onChange={handleChange} required />
+            <input type="text" id="email" placeholder="Correo" value={formData.email} onChange={handleChange} required />
           </div>
+          <div className="form-group">
+            <input type="password" id="password" placeholder="Contraseña" value={formData.password} onChange={handleChange} required />
+          </div>
+          <Link to="/login" className="register-link">
+            ¿Ya tienes una cuenta? Inicia sesión
+          </Link>
           <input type="submit" value="Registrarse" />
         </form>
-        <Link to="/login" className="register-link">
-          ¿Ya tienes una cuenta? Inicia sesión
-        </Link>
-      </div>
-    </div>
-    </div>
+    </>
   );
 }
 
