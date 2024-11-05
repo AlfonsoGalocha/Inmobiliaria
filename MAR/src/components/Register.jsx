@@ -42,9 +42,12 @@ const Register = () => {
   };
   
   return (
+    <div className="root">
+       <div className="overlay"></div> {/*Este es el overlay que desenfocará el fondo */}
     <div className="login-container">
-      <Link to="/" className="back-link"><img src={BackLink} alt="Volver" /> </Link>
       <div className="login-form">
+      <Link to="/" className="back-link"><img src={BackLink} alt="Volver" /> </Link>
+
         <h2>Crear Cuenta</h2>
         <form onSubmit={handleSubmit}>
           <div className="form-group">
@@ -65,6 +68,7 @@ const Register = () => {
           ¿Ya tienes una cuenta? Inicia sesión
         </Link>
       </div>
+    </div>
     </div>
   );
 }

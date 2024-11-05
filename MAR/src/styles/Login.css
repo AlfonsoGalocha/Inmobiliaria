@@ -1,104 +1,147 @@
 /* Login.css */
 body {
-    background-color: #f0f2f5; /* Color de fondo suave */
+    background-image: url('../../public/static/img/casa_pricipio_movil.jpg'); /* Ruta a la imagen de fondo del home */
     font-family: Arial, sans-serif; /* Fuente legible */
+    backdrop-filter: blur(5px); /* Aplica un efecto de blur al fondo */
+    z-index: 998; /* Debe estar por debajo del menú pero por encima del contenido */
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    position: relative;
+    overflow: hidden; /* Asegúrate de que los hijos no se vean fuera de la sección */
+    height: 100%;
+    
 }
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Ocupa toda la altura de la ventana */
+    position: relative; /* Necesario para posicionar el overlay */
+    overflow: hidden; /* Evita que el overlay se salga del contenedor */
+  }
+  
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    backdrop-filter: blur(5px); /* Aplica el efecto de desenfoque */
+    z-index: 1; /* Asegura que el overlay esté por encima del fondo */
+  }
+  
+.login-container {
+    background-color: white; /* Fondo del contenedor de login */
+    padding: 20px;
+    border-radius: 8px;
+    position: relative; /* Necesario para que se mantenga encima del overlay */
+    z-index: 2; /* Asegura que el formulario esté por encima del overlay */
+  }
+  
+/* Mantén el resto de los estilos de tu navbar y otros elementos */
+
+
+#root {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: none;
+    height: 100vh;
+    position: relative;
+    width: 100%;
+}
+
 
 .login-container {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh; /* Altura completa de la ventana */
-    background-color: #f0f2f5;
+    background:none;
+    position: relative;
 }
 
 .login-form {
     background-color: #fff; /* Fondo blanco para el formulario */
     padding: 20px;
-    border-radius: 8px;
+    border-radius: 16px; /* Bordes redondeados */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
-    width: 300px; /* Ancho del formulario */
+    width: 280px; /* Ancho del formulario */
     position: relative;
-    margin-bottom: 100px;
-    align-items: center;
-    
+    text-align: center; /* Centra el contenido */
 }
 
 h2 {
-    text-align: center; /* Centra el título */
-    color: #333; /* Color del título */
-    margin-bottom: 15px; /* Espacio inferior */
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 20px;
 }
 
 .form-group {
-    margin-bottom: 15px; /* Espacio entre los campos */
+    margin-bottom: 20px; /* Espacio entre los campos */
 }
 
 label {
     display: block;
-    margin-bottom:5px; /* Espacio entre el label y el input */
-    color: #555; /* Color del texto */
+    text-align: left;
+    font-size: 14px;
+    color: #333;
+    margin-bottom: 5px;
 }
 
 input[type="text"],
 input[type="password"] {
-    background-color: transparent; /* Fondo transparente */
-    border: none; /* Elimina el borde por defecto */
-    border-bottom: 2px solid #000; /* Barra inferior visible */
-    padding: 10px 0; /* Espaciado interno (padding) para que la barra no esté pegada al texto */
-    outline: none; /* Elimina el contorno cuando el input está enfocado */
-    width: 100%; /* Hace que el input ocupe todo el ancho disponible */
-    font-size: 16px; /* Ajusta el tamaño de la fuente */
-    color: #000; /* Color del texto */
-}
-
-input[type="text"],
-input[type="password"] {
-    border-bottom: 1px solid #000000; /* Cambia el color de la barra cuando el input está enfocado */
-
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid #000;
+    padding: 10px 0;
+    outline: none;
+    width: 100%;
+    font-size: 16px;
+    color: #333;
 }
 
 input[type="submit"] {
-    background-color: #007bff; /* Color del botón */
-    color: white; /* Color del texto del botón */
-    border: none; /* Sin borde */
-    padding: 10px; /* Espacio interno */
-    border-radius: 4px; /* Bordes redondeados */
-    cursor: pointer; /* Cursor de puntero */
-    width: 100%; /* Ancho completo */
+    background-color: #4E6682; /* Color del botón similar al de la imagen */
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 20px; /* Bordes redondeados para el botón */
+    cursor: pointer;
+    width: 100%;
+    font-weight: bold;
+    font-size: 16px;
 }
 
 input[type="submit"]:hover {
-    background-color: #0056b3; /* Color al pasar el mouse */
+    background-color: #3a4f5b; /* Color al pasar el mouse */
 }
 
 .register-link {
     display: block;
-    text-align: center; /* Centra el enlace */
-    margin-top: 15px; /* Espacio superior */
-    color: #007bff; /* Color del enlace */
-    text-decoration: none; /* Sin subrayado */
+    text-align: center;
+    font-size: 14px;
+    margin-top: 15px;
+    color: #4a6070;
+    text-decoration: none;
 }
 
 .register-link:hover {
-    text-decoration: underline; /* Subrayado al pasar el mouse */
+    text-decoration: underline;
 }
-
 
 .back-link {
     position: absolute;
-    top: 30px; /* Espacio desde la parte superior */
-    left: 20px; /* Espacio desde el borde izquierdo */
-    display: flex;
-    align-items: center;
-    text-decoration: none; /* Sin subrayado */
-}
-
-.back-link img {
-    width: 24px; /* Ajusta el tamaño de la flecha */
-    height: 24px;
+    top: 15px;
+    left: 15px;
+    font-size: 18px;
+    color: #333;
+    text-decoration: none;
 }
 
 .back-link:hover {
-    opacity: 0.8; /* Efecto al pasar el ratón */
+    opacity: 0.7;
 }
