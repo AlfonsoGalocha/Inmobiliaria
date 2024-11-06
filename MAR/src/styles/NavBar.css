@@ -18,16 +18,21 @@
   transition: background-color 0.3s ease; /* Smooth transition when changing color */
 }
 
+
+
 /* Logo */
 .navbar-logo h1 {
   color: #ffffff; /* Accent color for the logo */
-  font-size: 28px;
-  letter-spacing: 2px;
-  margin: 1%;
-  font-weight: 10;
-  font-family: 'Piazzolla';
+  font-size: 50px;
+  margin-bottom: 5px;
 }
 
+
+.navbar-logo h1 .redacted-script-regular {
+  font-family: "Redacted Script", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
 
 
 .navbar-logo .home_title{
@@ -138,16 +143,7 @@
   background-color: #706f6f; /* Darker background when scrolling */
 }
 
-/* Estilos generales para el overlay */
-.overlay {
-  position: fixed; /* Fija el overlay en toda la pantalla */
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  backdrop-filter: blur(5px); /* Aplica un efecto de blur al fondo */
-  z-index: 998; /* Debe estar por debajo del menú pero por encima del contenido */
-}
+
 
 /* Estilo para la barra de navegación
 .navbar {

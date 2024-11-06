@@ -31,10 +31,11 @@ const Navbar = () => {
     };
 
     return (
+
         <nav className={`navbar ${isMobileMenuOpen ? 'menu-active' : ''}`}>
             <div className="navbar-logo">
                 <a href="/" className='home_title'>
-                    <h1>MAR</h1>
+                    <h1 className='redacted-script-regular'>MAR</h1>
                 </a>
             </div>
             {!isMobileMenuOpen && (
