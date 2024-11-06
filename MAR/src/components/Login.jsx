@@ -4,7 +4,8 @@ import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 import BackLink from '../../public/static/img/go-back.png'; // Importa el componente BackLink
-
+import GoogleIcon from '../../public/static/img/google-icon.png'; // Importa el componente GoogleIcon
+import AppleIcon from '../../public/static/img/apple-icon.png'; // Importa el componente AppleIcon
 const Login = () => {
 
   const [formData, setFormData] = useState({
@@ -57,6 +58,17 @@ const Login = () => {
         </div>
         <Link to="/signup" className="register-link">¿No tienes una cuenta? Regístrate aquí</Link>
         <input type="submit" value="Iniciar Sesión" />
+        <div className='buttons'>
+          {/* google register option */}
+          <button className="google-button">
+            <img src={GoogleIcon} alt="Google" />
+          </button>
+
+          {/* inicio de sesion con apple */}
+          <button className="apple-button">
+            <img src={AppleIcon} alt="Apple" />
+          </button>
+        </div>
       </form>
       </>
   );

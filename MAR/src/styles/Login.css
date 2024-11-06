@@ -46,6 +46,26 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
+    padding-bottom: 100px;
+}
+
+.register-form {
+    z-index: 2;
+    background-color: #fff; 
+    padding: 20px;
+    border-radius: 25px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+    max-width: 320px;
+    max-height: 420px;
+    height: 100dvh;
+    width: 100dvw;
+    position: relative;
+    text-align: center; 
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    padding-bottom: 100px;
+    
 }
 
 .top{
@@ -73,6 +93,7 @@ h2 {
 }
 
 .form-group {
+    margin-top: 10px;
     margin-bottom: 20px; 
 }
 
@@ -106,6 +127,42 @@ input[type="submit"] {
 
 input[type="submit"]:hover {
     background-color: #465f6e; 
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 7px;
+
+}
+
+.google-button{
+    background:none;
+    border: none;
+    cursor: pointer;
+    margin-top: 15px;
+}
+
+.google-button img{
+    width: 30px;
+    height: 30px;
+}
+
+.apple-button { 
+    background:none;
+    border: none;
+    cursor: pointer;
+    margin-top: 10px;
+    margin-left: 30px;
+    /* poner en el centro del form */
+}
+
+.apple-button img{
+    width: 30px;
+    height: 30px;
+    
+    
 }
 
 .register-link {

@@ -96,7 +96,7 @@
     display: flex;
     flex-direction: column;
     position: absolute;
-    top: 670%; /* Posiciona el menú en el medio verticalmente */
+    top: 400%; /* Posiciona el menú en el medio verticalmente */
     left: 50%; /* Posiciona el menú en el medio horizontalmente */
     transform: translate(-50%, -50%); /* Ajusta la posición para que quede centrado */
     background-color: #4E6682; /* Color de fondo del menú */
@@ -116,6 +116,17 @@
 
   .mobile-menu-icon {
     display: block; /* Show the hamburger icon on mobile */
+  }
+
+  .search-icon {
+    background: none;
+    border: none;
+    
+  }
+
+  .svg_lupa img{
+    display: none;
+    margin-right: -1000px;
   }
 
   .close-menu-icon {
