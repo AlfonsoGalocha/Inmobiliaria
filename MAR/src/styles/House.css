@@ -1,0 +1,348 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+   .redacted-script-light {
+    font-family: "Redacted Script", cursive;
+    font-weight: 300;
+    font-style: normal;
+  }
+  
+  .redacted-script-regular {
+    font-family: "Redacted Script", cursive;
+    font-weight: 400;
+    font-style: normal;
+  }
+  
+  .redacted-script-bold {
+    font-family: "Redacted Script", cursive;
+    font-weight: 700;
+    font-style: normal;
+  } 
+  html, body, #root, .App {
+    height: 100%;
+    font-family: Arial, sans-serif;
+    background-color: #FFFCF6;
+  }
+  
+  body{
+    display: flex; /* Asegura que el contenedor se ajuste */
+    justify-content: center;
+    align-items: center;
+    background-color: #FFFCF6;
+  }
+  .contenedor {
+    width: 370px;
+    height: 20px;
+  
+    display: flex; /* Asegura que el contenedor se ajuste */
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .section {
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    scroll-snap-align: start;
+    font-size: 2rem;
+    color: white;
+  }
+  
+  
+  
+  /* Estilo del contenido del home */
+  
+  /* ---------------- Style for the section 1 (Principal) ---------------- */
+  
+  .section1 {
+    background-image: url('../../public/static/img/casa_pricipio_movil.jpg');
+    background-size: cover;
+    background-position: center -70px;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    position: relative;
+    overflow: hidden; /* Asegúrate de que los hijos no se vean fuera de la sección */
+    height: 100%;
+  
+  }
+  
+  .section1::before {
+    content: "";
+    position: absolute; /* Cambia a absolute para que quede fijo solo dentro de la sección */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 15%;
+    background: linear-gradient(
+        to bottom,
+        rgba(33, 33, 33, 0.7),
+        rgba(33, 33, 33, 0.5) 40%,
+        rgba(33, 33, 33, 0.3) 60%,
+        rgba(33, 33, 33, 0.1) 80%,
+        rgba(33, 33, 33, 0) 100%
+      );
+    z-index: 1;
+  }
+  
+  .section1 .title{
+    width: 90%;
+    height: 20%;
+    display: flex;
+    flex-direction: column; /* Cambia a column para apilar los elementos verticalmente */
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 30%;
+  }
+  
+  h2{
+    font-family: 'Piazzolla';
+    font-weight: bold;
+    color: #000000;
+    margin-left: -3px;
+  }
+  
+  .section1 .title h2.eslogan{
+    order: 1;
+    font-family: 'Piazzolla';
+    font-weight: bold;
+    color: #000000;
+
+  }
+  
+  .section1 .title .description{
+    order: 2;
+    font-family: 'Piazzolla';
+    font-weight: normal;
+    font-size: 18px;
+    color: #000000;
+  }
+  
+  .section1 .categories .category-link{
+    text-decoration: none;
+    color: #354F92;
+  }
+  
+  .section1 .categories .category-link:hover{
+    color: #4371e2;
+  }
+  
+  
+  
+  /* ---------------- Style for the section 2 (Viviendas destacadas) ---------------- */
+  
+  .section2 {
+    background-color: #FFFCF6;
+    position: relative;
+    top: -16%;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    height: 75%;
+  }
+  
+  .section2 .down_indicator{
+    color: #354F92;
+    transform: rotate(90deg);
+    font-size: 2.5rem;
+    position: absolute;
+    top: 3.5%;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
+  }
+  .section2 h1{
+    text-align: center;
+    font-size: 90%;
+    color: #354F92;
+    margin-bottom: 10%;
+    margin-top: 35%;
+    font-family: 'Piazzolla'; /* Cambiar en función de gustos grupales */
+  }
+  
+  
+  .section2 .house-card{
+    margin-top: 20px; /* Añade un margen superior a la carta */
+    max-width: 350px; /* Limita el ancho de la carta */
+  }
+  
+  
+  .container-card{
+    width: 370px;
+    height: 390px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 0 0 15px rgba(0, 0, 0, 0), 
+                  -15px 0 30px -10px rgba(0, 0, 0, 0.3), 
+                  15px 0 30px -10px rgba(0, 0, 0, 0.3); 
+  
+    border:none;
+  }
+  
+  
+  /* ---------------- Style for the section 3 (Nosotros) ---------------- */
+  
+  .section3 {
+    background-color: #FFFCF6;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    text-align: center; /* Asegura que todo esté centrado */
+    margin-top: 5%;
+    height: 40%;
+  }
+  
+  .section3 h1 {
+    font-size: 2rem; /* Ajusta el tamaño del título si es necesario */
+    color: #354F92;
+    margin-bottom: 20px; /* Espacio entre el título y el texto */
+    font-family: 'Piazzolla'; /* Estilo del título */
+  }
+  
+  .section3 p {
+    font-size: 1.2rem; /* Ajusta el tamaño del texto */
+    font-family: serif;
+    font-style: italic;
+    color: black;
+    max-width: 600px; /* Limita el ancho del texto para mejorar legibilidad */
+    line-height: 1.5; /* Aumenta el espacio entre líneas para mejor lectura */
+    text-align: center;
+  }
+  
+  
+  
+  /* ---------------- Style for the section 4 (Nuestra misión) ---------------- */
+  
+  .section4 {
+    background-color: #FFFCF6;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    text-align: center; /* Asegura que todo esté centrado */
+    margin-top: -30%;
+    height: 100%;
+  }
+  
+  .section4 h1 {
+    font-size: 2rem; /* Ajusta el tamaño del título si es necesario */
+    color: #354F92;
+    margin-bottom: 20px; /* Espacio entre el título y el texto */
+    font-family: 'Piazzolla'; /* Estilo del título */
+  }
+  
+  .section4 p {
+    font-size: 1.2rem; /* Ajusta el tamaño del texto */
+    font-family: serif;
+    font-style: italic;
+    color: black;
+    max-width: 600px; /* Limita el ancho del texto para mejorar legibilidad */
+    line-height: 1.5; /* Aumenta el espacio entre líneas para mejor lectura */
+    text-align: center;
+  }
+  
+  
+  
+  /* ---------------- Style for the section 5 (footer) ---------------- */
+  
+  .footer {
+    text-align: center;
+    padding: 90px 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #e2e2e2e8;
+    box-shadow: none;
+    border-top-left-radius: 7%;
+    border-top-right-radius: 7%;
+    margin-top: -15%;
+  }
+  .contact-section{
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    align-items: center;
+    justify-content: space-around;
+    width: 100%;
+  }
+  .footer .contact-section #contact {
+    font-size: 1.1rem;
+    font-weight: 400;
+    margin-bottom: 5px;
+    color: #0e0e0e;
+  }
+  
+  .footer p {
+    margin: 5px 0;
+    font-size: 1rem;
+    color: #858585;
+  }
+  
+  .social-links {
+    display: flex;
+    justify-content: space-around;
+    width: 70%;
+    margin: 30px 0;
+  }
+  .social-links img{
+    max-width: 30px;
+    max-height: 30px;
+    border-radius: 5px;
+    background-position: center;
+    background-size: cover;
+  }
+  
+  .social-links a {
+    margin: 0 10px;
+  }
+  
+  .social-links img {
+    width: 30px;
+    height: 30px;
+    vertical-align: middle;
+    margin: 0 10px;
+  }
+  
+  .footer-links {
+    display: flex;           /* Activa Flexbox */
+    justify-content: center;  /* Centra los elementos horizontalmente */
+    gap: 20px;                /* Define el espacio entre los enlaces */
+    margin-top: 20px;
+    font-size: medium;
+  }
+  
+  .footer-links a {
+    color: white;             /* Color del texto de los enlaces */
+    text-decoration: none;    /* Elimina el subrayado de los enlaces */
+    color: black;
+  }
+  
+  .footer-links a:hover {
+    color: rgb(70, 70, 70);
+  }
+  
+  
+  
+  @media(max-width : 738px) {
+  
+    .container-card{
+      
+      width: 100%;
+      max-width: 370px;
+      max-height: 390px;
+      height: auto; 
+      max-width: 390px;
+      
+    }
+  
+  }
+  
+  
