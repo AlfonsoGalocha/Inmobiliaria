@@ -51,10 +51,10 @@ const Login = () => {
           <h2>Iniciar Sesión</h2>
         </div>
         <div className="form-group">
-          <input placeholder='Usuario' type="text" id="username" value={formData.username} onChange={handleChange} required />
+          <input className='user-login' placeholder='Usuario' type="text" id="username" value={formData.username} onChange={handleChange} required />
         </div>
         <div className="form-group">
-          <input placeholder='Contraseña' type="password" id="password" value={formData.password} onChange={handleChange} required />
+          <input className='password-login' placeholder='Contraseña' type="password" id="password" value={formData.password} onChange={handleChange} required />
         </div>
         <Link to="/signup" className="register-link">¿No tienes una cuenta? Regístrate aquí</Link>
         <input type="submit" value="Iniciar Sesión" />

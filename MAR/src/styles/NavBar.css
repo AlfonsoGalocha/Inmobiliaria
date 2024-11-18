@@ -85,6 +85,10 @@
   color: white;
   cursor: pointer;
 }
+
+/* ------------------------------------------------------------------- Para Movil------------------------------------------------------------ */
+
+
 /* Responsive styles for mobile */
 @media (max-width: 768px) {
   .navbar-links {
@@ -114,12 +118,19 @@
     padding: 10px 0;
   }
 
+  /* icono de menu */
   .mobile-menu-icon {
     display: block; /* Show the hamburger icon on mobile */
+    position: flex;
+    left: 86%;
   }
-
+  
+  /* icono de lupa */
   .search-icon {
-    margin-top: 10px;
+    position: absolute;
+    display: block;
+    margin-top: 6.5px;
+    left: 75%;
     background: none;
     border: none;
     
@@ -139,39 +150,34 @@
 .search-bar {
   display: none; /* Oculta la barra inicialmente */
   position: relative;
-  top: 25%;
-  right: 20%;
-  width: 200%; /* Hazla más larga */
-  background-color: white;
+  right: 70%;
+  width: 90%; /* Hazla más larga */
+  background-color: rgb(110, 109, 109);
   border-radius: 25px; /* Más redondeada */
   box-shadow: 0 2px 5px rgba(0, 1, 0, 0.15);
   transition: all 0.3s ease; /* Animación para suavidad */
+  
 }
 
 .search-bar input {
+  background-color: transparent;
   width: 95%; /* Deja un pequeño espacio para la lupa */
   padding: 10px;
   font-size: 16px;
+  color: #fff;
   border: none;
   outline: none;
-  border-radius: 25px; /* Más redondeada */
+  border-radius: 25px; 
+  
 }
 
-input{
-  background-color: transparent;
-  border: none;
-  border-bottom: 1px solid #000;
-  padding-bottom: 10px;
-  outline: none;
-  width: 100%;
-  font-size: 16px;
-  color: #333;
-}
+
 
 /* Mostrar barra de búsqueda cuando se active */
 .search-bar.active {
   display: block;
-  right:0;
+  margin-top: 6px;
+  left: -5px;
 }
 
 /* Animación para la barra de búsqueda */
@@ -179,9 +185,14 @@ input{
   transition: all 0.3s ease;
 }
 
+.svg-lupa {
+  width: 32px; /* Tamaño del ícono */
+  height: 35px;
+}
+
 /* Modificar el ícono de la lupa cuando se active */
-.search-icon.active .svg_lupa img {
-  color: black;
+.search-icon.active .svg-lupa img {
+  fill: green; /* Cambia el color de relleno */
 }
 
   /* Animate the mobile menu links */

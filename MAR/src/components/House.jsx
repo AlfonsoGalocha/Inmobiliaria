@@ -1,11 +1,16 @@
 import '../styles/House.css';
 
+import React, { useState } from 'react';
+
 
 import NavBar from './NavBar';
 import HouseCard from './HouseCard';
 
 
 function House(){
+
+    const [showCard, setShowCard] = useState(false); // Estado para controlar la visibilidad
+
 
     const houseData = {
         image: '../../public/static/img/casa_majadahonda.webp',
@@ -17,6 +22,13 @@ function House(){
         bedrooms: 5,
         price: '1,350,000€'
       };
+
+    
+    
+      // Función para manejar el clic en los botones
+    const handleButtonClick = () => {
+        setShowCard(true); // Cambia el estado a true para mostrar la carta
+    };
     
 
     return(
@@ -32,21 +44,37 @@ function House(){
             </div>
 
             <div className='section section2'>
-                <h1>Viviendas destacadas</h1>
-                <div className="container-card">
+    
+            <div className="buttons">
+            <button className="button" onClick={handleButtonClick}>
+                Chalet
+            </button>
+            <button className="button" onClick={handleButtonClick}>
+                Adosado
+            </button>
+            <button className="button" onClick={handleButtonClick}>
+                Villa
+            </button>
+            <button className="button" onClick={handleButtonClick}>
+                Pareado
+            </button>
+            </div>
+            <div className="container-card">
+                {/* Muestra la carta solo si showCard es true */}
+                {showCard && (
                     <HouseCard
-                        image={houseData.image}
-                        title={houseData.title}
-                        description={houseData.description}
-                        location={houseData.location}
-                        size={houseData.size}
-                        bathrooms={houseData.bathrooms}
-                        bedrooms={houseData.bedrooms}
-                        price={houseData.price}
+                    image={houseData.image}
+                    title={houseData.title}
+                    description={houseData.description}
+                    location={houseData.location}
+                    size={houseData.size}
+                    bathrooms={houseData.bathrooms}
+                    bedrooms={houseData.bedrooms}
+                    price={houseData.price}
                     />
+                )}
                 </div>
             </div>
-        
         </div>
 
     )

@@ -165,6 +165,23 @@
     font-family: 'Piazzolla'; /* Cambiar en función de gustos grupales */
   }
   
+  .section2 button{
+    background-color: #ffffff;
+    box-shadow: #000000;
+    color: rgb(3, 108, 179);
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 1rem;
+    font-family: 'Piazzolla'; /* Cambiar en función de gustos grupales */
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  .section2 button:hover{
+    background-color: #354F92;
+    color: #ffffff;
+  }
   
   .section2 .house-card{
     margin-top: 20px; /* Añade un margen superior a la carta */
