@@ -3,12 +3,10 @@ import psycopg2
 import datetime
 import sys
 import os
-from flask_migrate import Migrate
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
-from database.database import Usuarios, db
 from flask_cors import CORS
 from werkzeug.security import generate_password_hash, check_password_hash
-
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+from database.database import User, House, db
 
 app = Flask(__name__)
 CORS(app, supports_credentials=True, resources={r"/*": {"origins": "http://localhost:5173"}})
@@ -17,12 +15,11 @@ app.config['SECRET_KEY'] = '1234567890'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:12345@localhost:5432/mar'
 db.init_app(app)
 
-migrate = Migrate(app, db)
-
+with app.app_context():
+    db.create_all()
 
 
 @app.route('/user/signup', methods=['POST'])
-# Registro de usuario
 def signup():
     data = request.get_json()
 
@@ -34,12 +31,12 @@ def signup():
     password = data['password']
 
     try:
-        existing_user = Usuarios.query.filter((Usuarios.username == username) | (Usuarios.email == email)).first()
+        existing_user = User.query.filter((User.username == username) | (User.email == email)).first()
         if existing_user:
             return jsonify({'message': 'El usuario o el correo ya existe'}), 400
 
         hashed_password = generate_password_hash(password)
-        new_user = Usuarios(
+        new_user = User(
             id=str(datetime.datetime.now(datetime.timezone.utc).timestamp()),
             username=username,
             email=email,
@@ -58,8 +55,6 @@ def signup():
     return jsonify({'message': 'Usuario registrado con éxito'}), 201
 
 
-
-# Iniciar sesión
 @app.route('/user/login', methods=['POST'])
 def login():
     data = request.get_json()
@@ -70,16 +65,13 @@ def login():
     username = data['username']
     password = data['password']
 
-    
-    # Buscar usuario en la base de datos
-    user = Usuarios.query.filter_by(username=username).first()
-    
+    user = User.query.filter_by(username=username).first()
+
     if not user or not check_password_hash(user.password, password):
         return jsonify({'message': 'Usuario o contraseña incorrectos'}), 401
 
     session['login'] = True
 
-    # Establecer una cookie
     response = jsonify({'message': 'Inicio de sesión exitoso'})
     response.set_cookie('session', 'true', httponly=True, samesite='Lax')
 
@@ -88,11 +80,8 @@ def login():
 
 @app.route('/user/logout', methods=['POST'])
 def logout():
-
     session.clear()
-
     return jsonify({'message': 'Logout exitoso'}), 200
-
 
 
 if __name__ == '__main__':
