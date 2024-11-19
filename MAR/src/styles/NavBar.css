@@ -12,7 +12,8 @@
   background-color: #1012a300; /* Dark background */
   padding: 10px 25px;
   position: absolute;
-  top: 2.5%;
+  height: 60px;
+  top: 2%;
   width: 100%;
   z-index: 1000;
   transition: background-color 0.3s ease; /* Smooth transition when changing color */
@@ -100,7 +101,7 @@
     display: flex;
     flex-direction: column;
     position: absolute;
-    top: 400%; /* Posiciona el menú en el medio verticalmente */
+    top: 600%; /* Posiciona el menú en el medio verticalmente */
     left: 50%; /* Posiciona el menú en el medio horizontalmente */
     transform: translate(-50%, -50%); /* Ajusta la posición para que quede centrado */
     background-color: #4E6682; /* Color de fondo del menú */
@@ -130,70 +131,61 @@
     position: absolute;
     display: block;
     margin-top: 6.5px;
-    left: 75%;
+    left: 77%;
     background: none;
     border: none;
     
   }
-
-  .svg_lupa img{
-    display: none;
-    margin-right: -1000px;
-  }
-
   
+  .search-icon svg{
+    stroke: white;
+    cursor: pointer;
+  }
+  .search-icon.active svg {
+    stroke: #7189A2; 
+  }
   .close-menu-icon {
     display: block; 
   }
 
-  /* Barra de búsqueda */
-.search-bar {
-  display: none; /* Oculta la barra inicialmente */
-  position: relative;
-  right: 70%;
-  width: 90%; /* Hazla más larga */
-  background-color: rgb(110, 109, 109);
-  border-radius: 25px; /* Más redondeada */
-  box-shadow: 0 2px 5px rgba(0, 1, 0, 0.15);
-  transition: all 0.3s ease; /* Animación para suavidad */
-  
-}
+  .search-bar {
+    display: block;
+    position: absolute;
+    right: 15.5%; 
+    top: 25%;
+    width: 0; 
+    height: 35px; 
+    background-color: rgb(254, 254, 254);
+    border-radius: 25px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+    overflow: hidden; 
+    transition: width 0.3s ease; 
+    
+  }
 
-.search-bar input {
-  background-color: transparent;
-  width: 95%; /* Deja un pequeño espacio para la lupa */
-  padding: 10px;
-  font-size: 16px;
-  color: #fff;
-  border: none;
-  outline: none;
-  border-radius: 25px; 
-  
-}
+  .search-bar input {
+    width: 100%; 
+    height: 100%;
+    background-color: transparent;
+    color: #7189A2;
+    border: none;
+    outline: none;
+    padding: 0 15px;
+    font-size: 15px;
+    opacity: 0; 
+    transition: opacity 0.3s ease;
+  }
 
 
+  .search-bar.active {
+    width: 80%; 
+  }
 
-/* Mostrar barra de búsqueda cuando se active */
-.search-bar.active {
-  display: block;
-  margin-top: 6px;
-  left: -5px;
-}
+  .search-bar.active input {
+    opacity: 1;
+  }
 
-/* Animación para la barra de búsqueda */
-.search-bar {
-  transition: all 0.3s ease;
-}
 
-.svg-lupa {
-  width: 32px; /* Tamaño del ícono */
-  height: 35px;
-}
-
-/* Modificar el ícono de la lupa cuando se active */
-.search-icon.active .svg-lupa img {
-  fill: green; /* Cambia el color de relleno */
-}
 
   /* Animate the mobile menu links */
   .navbar-links-mobile a {

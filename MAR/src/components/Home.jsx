@@ -1,4 +1,4 @@
-import '../styles/Home.css'
+import '../styles/App.css'
 
 // Components
 import NavBar from './NavBar';

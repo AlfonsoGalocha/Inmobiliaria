@@ -101,12 +101,12 @@ body{
 
 
 
-.section1 .title h2.eslogan{
+.section1 .title .eslogan{
   order: 1;
   font-family: Georgia, 'Times New Roman', Times, serif;
-  font-weight: lighter;
-  font-size: smaller;
-  color: #7189A2;
+  font-weight: lighter !important;
+  font-size: smaller !important;
+  color: #7189A2 !important;
   margin-bottom: 4%;
 }
 

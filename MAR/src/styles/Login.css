@@ -1,13 +1,12 @@
 
-body {
+.fondoIR {
+    position: absolute;
     background-image: url('../../public/static/img/casa_pricipio_movil.jpg'); 
-    font-family: Arial, sans-serif; 
+    width: 100vw;
+    height: 100vh;
     background-size: cover;
     background-repeat: no-repeat;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
+}
   
 
 .overlay {
@@ -38,7 +37,7 @@ body {
     border-radius: 25px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
     max-width: 320px;
-    max-height: 350px;
+    max-height: 320px;
     height: 100dvh;
     width: 100dvw;
     position: relative;
@@ -56,7 +55,7 @@ body {
     border-radius: 25px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
     max-width: 320px;
-    max-height: 420px;
+    max-height: 370px;
     height: 100dvh;
     width: 100dvw;
     position: relative;
@@ -80,6 +79,7 @@ body {
 .back-link {
     position: absolute;
     left: 3%;
+    top: 25%;
 }
 .back-link:hover {
     opacity: 0.8;
@@ -98,8 +98,7 @@ h2 {
 }
 
 
-.user-login,
-.password-login {
+.input-form {
     background-color: transparent;
     border: none;
     border-bottom: 1px solid #000;
@@ -127,42 +126,6 @@ input[type="submit"] {
 
 input[type="submit"]:hover {
     background-color: #465f6e; 
-}
-
-.buttons {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 7px;
-
-}
-
-.google-button{
-    background:none;
-    border: none;
-    cursor: pointer;
-    margin-top: 15px;
-}
-
-.google-button img{
-    width: 30px;
-    height: 30px;
-}
-
-.apple-button { 
-    background:none;
-    border: none;
-    cursor: pointer;
-    margin-top: 10px;
-    margin-left: 30px;
-    /* poner en el centro del form */
-}
-
-.apple-button img{
-    width: 30px;
-    height: 30px;
-    
-    
 }
 
 .register-link {

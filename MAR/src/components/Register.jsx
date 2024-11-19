@@ -4,8 +4,6 @@ import { useState } from 'react'
 import axios from 'axios';
 
 import BackLink from '../../public/static/img/go-back.png' // Importa el componente BackLink'
-import GoogleIcon from '../../public/static/img/google-icon.png' // Importa el componente GoogleIcon
-import AppleIcon from '../../public/static/img/apple-icon.png' // Importa el componente AppleIcon
 
 const Register = () => {
   
@@ -45,37 +43,27 @@ const Register = () => {
   
   return (
     <>
-       <div className="overlay"></div> {/*Este es el overlay que desenfocará el fondo */}
+      <div className="fondoIR"></div>
+      <div className="overlay"></div> {/*Este es el overlay que desenfocará el fondo */}
         <form className="register-form" onSubmit={handleSubmit}>
           <div className="top">
             <Link to="/" className="back-link"><img src={BackLink} alt="Volver" /> </Link>
             <h2>Crear Cuenta</h2>
           </div>
           <div className="form-group">
-            <input type="text" id="username" placeholder="Usuario" value={formData.username} onChange={handleChange} required />
+            <input className='input-form' type="text" id="username" placeholder="Usuario" value={formData.username} onChange={handleChange} required />
           </div>
           <div className="form-group">
-            <input type="text" id="email" placeholder="Correo" value={formData.email} onChange={handleChange} required />
+            <input className='input-form' type="text" id="email" placeholder="Correo" value={formData.email} onChange={handleChange} required />
           </div>
           <div className="form-group">
-            <input type="password" id="password" placeholder="Contraseña" value={formData.password} onChange={handleChange} required />
+            <input className='input-form' type="password" id="password" placeholder="Contraseña" value={formData.password} onChange={handleChange} required />
           </div>
           <Link to="/login" className="register-link">
             ¿Ya tienes una cuenta? Inicia sesión
           </Link>
           <input type="submit" value="Registrarse" />
 
-          <div className='buttons'>
-          {/* google register option */}
-          <button className="google-button">
-            <img src={GoogleIcon} alt="Google" />
-          </button>
-
-          {/* inicio de sesion con apple */}
-          <button className="apple-button">
-            <img src={AppleIcon} alt="Apple" />
-          </button>
-        </div>
         </form>
     </>
   );

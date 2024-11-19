@@ -1,8 +1,6 @@
 // src/App.jsx
 
-import './styles/App.css';
-
-// import { useState } from 'react'; // Importa useState
+// import './styles/App.css';
 
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Home from './components/Home'; // Componente para la página de inicio

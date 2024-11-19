@@ -34,12 +34,12 @@ function House(){
     return(
         <div className='App'>
             <NavBar />
-            <div className='section section1'>
-                <div className='title'>
-                    <h2 className='eslogan'>Encuentra la Casa de Tus Sueños</h2>
-                    <div className='description'>
-                        <a className='description-text'> Te ofrecemos una selección de viviendas cuidadosamente elegidas para adaptarse a tus necesidades y estilo de vida, ya sea que busques un hogar acogedor en el centro de la ciudad o una amplia casa familiar en una zona tranquila.</a>
-                    </div>
+            {/* En esta navbar tenemos que hacer que no se vea la lupa */}
+            {/* Y meter una barra de busqueda aqui */}
+            <div className='section section1 text'>
+                <div className='title-text'>
+                    <h2 className='eslogan-h2'>Encuentra la Casa de tus Sueños</h2>
+                    <p> Te ofrecemos una selección de viviendas cuidadosamente elegidas para adaptarse a tus necesidades y estilo de vida, ya sea que busques un hogar acogedor en el centro de la ciudad o una amplia casa familiar en una zona tranquila.</p>
                 </div>
             </div>
 
