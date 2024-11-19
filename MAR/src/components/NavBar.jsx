@@ -1,9 +1,10 @@
-import { useState, useEffect, useRef } from 'react';
-import { Link } from 'react-router-dom';
-import '../styles/NavBar.css';
-import axios from 'axios';
+import { useState, useEffect, useRef } from 'react'
+import { Link } from 'react-router-dom'
+import '../styles/NavBar.css'
+import PropTypes from 'prop-types'
+import axios from 'axios'
 
-const Navbar = () => {
+const Navbar = ({ showSearchIcon = true }) => {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const [isSearchOpen, setIsSearchOpen] = useState(false);
     const [isLoggedIn, setIsLoggedIn] = useState(localStorage.getItem('user') !== null);
@@ -13,18 +14,18 @@ const Navbar = () => {
     const toggleMobileMenu = () => setIsMobileMenuOpen(!isMobileMenuOpen);
 
     const handleSearchIconClick = () => {
-        if (isSearchOpen) queryCall(); // Llama a queryCall si la barra ya está abierta
-        else setIsSearchOpen(true); // Abre la barra de búsqueda
+        if (isSearchOpen) queryCall();
+        else setIsSearchOpen(true);
     };
 
     const handleClickOutside = (event) => {
         if (
             searchBarRef.current &&
-            !searchBarRef.current.contains(event.target) && // Si el clic no fue en la barra
+            !searchBarRef.current.contains(event.target) &&
             searchButtonRef.current &&
-            !searchButtonRef.current.contains(event.target) // Y tampoco en el boton de la lupa
+            !searchButtonRef.current.contains(event.target)
         ) {
-            setIsSearchOpen(false); // Cierra la barra de búsqueda
+            setIsSearchOpen(false);
         }
     };
 
@@ -36,7 +37,6 @@ const Navbar = () => {
     const queryCall = () => {
         const query = searchBarRef.current.querySelector('input').value;
         console.log(`Query executed: ${query}`);
-        // Aquí tenemos que meter la llamada a la api con la query de busqueda
     };
 
     const handleLogout = async () => {
@@ -54,31 +54,30 @@ const Navbar = () => {
 
     return (
         <nav className={`navbar ${isMobileMenuOpen ? 'menu-active' : ''}`}>
-
             <div className="navbar-logo">
                 {!isSearchOpen && <a href="/" className="home_title"><h1 className="redacted-script-regular">MAR</h1></a>}
             </div>
 
-            <div ref={searchBarRef} className={`search-bar ${isSearchOpen ? 'active' : ''}`}>
-                <input className="input-search-bar" type="text" placeholder="Encuentra tu casa" />
-            </div>
+            {showSearchIcon && (
+                <>
+                    <div ref={searchBarRef} className={`search-bar ${isSearchOpen ? 'active' : ''}`}>
+                        <input className="input-search-bar" type="text" placeholder="Encuentra tu casa" />
+                    </div>
 
-            {/* Lo de searchButtonRef es para que la barra de busqueda no se cierre cuando se pulsa la lupa, igual en el de arriba */}
-            <button ref={searchButtonRef} className={`search-icon ${isSearchOpen ? 'active' : ''}`} onClick={handleSearchIconClick}>
-
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-search">
-                    <circle cx="11" cy="11" r="8" />
-                    <path d="m21 21-4.3-4.3" />
-                </svg>
-
-            </button>
+                    <button ref={searchButtonRef} className={`search-icon ${isSearchOpen ? 'active' : ''}`} onClick={handleSearchIconClick}>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-search">
+                            <circle cx="11" cy="11" r="8" />
+                            <path d="m21 21-4.3-4.3" />
+                        </svg>
+                    </button>
+                </>
+            )}
 
             <button className="mobile-menu-icon" onClick={toggleMobileMenu}>&#9776;</button>
 
             {isMobileMenuOpen && <div className="overlay" onClick={toggleMobileMenu}></div>}
 
             <div className={isMobileMenuOpen ? 'navbar-links-mobile' : 'navbar-links'}>
-
                 {isMobileMenuOpen && <button className="close-menu-icon" onClick={toggleMobileMenu}>&#10005;</button>}
 
                 {isLoggedIn ? <Link to="/" onClick={handleLogout}>Logout</Link> : <>
@@ -87,10 +86,18 @@ const Navbar = () => {
                 </>}
                 <Link to="/favoritos">Favoritos</Link>
                 <Link to="#footer">Contacto</Link>
-
             </div>
         </nav>
     );
 };
 
-export default Navbar;
+
+Navbar.propTypes = {
+    showSearchIcon: PropTypes.bool
+};
+
+Navbar.defaultProps = {
+    showSearchIcon: true
+};
+
+export default Navbar

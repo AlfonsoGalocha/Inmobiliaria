@@ -23,15 +23,15 @@ const Home = () => {
 
   return (
       <div className='App'>
-        <NavBar />
+        <NavBar showSearchIcon={true} />
         <div className='section section1'>
           <div className='title'>
           
             <h2 className='eslogan'>Hogares que inspiran</h2>
             <div className='categories'>
               <a href='/house' className='category-link'>Casas</a> |
-              <a href='/alquileres' className='category-link'> Alquileres</a> |
-              <a href='/pisos' className='category-link'> Pisos</a>
+              <a href='/rent' className='category-link'> Alquileres</a> |
+              <a href='/flat' className='category-link'> Pisos</a>
             </div>
 
           </div>
