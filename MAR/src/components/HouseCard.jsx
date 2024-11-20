@@ -19,7 +19,7 @@ const HouseCard = ({ image, title, description, location, size, bathrooms, bedro
             <span><FaBath /> {bathrooms}</span>
             <span><FaBed /> {bedrooms}</span>
           </div>
-          <p className="property-price">{price}</p>
+          <p className="property-price">{price}€</p>
         </div>
       </div>
     </div>
@@ -35,7 +35,7 @@ HouseCard.propTypes = {
   size: PropTypes.number.isRequired,
   bathrooms: PropTypes.number.isRequired,
   bedrooms: PropTypes.number.isRequired,
-  price: PropTypes.string.isRequired,
+  price: PropTypes.number.isRequired,
 };
 
 export default HouseCard;

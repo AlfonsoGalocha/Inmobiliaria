@@ -79,12 +79,16 @@
 }
 
 .section2{
+  height: auto;
   justify-content: start;
+  flex: 1;
+  overflow: hidden;
 }
 .section2 .buttons{
   display: flex;
   justify-content: space-evenly;
   width: 100%;
+  margin-bottom: 25%;
 }
 .section2 .buttonFilter {
   background-color: #ffffff;
@@ -104,3 +108,35 @@
   color: white; 
 }
 
+.container-card-global {
+  margin-bottom: 20%; 
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.pagination-button {
+  margin: 0 10px;
+  padding: 5px 10px;
+  cursor: pointer;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+}
+
+.pagination-button:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+
+footer {
+  position: relative; /* Permite que el footer esté al final del flujo */
+  bottom: 0;
+  z-index: 4;
+
+}

@@ -85,7 +85,7 @@ const Navbar = ({ showSearchIcon = true }) => {
                     <Link to="/login">Iniciar Sesión</Link>
                 </>}
                 <Link to="/favoritos">Favoritos</Link>
-                <Link to="#footer">Contacto</Link>
+                <Link to="/">Contacto</Link>
             </div>
         </nav>
     );
