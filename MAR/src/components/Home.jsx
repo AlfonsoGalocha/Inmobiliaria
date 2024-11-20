@@ -15,7 +15,7 @@ const Home = () => {
     size: 1900,
     bathrooms: 8,
     bedrooms: 5,
-    price: '1,350,000€'
+    price: 1350000
   };
 
   const us = 'En MAR nos dedicamos a la venta de propiedades exclusivas en Majadahonda, con un enfoque en ofrecer un servicio personalizado y de alta calidad.\n\n\nCon años de experiencia en el mercado inmobiliario, nuestro equipo se compromete a acompañar a cada cliente en todo el proceso de compra, asegurando transparencia, confianza y una experiencia excepcional.'
