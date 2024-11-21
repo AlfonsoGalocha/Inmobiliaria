@@ -85,6 +85,7 @@ def logout():
     return jsonify({'message': 'Logout exitoso'}), 200
 
 
+
 @app.route('/houses', methods=['GET', 'POST'])
 def get_houses():
     if request.method == 'GET':
@@ -94,8 +95,10 @@ def get_houses():
         max_price = request.args.get('max_price', None)
         min_bedrooms = request.args.get('min_bedrooms', None)
         min_bathrooms = request.args.get('min_bathrooms', None)
+        rent = request.args.get('rent', None)
         page = int(request.args.get('page', 1))
         per_page = int(request.args.get('per_page', 5))
+
 
         query = House.query 
 
@@ -114,13 +117,20 @@ def get_houses():
                 query = query.filter(House.bedrooms >= int(min_bedrooms))
             if min_bathrooms:
                 query = query.filter(House.bathrooms >= int(min_bathrooms))
+            # if rent:
+            #     query = query.filter(House.))
+
         except ValueError as ve:
             return jsonify({"message": "Parámetros inválidos", "error": str(ve)}), 400
 
         # Paginación y resultados
         try:
             paginated_houses = query.paginate(page=page, per_page=per_page)
-            result = [house.to_dict() for house in paginated_houses.items]  #
+            result = [house.to_dict() for house in paginated_houses.items] 
+
+            print("Query Results:")
+            for house in result:
+                print(house)
 
             return jsonify({
                 "houses": result,

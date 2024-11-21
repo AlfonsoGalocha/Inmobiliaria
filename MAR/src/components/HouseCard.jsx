@@ -3,6 +3,9 @@ import '../styles/HouseCard.css';
 import { FaBath, FaBed } from 'react-icons/fa'; 
 
 const HouseCard = ({ image, title, description, location, size, bathrooms, bedrooms, price }) => {
+
+  const formattedPrice = price.toLocaleString('es-ES');
+
   return (
     <div className="card">
       <div className="card-image">
@@ -19,7 +22,7 @@ const HouseCard = ({ image, title, description, location, size, bathrooms, bedro
             <span><FaBath /> {bathrooms}</span>
             <span><FaBed /> {bedrooms}</span>
           </div>
-          <p className="property-price">{price}€</p>
+          <p className="property-price">{formattedPrice}€</p>
         </div>
       </div>
     </div>

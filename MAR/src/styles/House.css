@@ -123,7 +123,7 @@
   margin: 0 10px;
   padding: 5px 10px;
   cursor: pointer;
-  background-color: #007bff;
+  background-color: #4E6682;
   color: white;
   border: none;
   border-radius: 5px;
@@ -135,7 +135,7 @@
 }
 
 footer {
-  position: relative; /* Permite que el footer esté al final del flujo */
+  position: relative; 
   bottom: 0;
   z-index: 4;
 

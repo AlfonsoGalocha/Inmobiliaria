@@ -1,8 +1,8 @@
-import { useState, useEffect, useRef } from 'react'
-import { Link } from 'react-router-dom'
-import '../styles/NavBar.css'
-import PropTypes from 'prop-types'
-import axios from 'axios'
+import { useState, useEffect, useRef } from 'react';
+import { Link } from 'react-router-dom';
+import '../styles/NavBar.css';
+import PropTypes from 'prop-types';
+import axios from 'axios';
 
 const Navbar = ({ showSearchIcon = true }) => {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -91,13 +91,8 @@ const Navbar = ({ showSearchIcon = true }) => {
     );
 };
 
-
 Navbar.propTypes = {
     showSearchIcon: PropTypes.bool
 };
 
-Navbar.defaultProps = {
-    showSearchIcon: true
-};
-
-export default Navbar
+export default Navbar;

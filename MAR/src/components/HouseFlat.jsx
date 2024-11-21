@@ -1,30 +1,34 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, Children } from "react";
 import NavBar from "./NavBar";
 import HouseCard from "./HouseCard";
 import "../styles/House.css";
+import axios from "axios";
+import PropTypes from "prop-types";
 
-function House() {
+function Flat({type = Children,buttonOptions = Children,rent = Children,title = Children,eslogan = Children}) {
     const [houses, setHouses] = useState([]);
     const [isSearchOpen, setIsSearchOpen] = useState(false);
     const [isFilterOpen, setIsFilterOpen] = useState(false);
-    // const [filters, setFilters] = useState({
-    //     priceRange: [0, 10000000],
-    //     bedrooms: "",
-    //     bathrooms: "",
-    // });
+    const [filters, setFilters] = useState({
+        priceRange: [0, 5000000],
+        bedrooms: "",
+        bathrooms: "",
+    });
+    const [tempFilters, setTempFilters] = useState({ ...filters });
     const [activeButtons, setActiveButtons] = useState([]);
     const [page, setPage] = useState(1); // Página actual
     const [totalPages, setTotalPages] = useState(1); // Total de páginas
 
-    // Prepara los parámetros de consulta, excluyendo valores undefined o vacíos
+    // Parametros para la consulta
     const buildQueryParams = useCallback(() => {
         const queryParams = {
-            type: "Casa", // Mostrar solo casas por defecto
+            type,
+            rent,
             subtype: activeButtons.length > 0 ? activeButtons.join(",") : undefined,
-            // min_price: filters.priceRange[0],
-            // max_price: filters.priceRange[1],
-            // min_bedrooms: filters.bedrooms || undefined,
-            // min_bathrooms: filters.bathrooms || undefined,
+            min_price: filters.priceRange[0], 
+            max_price: filters.priceRange[1], 
+            min_bedrooms: filters.bedrooms || undefined, 
+            min_bathrooms: filters.bathrooms || undefined, 
             page,
             per_page: 5,
         };
@@ -33,31 +37,33 @@ function House() {
         return Object.fromEntries(
             Object.entries(queryParams).filter(([, value]) => value !== undefined)
         );
-    }, [activeButtons, page]); // Dependencias para useCallback
+    }, [activeButtons,filters, page,type,rent]); // Dependencias
 
-    // fetchHouses ahora utiliza los parámetros limpios
     const fetchHouses = useCallback(async () => {
         const queryParams = new URLSearchParams(buildQueryParams()).toString();
 
         try {
-            const response = await fetch(`http://localhost:5172/houses?${queryParams}`);
-            const data = await response.json();
-
-            if (response.ok) {
+            // Realizar la petición GET con axios
+            const response = await axios.get(`http://localhost:5172/houses?${queryParams}`);
+            
+            // Manejar la respuesta
+            if (response.status === 200) {
+                const data = response.data;
                 setHouses(Array.isArray(data.houses) ? data.houses : []);
                 setTotalPages(data.pages || 1);
             } else {
-                console.error("Error en la respuesta del servidor:", data.message);
+                console.error("Error en la respuesta del servidor:", response.data.message);
             }
         } catch (error) {
             console.error("Error fetching houses:", error);
-            setHouses([]);
+            setHouses([]); // Resetear las casas en caso de error
         }
     }, [buildQueryParams]);
 
+
     useEffect(() => {
         fetchHouses();
-    }, [fetchHouses]);
+    }, [filters,fetchHouses]);
 
     const handleButtonClick = (buttonType) => {
         setActiveButtons((prevButtons) => {
@@ -69,18 +75,22 @@ function House() {
         });
     };
 
-    // Maneja cambios en los filtros
-    // const handleFilterChange = (e) => {
-    //     const { name, value } = e.target;
-    //     setFilters((prevFilters) => ({ ...prevFilters, [name]: value }));
-    // };
+    // Maneja cambios en los filtros temporales
+    const handleTempFilterChange = (e) => {
+        const { name, value } = e.target;
+        setTempFilters((prevTempFilters) => ({
+            ...prevTempFilters,
+            [name]: name === "priceRange" ? value.split(",").map(Number) : value,
+        }));
+    };
 
-    // // Aplica filtros al presionar el botón
-    // const applyFilters = () => {
-    //     setPage(1); // Reinicia a la primera página
-    //     fetchHouses();
-    //     setIsFilterOpen(false);
-    // };
+    // Aplica los filtros desde los filtros temporales
+    const applyFilters = () => {
+        setFilters(tempFilters); // Actualiza los filtros
+        setPage(1); // Reinicia la paginación
+        setIsFilterOpen(false); // Cierra el modal
+    };
+    
 
     const goToNextPage = () => {
         if (page < totalPages) setPage((prevPage) => prevPage + 1);
@@ -142,17 +152,13 @@ function House() {
                     </button>
                 </div>
                 <div className="title-text">
-                    <h2 className="eslogan-h2">Encuentra la Casa de tus Sueños</h2>
-                    <p>
-                        Te ofrecemos una selección de viviendas cuidadosamente elegidas para adaptarse a tus
-                        necesidades y estilo de vida, ya sea que busques un hogar acogedor en el centro de la ciudad
-                        o una amplia casa familiar en una zona tranquila.
-                    </p>
+                    <h2 className="eslogan-h2">{title}</h2>
+                    <p>{eslogan}</p>
                 </div>
             </div>
             <div className="section section2">
                 <div className="buttons">
-                    {["CHALET", "ADOSADO", "VILLA", "PAREADO"].map((type) => (
+                    {buttonOptions.map((type) => (
                         <button
                             key={type}
                             className={`buttonFilter ${
@@ -200,70 +206,34 @@ function House() {
                     </button>
                 </div>
             </div>
-            {/* {isFilterOpen && (
+            {isFilterOpen && (
                 <div className="filter-window">
                     <div className="filter-group">
                         <label>Precio</label>
-                        <input
-                            type="number"
-                            name="priceRange"
-                            placeholder="Mínimo"
-                            value={filters.priceRange[0]}
-                            onChange={(e) =>
-                                handleFilterChange({
-                                    target: {
-                                        name: "priceRange",
-                                        value: [
-                                            parseInt(e.target.value) || 0,
-                                            filters.priceRange[1],
-                                        ],
-                                    },
-                                })
-                            }
-                        />
-                        <input
-                            type="number"
-                            name="priceRange"
-                            placeholder="Máximo"
-                            value={filters.priceRange[1]}
-                            onChange={(e) =>
-                                handleFilterChange({
-                                    target: {
-                                        name: "priceRange",
-                                        value: [
-                                            filters.priceRange[0],
-                                            parseInt(e.target.value) || 10000000,
-                                        ],
-                                    },
-                                })
-                            }
-                        />
+                        <div className="price-range">
+                            <input type="range" name="minPrice" min="0" max="1000000" step="10000" value={tempFilters.priceRange[0]} onChange={(e) => setTempFilters((prev) => ({ ...prev, priceRange: [Math.min(parseInt(e.target.value), prev.priceRange[1]), prev.priceRange[1]] }))} />
+                            <input type="range" name="maxPrice" min="0" max="5000000" step="10000" value={tempFilters.priceRange[1]} onChange={(e) => setTempFilters((prev) => ({ ...prev, priceRange: [prev.priceRange[0], Math.max(parseInt(e.target.value), prev.priceRange[0])] }))} />
+                        </div>
+                        <div className="price-values">
+                            <span>Min: {tempFilters.priceRange[0].toLocaleString("es-ES")}€ </span>
+                            <span>Max: {tempFilters.priceRange[1].toLocaleString("es-ES")}€ </span>
+                        </div>
                     </div>
+
                     <div className="filter-group">
                         <label>Habitaciones</label>
-                        <input
-                            type="number"
-                            name="bedrooms"
-                            placeholder="Mínimo habitaciones"
-                            value={filters.bedrooms}
-                            onChange={handleFilterChange}
-                        />
+                        <input type="number" name="bedrooms" placeholder="Mínimo habitaciones" value={tempFilters.bedrooms} onChange={handleTempFilterChange} />
                     </div>
                     <div className="filter-group">
                         <label>Baños</label>
-                        <input
-                            type="number"
-                            name="bathrooms"
-                            placeholder="Mínimo baños"
-                            value={filters.bathrooms}
-                            onChange={handleFilterChange}
-                        />
+                        <input type="number" name="bathrooms" placeholder="Mínimo baños" value={tempFilters.bathrooms} onChange={handleTempFilterChange} />
                     </div>
+
                     <button className="apply-filters" onClick={applyFilters}>
                         Aplicar
                     </button>
                 </div>
-            )} */}
+            )}
             <footer className='footer' id= 'footer'>
                 <div className="contact-section">
                     <p id='contact'>Contáctanos</p>
@@ -291,4 +261,13 @@ function House() {
     );
 }
 
-export default House;
+
+Flat.propTypes = {
+    type: PropTypes.string, // Usa PropTypes en lugar de Flat
+    buttonOptions: PropTypes.arrayOf(PropTypes.string), // Define un array de strings
+    rent: PropTypes.bool, // Booleano para el alquiler
+    title: PropTypes.string, // Título
+    eslogan: PropTypes.string, // Eslogan
+};
+
+export default Flat;
