@@ -175,6 +175,7 @@ function Flat({type = Children,buttonOptions = Children,rent = Children,title = 
                         <div key={index} className="container-card-global">
                             <div className="container-card">
                                 <HouseCard
+                                    id={house.id}
                                     image={house.image}
                                     title={house.title}
                                     description={house.description}

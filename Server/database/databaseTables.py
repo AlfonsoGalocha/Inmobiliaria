@@ -12,10 +12,9 @@ class User(db.Model):
     username = db.Column(db.String, nullable=False)
     email = db.Column(db.String, nullable=False)
     password = db.Column(db.String, nullable=False)
-    favs = db.Column(ARRAY(db.String))
+    favs = db.Column(ARRAY(db.String), nullable=False, default=[])    
     created_at = db.Column(db.DateTime)
     updated_at = db.Column(db.DateTime)
-    role = db.Column(db.Enum('admin', 'user', name='role'), nullable=False)
 
 
 

@@ -1,8 +1,27 @@
-import PropTypes from 'prop-types'; 
+import PropTypes from 'prop-types';
 import '../styles/HouseCard.css';
-import { FaBath, FaBed } from 'react-icons/fa'; 
+import { FaBath, FaBed, FaHeart } from 'react-icons/fa'; // Importa los iconos de corazón
+import { useState } from 'react';
+import axios from 'axios';
 
-const HouseCard = ({ image, title, description, location, size, bathrooms, bedrooms, price }) => {
+const HouseCard = ({ id, image, title, description, location, size, bathrooms, bedrooms, price }) => {
+  const [isFavorite, setIsFavorite] = useState(false); // Estado para controlar si la casa está en favoritos
+
+  const handleFavoriteClick = async () => {
+    setIsFavorite(!isFavorite);
+
+    try {
+      await axios.post('http://localhost:5172/user/favs', {
+        house_id: id,
+        action: !isFavorite ? 'add' : 'remove'
+      }, {
+        withCredentials: true  // Asegúrate de incluir las cookies de sesión
+      });
+    } catch (error) {
+      console.error('Error al actualizar favoritos:', error);
+    }
+  };
+
 
   const formattedPrice = price.toLocaleString('es-ES');
 
@@ -24,13 +43,18 @@ const HouseCard = ({ image, title, description, location, size, bathrooms, bedro
           </div>
           <p className="property-price">{formattedPrice}€</p>
         </div>
+
+        {/* Corazón para marcar como favorito */}
+        <div className="favorite-icon" onClick={handleFavoriteClick}>
+          {isFavorite ? <FaHeart color="red" /> : <FaHeart color='grey'/>}
+        </div>
       </div>
     </div>
   );
 };
 
-
 HouseCard.propTypes = {
+  id: PropTypes.string.isRequired,  // Agrega el id para identificar la casa
   image: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,

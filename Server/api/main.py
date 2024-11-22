@@ -71,7 +71,7 @@ def login():
         return jsonify({'message': 'Usuario o contraseña incorrectos'}), 401
 
     session['login'] = True
-    session['role'] = user.role
+    session['identifier'] = user.id
 
     response = jsonify({'message': 'Inicio de sesión exitoso'})
     response.set_cookie('session', 'true', httponly=True, samesite='Lax')
@@ -140,6 +140,49 @@ def get_houses():
             }), 200
         except Exception as e:
             return jsonify({"message": "Error al obtener casas", "error": str(e)}), 500
+        
+@app.route('/user/favs', methods=['POST'])
+def get_favs():
+    if request.method == 'POST':
+        data = request.get_json()
+        house_id = str(data.get('house_id'))  # Convertir a string
+        action = data.get('action')  # Puede ser 'add' o 'remove'
+
+        if not house_id or not action:
+            return jsonify({'message': 'Faltan datos'}), 400
+
+        if 'login' not in session:
+            return jsonify({'message': 'Tienes que registrarte para ver esta función'}), 401
+
+        usuario = session['identifier']
+        user = db.session.query(User).filter_by(id=usuario).first()
+
+        if not user:
+            return jsonify({'message': 'Usuario no encontrado'}), 404
+
+        if user.favs is None:
+            user.favs = []
+
+        if action == 'add':
+            if house_id not in user.favs:
+                user.favs = user.favs + [house_id]  # Reasignar la lista modificada
+            else:
+                return jsonify({'message': 'La casa ya está en favoritos'}), 400
+        elif action == 'remove':
+            if house_id in user.favs:
+                user.favs = [fav for fav in user.favs if fav != house_id]  # Reasignar sin el elemento
+            else:
+                return jsonify({'message': 'La casa no está en favoritos'}), 400
+        else:
+            return jsonify({'message': 'Acción no válida'}), 400
+
+        try:
+            db.session.commit()
+            return jsonify({'message': 'Lista de favoritos actualizada con éxito', 'favs': user.favs}), 200
+        except Exception as e:
+            db.session.rollback()
+            return jsonify({'message': 'Error al actualizar favoritos', 'error': str(e)}), 500
+
 
     # # Método POST para añadir una casa
     # if request.method == 'POST':
