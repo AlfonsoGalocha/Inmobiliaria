@@ -1,0 +1,161 @@
+
+@media (max-width: 768px) {
+
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #1012a300; 
+    padding: 10px 25px;
+    position: absolute;
+    height: 60px;
+    top: 2%;
+    width: 100%;
+    z-index: 1000;
+    transition: background-color 0.3s ease; 
+  }
+
+
+  /* Logo */
+  .navbar-logo h1 {
+    color: #ffffff; 
+    font-size: 50px;
+    margin-bottom: 5px;
+  }
+
+  .navbar-logo .home_title{
+    text-decoration: none;
+  }
+
+  .navbar-logo h1 .redacted-script-regular {
+    font-family: "Redacted Script", cursive;
+    font-weight: 400;
+    font-style: normal;
+  }
+  
+  .navbar-links {
+    display: none;
+    height: auto;
+  }
+
+  .navbar-links-mobile {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 600%; 
+    left: 50%; 
+    transform: translate(-50%, -50%); 
+    background-color: #4E6682; 
+    width: 65%; 
+    height: 350px; 
+    justify-content: center; 
+    align-items: center; 
+    gap: 35px; 
+    z-index: 999; 
+    border-radius: 15px;
+  }
+  
+
+  .navbar-links-mobile li {
+    padding: 10px 0;
+  }
+
+  /* icono de menu */
+  .mobile-menu-icon {
+    display: block; 
+    position: flex;
+    left: 86%;
+    font-size: 30px;
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+  }
+
+  .close-menu-icon{
+    position: absolute;
+    top: 5%;
+    right: 10%;
+    display: none;
+    font-size: 25px;
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+  }
+
+
+  /* icono de lupa */
+  .search-icon {
+    position: absolute;
+    display: block;
+    margin-top: 6.5px;
+    left: 77%;
+    background: none;
+    border: none;
+    
+  }
+  
+  .search-icon svg{
+    stroke: white;
+    cursor: pointer;
+  }
+  .search-icon.active svg {
+    stroke: #7189A2; 
+  }
+  .close-menu-icon {
+    display: block; 
+  }
+
+  .search-bar {
+    display: block;
+    position: absolute;
+    right: 15.5%; 
+    top: 25%;
+    width: 0; 
+    height: 35px; 
+    background-color: rgb(254, 254, 254);
+    border-radius: 25px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+    overflow: hidden; 
+    transition: width 0.3s ease; 
+    
+  }
+
+  .search-bar input {
+    width: 100%; 
+    height: 100%;
+    background-color: transparent;
+    color: #7189A2;
+    border: none;
+    outline: none;
+    padding: 0 15px;
+    font-size: 15px;
+    opacity: 0; 
+    transition: opacity 0.3s ease;
+  }
+
+
+  .search-bar.active {
+    width: 80%; 
+  }
+
+  .search-bar.active input {
+    opacity: 1;
+  }
+
+  .navbar-links-mobile a {
+    text-decoration: none;
+    font-size: 20px;
+    color: #fff;
+    transition: color 0.3s ease;
+    font-family: 'Piazzolla';
+  }
+
+  .navbar-links-mobile a:hover {
+    color: rgb(175, 190, 200); 
+    transform: scale(1.04);
+    transition: transform 0.1s ease;
+  }
+}
+

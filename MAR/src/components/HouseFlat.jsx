@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback, Children } from "react";
-import NavBar from "./NavBar";
+import NavBarMobile from "./NavBarMobile";
 import HouseCard from "./HouseCard";
 import "../styles/House.css";
 import axios from "axios";
@@ -102,7 +102,7 @@ function Flat({type = Children,buttonOptions = Children,rent = Children,title = 
 
     return (
         <div className="App">
-            <NavBar showSearchIcon={false} />
+            <NavBarMobile showSearchIcon={false} />
             <div className="section section1 text">
                 <div className="search-bar-x">
                     <input type="text" placeholder="Encuentra tu casa" />

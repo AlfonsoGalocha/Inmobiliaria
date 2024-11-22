@@ -1,0 +1,103 @@
+.nav-computer {
+    display: flex;
+    width: 100vw;
+    height: 14vh;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px 5%;
+    background-color: #a0a0a000;
+}
+
+/* Logo */
+.nav-computer-logo {
+    font-family: "Redacted Script", cursive;
+    font-style: normal;
+    
+}
+.nav-computer-logo h1{
+
+    color: #4E6682;
+    font-size: 70px;
+    font-weight: 400;
+    margin-bottom: 10%;
+
+}
+
+.nav-computer-logo a {
+    text-decoration: none;
+    color: #333;
+}
+
+.nav-computer-logo-text {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+/* Links Horizontales */
+.nav-computer-links {
+    display: flex;
+    justify-content: space-evenly;
+    width: 30%;
+    list-style: none;
+    margin-right: 10%;
+}
+
+.nav-computer-links li a {
+    text-decoration: none;
+    color: #000000;
+    font-size: 16px;
+    transition: color 0.3s;
+}
+
+.nav-computer-links li a:hover {
+    color: #4E6682;
+}
+
+/* Botones de sesión */
+.nav-computer-auth-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.nav-computer-login-button,
+.nav-computer-register-button,
+.nav-computer-logout-button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.3s;
+}
+
+/* Botón de Iniciar Sesión */
+.nav-computer-login-button {
+    background-color: #ffffff;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1), 0px 1px 3px rgba(0, 0, 0, 0.06);
+}
+
+.nav-computer-login-button:hover {
+    background-color: #f2f2f2;
+}
+
+/* Botón de Registrarse */
+.nav-computer-register-button {
+    background-color: #4E6682;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1), 0px 1px 3px rgba(0, 0, 0, 0.06);
+    color: #ffffff;
+}
+
+.nav-computer-register-button:hover {
+    background-color: #5c7ca0;
+}
+
+/* Botón de Cerrar Sesión */
+.nav-computer-logout-button {
+    background-color: #4E6682;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1), 0px 1px 3px rgba(0, 0, 0, 0.06);
+    color: #ffffff;
+}
+
+.nav-computer-logout-button:hover {
+    background-color: #5c7ca0;
+}

@@ -54,7 +54,7 @@ const HouseCard = ({ id, image, title, description, location, size, bathrooms, b
 };
 
 HouseCard.propTypes = {
-  id: PropTypes.string.isRequired,  // Agrega el id para identificar la casa
+  id: PropTypes.string.isRequired, 
   image: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,

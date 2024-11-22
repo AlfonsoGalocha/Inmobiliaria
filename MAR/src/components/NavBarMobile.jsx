@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import '../styles/NavBar.css';
+import '../styles/NavBarMobile.css';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 
