@@ -141,9 +141,44 @@ def get_houses():
         except Exception as e:
             return jsonify({"message": "Error al obtener casas", "error": str(e)}), 500
         
-@app.route('/user/favs', methods=['POST'])
+@app.route('/user/favs', methods=['GET','POST'])
 def get_favs():
+
+    if request.method == 'GET':
+        if 'login' not in session:
+            return jsonify({'message': 'Tienes que registrarte para ver esta función'}), 401
+
+        usuario = session['identifier']
+        user = db.session.query(User).filter_by(id=usuario).first()
+
+        if not user:
+            return jsonify({'message': 'Usuario no encontrado'}), 404
+        
+                # Consultar detalles de las casas
+        casas_fav = db.session.query(House).filter(House.id.in_(user.favs)).all()
+        
+        # Transformar a JSON
+        casas_json = [
+            {
+                'id': casa.id,
+                'title': casa.title,
+                'description': casa.description,
+                'location': casa.location,
+                'size': casa.size,
+                'bathrooms': casa.bathrooms,
+                'bedrooms': casa.bedrooms,
+                'price': casa.price,
+                'image': casa.image
+            }
+            for casa in casas_fav
+        ]
+
+        return jsonify({'favs': casas_json}), 200
+
+        # return jsonify({'favs': user.favs or []}), 200
+
     if request.method == 'POST':
+
         data = request.get_json()
         house_id = str(data.get('house_id'))  # Convertir a string
         action = data.get('action')  # Puede ser 'add' o 'remove'
