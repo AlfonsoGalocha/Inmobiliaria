@@ -19,6 +19,8 @@
   /* Logo */
   .navbar-logo h1 {
     color: #ffffff; 
+    font-family: "Redacted Script", cursive;
+    font-weight: 400;
     font-size: 50px;
     margin-bottom: 5px;
   }
