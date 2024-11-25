@@ -41,6 +41,17 @@
     list-style: none;
     margin-right: 10%;
 }
+.nav-computer-links button{
+    outline: none;
+    border: none;
+    background-color: transparent;
+    font-size: 16px;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+.nav-computer-links button:hover{
+    color: #4E6682;
+}
 
 .nav-computer-links li a {
     text-decoration: none;

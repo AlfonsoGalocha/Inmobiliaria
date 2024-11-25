@@ -78,9 +78,9 @@ const Home = () => {
     centerMode: true,
     centerPadding: "0",
     afterChange: (current) => {
-      // Calcula el índice del elemento central visible
+      // Calculo del índice del elemento central visible
       const centerIndex = current + Math.floor(sliderSettings.slidesToShow / 2);
-      setCurrentIndex(centerIndex % houseData.length); // Asegúrate de que esté dentro de los límites
+      setCurrentIndex(centerIndex % houseData.length);
     },
     nextArrow: (
       <div className="slick-next">
@@ -198,13 +198,35 @@ const Home = () => {
         </div>
       </div>
       <div className="section section3">
-        <h1>Nosotros</h1>
-        <p>{us}</p>
+        {isMobileView ? (
+          <></>
+        ) : (
+            <div className="image-left-container">
+
+            </div>
+        )}
+
+        <div className="container-info-home" id="about">
+          <div className="container-text-home">
+            <h1>Nosotros</h1>
+            <p>{us}</p>
+          </div>
+          <div className="container-text-home">
+            <h1>Nuestra misión</h1>
+            <p>{our_mission}</p>
+          </div>
+        </div>
+
+        {isMobileView ? (
+          <></>
+        ) : (
+            <div className="image-right-container">
+
+            </div>
+        )}
+        
       </div>
-      <div className="section section4">
-        <h1>Nuestra misión</h1>
-        <p>{our_mission}</p>
-      </div>
+
       <footer className="footer" id="footer">
         <div className="contact-section">
           <p id="contact">Contáctanos</p>

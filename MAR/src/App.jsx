@@ -12,14 +12,14 @@ import Favoritos from './components/Favourites'; // Componente para la página d
 
 function App() {  
 
-  const esloganFlat = 'En nuestra inmobiliaria, sabemos que cada piso tiene su propio encanto y personalidad, y queremos ayudarte a encontrar el espacio ideal que se adapte a tus necesidades. Desde acogedores estudios hasta amplios apartamentos con vistas, nuestra selección de pisos está pensada para ofrecerte confort y calidad de vida.'
+  const esloganFlat = 'En mar, sabemos que cada piso tiene su propio encanto y personalidad, y queremos ayudarte a encontrar el espacio ideal que se adapte a tus necesidades. '
   const titleFlat = 'Encuentra el Piso Perfecto para Ti'
 
   const esloganHouse = 'Te ofrecemos una selección de viviendas cuidadosamente elegidas para adaptarse a tus necesidades y estilo de vida, ya sea que busques un hogar acogedor en el centro de la ciudad o una amplia casa familiar en una zona tranquila.'
   const titleHouse = 'Encuentra la Casa de tus Sueños'
 
 
-  const esloganRent = 'Sabemos que cada etapa de la vida necesita un espacio único, y con nuestra oferta de alquileres, encontrarás la flexibilidad y comodidad que buscas. Ya sea que necesites un apartamento moderno , una casa espaciosa para la familia, te ofrecemos una amplia gama de opciones de alquiler adaptadas a tus necesidades.'
+  const esloganRent = 'Sabemos que cada etapa de la vida necesita un espacio único, y con nuestra oferta de alquileres, encontrarás la flexibilidad y comodidad que buscas. Te ofrecemos una amplia gama de opciones de alquiler adaptadas a tus necesidades.'
   const titleRent = 'Alquileres que se Ajustan a tu Estilo de Vida'
   
 

@@ -21,6 +21,14 @@ const NavBarComputer = () => {
         }
     };
 
+    const scrollToSection = (sectionId) => {
+        const section = document.getElementById(sectionId);
+        if (section) {
+          section.scrollIntoView({ behavior: "smooth" });
+        }
+      };
+      
+
     return (
         <nav className="nav-computer">
             {/* Logo */}
@@ -33,15 +41,16 @@ const NavBarComputer = () => {
             {/* Links Horizontales */}
             <ul className="nav-computer-links">
                 <li>
-                    <Link to="/about">Sobre Nosotros</Link>
+                    <button onClick={() => scrollToSection("about")}>Sobre Nosotros</button>
                 </li>
                 <li>
                     <Link to="/favoritos">Favoritos</Link>
                 </li>
                 <li>
-                    <Link to="/contact">Contacto</Link>
+                    <button onClick={() => scrollToSection("footer")}>Contacto</button>
                 </li>
             </ul>
+
 
             {/* Botones de sesión */}
             <div className="nav-computer-auth-buttons">
