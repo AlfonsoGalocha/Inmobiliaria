@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback, Children } from "react";
 import NavBarMobile from "./NavBarMobile";
+import NavBarComputer from "./NavBarComputer";
 import HouseCard from "./HouseCard";
 import "../styles/House.css";
 import axios from "axios";
@@ -18,6 +19,21 @@ function Flat({type = Children,buttonOptions = Children,rent = Children,title = 
     const [activeButtons, setActiveButtons] = useState([]);
     const [page, setPage] = useState(1); // Página actual
     const [totalPages, setTotalPages] = useState(1); // Total de páginas
+    const [isMobileView, setIsMobileView] = useState(false);
+
+    useEffect(() => {
+        const handleResize = () => {
+          setIsMobileView(window.innerWidth <= 736);
+        };
+    
+        window.addEventListener("resize", handleResize);
+        handleResize();
+    
+        return () => {
+          window.removeEventListener("resize", handleResize);
+        };
+      }, []);
+
 
     // Parametros para la consulta
     const buildQueryParams = useCallback(() => {
@@ -102,7 +118,11 @@ function Flat({type = Children,buttonOptions = Children,rent = Children,title = 
 
     return (
         <div className="App">
-            <NavBarMobile showSearchIcon={false} />
+            {isMobileView ? (
+                <NavBarMobile showSearchIcon={false} />
+            ) : (
+                <NavBarComputer />
+            )}
             <div className="section section1 text">
                 <div className="search-bar-x">
                     <input type="text" placeholder="Encuentra tu casa" />
@@ -170,7 +190,7 @@ function Flat({type = Children,buttonOptions = Children,rent = Children,title = 
                         </button>
                     ))}
                 </div>
-                <div>
+                <div className="global-conyainer-cards-1">
                     {(Array.isArray(houses) ? houses : []).map((house, index) => (
                         <div key={index} className="container-card-global">
                             <div className="container-card">

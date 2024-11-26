@@ -19,7 +19,7 @@ function App() {
   const titleHouse = 'Encuentra la Casa de tus Sueños'
 
 
-  const esloganRent = 'Sabemos que cada etapa de la vida necesita un espacio único, y con nuestra oferta de alquileres, encontrarás la flexibilidad y comodidad que buscas. Te ofrecemos una amplia gama de opciones de alquiler adaptadas a tus necesidades.'
+  const esloganRent = 'Sabemos que cada etapa de la vida necesita un espacio único, y con nuestra oferta de alquileres, encontrarás la flexibilidad y comodidad que buscas.'
   const titleRent = 'Alquileres que se Ajustan a tu Estilo de Vida'
   
 
