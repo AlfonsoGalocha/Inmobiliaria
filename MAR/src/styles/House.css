@@ -114,6 +114,7 @@
   color: white; 
 }
 .global-conyainer-cards-1{
+  /* display: contents;    se corta en mobile con el flex */   
   width: 90%;
   /* border: 1px solid rgb(85, 255, 0); */
   height: auto !important ;
@@ -251,6 +252,9 @@
     color: white; 
   }
   
+  .global-conyainer-cards-1{
+    display: contents;
+  }
   .container-card-global {
     margin-bottom: 20%; 
   }

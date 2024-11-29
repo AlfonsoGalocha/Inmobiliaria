@@ -154,7 +154,7 @@ def get_favs():
         if not user:
             return jsonify({'message': 'Usuario no encontrado'}), 404
         
-                # Consultar detalles de las casas
+        # Consultar detalles de las casas
         casas_fav = db.session.query(House).filter(House.id.in_(user.favs)).all()
         
         # Transformar a JSON

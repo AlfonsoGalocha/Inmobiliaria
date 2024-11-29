@@ -27,26 +27,39 @@ const Favourites = () => {
   }, []);
 
   return (
-    <div>
-      {error && <p style={{ color: "red" }}>{error}</p>}
-      <div className="favourites-container">
-        {favourites.map((house) => (
-          <HouseCard
-            key={house.id}
-            id={house.id}
-            image={house.image}
-            title={house.title}
-            description={house.description}
-            location={house.location}
-            size={house.size}
-            bathrooms={house.bathrooms}
-            bedrooms={house.bedrooms}
-            price={house.price}
-          />
-        ))}
-      </div>
+  <body className="favourites">
+      
+   
+    <div className="title">
+      <h2>Mis favoritos</h2>
+      {error && <div className="error">{error}</div>}
     </div>
+
+    <div className="favourites-list">
+      {favourites.map((house) => (
+                  <HouseCard
+                  key={house.id}
+                  id={house.id}
+                  image={house.image}
+                  title={house.title}
+                  description={house.description}
+                  location={house.location}
+                  size={house.size}
+                  bathrooms={house.bathrooms}
+                  bedrooms={house.bedrooms}
+                  price={house.price}
+                />
+      ))}
+    </div>
+  </body>
+
+
   );
+
 };
+
+
+
+
 
 export default Favourites;
