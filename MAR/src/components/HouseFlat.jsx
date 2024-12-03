@@ -119,33 +119,16 @@ function Flat({type = Children,buttonOptions = Children,rent = Children,title = 
     return (
         <div className="App">
             {isMobileView ? (
-                <NavBarMobile showSearchIcon={false} />
+                <NavBarMobile/>
             ) : (
                 <NavBarComputer />
             )}
             <div className="section section1 text">
-                {/* <div className="search-bar-x">
-                    <input type="text" placeholder="Encuentra tu casa" />
-                    <button
-                        className={`search-icon-x ${isSearchOpen ? "active" : ""}`}
-                        onClick={() => setIsSearchOpen(!isSearchOpen)}
-                    >
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="20"
-                            height="20"
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            stroke="currentColor"
-                            strokeWidth="2"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            className="lucide lucide-search"
-                        >
-                            <circle cx="11" cy="11" r="8" />
-                            <path d="m21 21-4.3-4.3" />
-                        </svg>
-                    </button>
+                <div className="title-text">
+                    <h2 className="eslogan-h2">{title}</h2>
+                    <p>{eslogan}</p>
+                </div>
+                <div className="filter-container-houseflat">
                     <button className="filter" onClick={() => setIsFilterOpen(!isFilterOpen)}>
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
@@ -170,10 +153,6 @@ function Flat({type = Children,buttonOptions = Children,rent = Children,title = 
                             <line x1="16" x2="16" y1="18" y2="22" />
                         </svg>
                     </button>
-                </div> */}
-                <div className="title-text">
-                    <h2 className="eslogan-h2">{title}</h2>
-                    <p>{eslogan}</p>
                 </div>
             </div>
             <div className="section section2">

@@ -56,6 +56,17 @@
     z-index: 999; 
     border-radius: 15px;
   }
+  .p-a{
+    font-size: 20px;
+    color: #fff;
+    transition: color 0.3s ease;
+    font-family: 'Piazzolla';
+  }
+  .p-a:hover{
+    color: rgb(175, 190, 200); 
+    transform: scale(1.04);
+    transition: transform 0.1s ease;
+  }
   
 
   .navbar-links-mobile li {
@@ -86,64 +97,8 @@
     cursor: pointer;
   }
 
-
-  /* icono de lupa */
-  .search-icon {
-    position: absolute;
-    display: block;
-    margin-top: 6.5px;
-    left: 77%;
-    background: none;
-    border: none;
-    
-  }
-  
-  .search-icon svg{
-    stroke: white;
-    cursor: pointer;
-  }
-  .search-icon.active svg {
-    stroke: #7189A2; 
-  }
   .close-menu-icon {
     display: block; 
-  }
-
-  .search-bar {
-    display: block;
-    position: absolute;
-    right: 15.5%; 
-    top: 25%;
-    width: 0; 
-    height: 35px; 
-    background-color: rgb(254, 254, 254);
-    border-radius: 25px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
-    overflow: hidden; 
-    transition: width 0.3s ease; 
-    
-  }
-
-  .search-bar input {
-    width: 100%; 
-    height: 100%;
-    background-color: transparent;
-    color: #7189A2;
-    border: none;
-    outline: none;
-    padding: 0 15px;
-    font-size: 15px;
-    opacity: 0; 
-    transition: opacity 0.3s ease;
-  }
-
-
-  .search-bar.active {
-    width: 80%; 
-  }
-
-  .search-bar.active input {
-    opacity: 1;
   }
 
   .navbar-links-mobile a {

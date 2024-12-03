@@ -31,7 +31,7 @@ function App() {
         {/* Otras rutas pueden ir aquí */}
         <Route path="/signup" element={<Registro />} />
         <Route path="/favoritos" element={<Favoritos />} /> 
-        <Route path="/rent" element={<HouseFlat type="Piso,Casa" buttonOptions={['TODOS','CASAS','PISOS']} rent={true} title={titleRent} eslogan={esloganRent}  />} />
+        <Route path="/rent" element={<HouseFlat type={["Piso,Casa"]} buttonOptions={['TODOS','CASAS','PISOS']} rent={true} title={titleRent} eslogan={esloganRent}  />} />
         <Route path="/house" element={<HouseFlat type="Casa" buttonOptions={['PAREADO','CHALET','ADOSADO','VILLA',]} rent={false} title={titleHouse} eslogan={esloganHouse}  />} />
         <Route path="/flat" element={<HouseFlat type="Piso" buttonOptions={['ÁTICO','DUPLEX','ENTREPLANTA','BAJO',]} rent={false} title={titleFlat} eslogan={esloganFlat}  />} />
       </Routes>
