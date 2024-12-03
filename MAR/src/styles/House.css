@@ -1,16 +1,15 @@
 .text{
-  flex-direction: column-reverse;
-  justify-content: flex-end;
+  flex-direction: column;
+  justify-content: flex-start;
 }
 .title-text{
+  /* border: 1px solid red; */
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 100%;
   text-align: center;
-  margin-top: 7%;
-  margin-bottom: 3%;
-  /* border: 1px solid red; */
+  margin-top: 14%;
 }
 .title-text .eslogan-h2{
   font-size: 24px;
@@ -148,7 +147,7 @@
     margin-bottom: 70%;
     width: 100%;
     margin-left: 10%;
-    margin-top: 0;
+    margin-top: 38%;
     display: block;
     text-align: start;
     
@@ -163,7 +162,7 @@
     width: 80%;
   }
   .title-text p{
-    font-size: 14px;
+    font-size: 16px;
     color: black;
     font-family: "Piazzolla", serif;
     width: 87%;

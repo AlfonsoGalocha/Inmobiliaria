@@ -124,7 +124,7 @@ function Flat({type = Children,buttonOptions = Children,rent = Children,title = 
                 <NavBarComputer />
             )}
             <div className="section section1 text">
-                <div className="search-bar-x">
+                {/* <div className="search-bar-x">
                     <input type="text" placeholder="Encuentra tu casa" />
                     <button
                         className={`search-icon-x ${isSearchOpen ? "active" : ""}`}
@@ -170,7 +170,7 @@ function Flat({type = Children,buttonOptions = Children,rent = Children,title = 
                             <line x1="16" x2="16" y1="18" y2="22" />
                         </svg>
                     </button>
-                </div>
+                </div> */}
                 <div className="title-text">
                     <h2 className="eslogan-h2">{title}</h2>
                     <p>{eslogan}</p>

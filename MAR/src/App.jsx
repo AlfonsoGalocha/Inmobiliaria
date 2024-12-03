@@ -15,7 +15,7 @@ function App() {
   const esloganFlat = 'En mar, sabemos que cada piso tiene su propio encanto y personalidad, y queremos ayudarte a encontrar el espacio ideal que se adapte a tus necesidades. '
   const titleFlat = 'Encuentra el Piso Perfecto para Ti'
 
-  const esloganHouse = 'Te ofrecemos una selección de viviendas cuidadosamente elegidas para adaptarse a tus necesidades y estilo de vida, ya sea que busques un hogar acogedor en el centro de la ciudad o una amplia casa familiar en una zona tranquila.'
+  const esloganHouse = 'Te ofrecemos una selección de viviendas cuidadosamente elegidas para adaptarse a tus necesidades y estilo de vida,'
   const titleHouse = 'Encuentra la Casa de tus Sueños'
 
 

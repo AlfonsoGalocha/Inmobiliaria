@@ -119,7 +119,7 @@ const Home = () => {
   return (
     <div className="App">
       {isMobileView ? (
-        <NavBarMobile showSearchIcon={true} />
+        <NavBarMobile showSearchIcon={false} />
       ) : (
         <NavBarComputer />
       )}
@@ -141,7 +141,7 @@ const Home = () => {
               Pisos
             </a>
           </div>
-          {!isMobileView && (
+          {/* {!isMobileView && (
             <div className="search-computer-bar">
               <input type="text" placeholder="Escribe la localización" />
               <button className="search-icon-comp">
@@ -162,7 +162,7 @@ const Home = () => {
                 </svg>
               </button>
             </div>
-          )}
+          )} */}
         </div>
       </div>
       <div className="section section2">
