@@ -3,10 +3,12 @@ import '../styles/HouseCard.css';
 import { FaBath, FaBed, FaHeart } from 'react-icons/fa'; // Importa los iconos de corazón
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom'; 
 
 const HouseCard = ({ id, image, title, description, location, size, bathrooms, bedrooms, price }) => {
   const [isFavorite, setIsFavorite] = useState(false); // Estado para controlar si la casa está en favoritos
   const [animate, setAnimate] = useState(false);
+  const navigate = useNavigate();
 
   // Sincroniza `isFavorite` con los datos del backend
   useEffect(() => {
@@ -51,7 +53,10 @@ const HouseCard = ({ id, image, title, description, location, size, bathrooms, b
       setTimeout(() => setAnimate(false), 500);
     }
   };
-  
+
+  const handleCardClick = () => {
+    navigate(`/description/${id}`); 
+  };
   
   
 
@@ -62,7 +67,7 @@ const HouseCard = ({ id, image, title, description, location, size, bathrooms, b
       <div className="card-image">
         <img src={image} alt={title} className="property-image" />
       </div>
-      <div className="card-info">
+      <div className="card-info" onClick={handleCardClick}>
         <h2>{title}</h2>
         <p className="property-description">{description}</p>
         <p className="property-location">{location}</p>

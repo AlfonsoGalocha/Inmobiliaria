@@ -8,6 +8,7 @@ import Registro from './components/Register'; // Componente para la página de r
 import Login from './components/Login'; // Importa el componente Login
 import HouseFlat from './components/HouseFlat'; // Importa el componente Login
 import Favoritos from './components/Favourites'; // Componente para la página de favoritos
+import Description from './components/Description'
 
 
 function App() {  
@@ -34,6 +35,7 @@ function App() {
         <Route path="/rent" element={<HouseFlat type={["Piso,Casa"]} buttonOptions={['TODOS','CASAS','PISOS']} rent={true} title={titleRent} eslogan={esloganRent}  />} />
         <Route path="/house" element={<HouseFlat type="Casa" buttonOptions={['PAREADO','CHALET','ADOSADO','VILLA',]} rent={false} title={titleHouse} eslogan={esloganHouse}  />} />
         <Route path="/flat" element={<HouseFlat type="Piso" buttonOptions={['ÁTICO','DUPLEX','ENTREPLANTA','BAJO',]} rent={false} title={titleFlat} eslogan={esloganFlat}  />} />
+        <Route path='/description/:id' element={<Description />} />
       </Routes>
     </Router>
   );

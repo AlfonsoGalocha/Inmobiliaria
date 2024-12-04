@@ -35,6 +35,7 @@
     box-sizing: border-box;
     margin-left: 12px;
     margin-right: 12px;
+    cursor: pointer;
 }
 
 .card-info h2 {

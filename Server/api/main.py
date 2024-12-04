@@ -7,6 +7,8 @@ from flask_cors import CORS
 from werkzeug.security import generate_password_hash, check_password_hash
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 from database.databaseTables import User, House, db
+from uuid import UUID
+
 
 app = Flask(__name__)
 CORS(app, supports_credentials=True, resources={r"/*": {"origins": "http://localhost:5173"}})
@@ -141,6 +143,35 @@ def get_houses():
         except Exception as e:
             return jsonify({"message": "Error al obtener casas", "error": str(e)}), 500
         
+
+@app.route('/houses/<id>', methods=['GET'])
+def house_info(id):
+    try:
+
+        # Obtener la información de la casa desde la base de datos
+        house = House.query.filter_by(id=id).first() 
+
+        if not house:
+            return jsonify({'message': 'Casa no encontrada'}), 404
+
+        # Construir la respuesta con los datos de la casa
+        house_data = {
+            'id': house.id,
+            'title': house.title,
+            'description': house.description,
+            'image': house.image, 
+            'price': house.price,
+            'location': house.location
+        }
+
+        return jsonify(house_data), 200
+
+    except Exception as e:
+        print(f"Error al obtener la información de la casa: {str(e)}") 
+        return jsonify({'message': 'Error al obtener la información de la casa', 'error': str(e)}), 500
+
+
+        
 @app.route('/user/favs', methods=['GET','POST'])
 def get_favs():
 
@@ -217,39 +248,6 @@ def get_favs():
         except Exception as e:
             db.session.rollback()
             return jsonify({'message': 'Error al actualizar favoritos', 'error': str(e)}), 500
-
-
-    # # Método POST para añadir una casa
-    # if request.method == 'POST':
-    #     # Verificar si el usuario es administrador
-    #     if 'role' not in session or session['role'] != 'admin':
-    #         return jsonify({'message': 'Acceso no autorizado'}), 403
-
-    #     data = request.get_json()
-    #     required_fields = ['image', 'title', 'description', 'location', 'size', 'bathrooms', 'bedrooms', 'price', 'type', 'subtype']
-
-    #     if not all(field in data for field in required_fields):
-    #         return jsonify({'message': 'Faltan campos obligatorios'}), 400
-
-    #     try:
-    #         new_house = House(
-    #             image=data['image'],
-    #             title=data['title'],
-    #             description=data['description'],
-    #             location=data['location'],
-    #             size=data['size'],
-    #             bathrooms=data['bathrooms'],
-    #             bedrooms=data['bedrooms'],
-    #             price=data['price'],
-    #             type=data['type'],
-    #             subtype=data['subtype'] 
-    #         )
-    #         db.session.add(new_house)
-    #         db.session.commit()
-    #         return jsonify({'message': 'Casa añadida con éxito'}), 201
-    #     except Exception as e:
-    #         db.session.rollback()
-    #         return jsonify({'message': 'Error al añadir la casa', 'error': str(e)}), 500
 
 
 if __name__ == '__main__':
