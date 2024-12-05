@@ -3,6 +3,7 @@
     width: 100%;
     height: 100%;
     display: flex;
+    overflow-y: hidden;
 }
 
 .description-container-info{
@@ -18,6 +19,7 @@
 }
 .description-container-info p{
     font-size: 20px;
+    
 }
 .house-image{
     overflow: hidden;
@@ -25,28 +27,58 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 1px solid red;
+    /* border: 1px solid red; */
     width: 100%;
-    height: 45%;
+    height: 50%;
 }
 .house-image img{
-    width: 80%;
+    width: 75%;
     height: 100%;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
 }
 .house-details{
-    border: 1px solid rgb(72, 255, 0);
+    /* border: 1px solid rgb(72, 255, 0); */
     width: 100%;
-    height: 20%;
+    height: 15%;
     padding: 2%;
 }
+.house-details p{
+    padding: calc(2% - 30px) 2%;
+}
 .house-features{
-    border: 1px solid rgb(0, 38, 255);
+    /* border: 1px solid rgb(0, 38, 255); */
     width: 100%;
-    height: 30%;
+    height: 35%;
     padding: 2%;
+}
+.house-features-container{
+    /* border: 1px solid rgb(12, 206, 255); */
+    overflow: hidden;
+    width: 100%;
+    height: 80%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    box-sizing: border-box;
+    justify-content: center;
+    padding: calc(2% - 30px) 2%;
+}
+.house-features-container p{
+    margin-bottom: 30px;
+}
+.house-features-container h4{
+    margin-bottom: 5px;
+    font-size: 20px;
+}
+.ref-id-feature{
+    display: flex;
+    align-items: end;
+}
+.copy-id-p{
+    margin-left: 10px;
+    cursor: pointer;
 }
 .space-bar{
     height: 90%;

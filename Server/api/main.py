@@ -161,7 +161,10 @@ def house_info(id):
             'description': house.description,
             'image': house.image, 
             'price': house.price,
-            'location': house.location
+            'location': house.location,
+            'size': house.size,
+            'bathrooms': house.bathrooms,
+            'bedrooms': house.bedrooms
         }
 
         return jsonify(house_data), 200
@@ -170,6 +173,22 @@ def house_info(id):
         print(f"Error al obtener la información de la casa: {str(e)}") 
         return jsonify({'message': 'Error al obtener la información de la casa', 'error': str(e)}), 500
 
+
+@app.route('/house/requestVisit', methods=['POST'])
+def request_visit():
+    data = request.json 
+    
+    # Validar que los datos necesarios estén presentes
+    house_id = data.get('houseId')
+    username = data.get('username')
+
+    if not house_id or not username:
+        return jsonify({"error": "Faltan parámetros: houseId o userEmail"}), 400
+
+    print(f"Solicitud recibida para la casa {house_id} por el usuario {username}")
+
+    # Responder con éxito
+    return jsonify({"message": "Solicitud recibida con éxito"}), 200
 
         
 @app.route('/user/favs', methods=['GET','POST'])
