@@ -13,7 +13,7 @@ const Description = () => {
   const [isMobileView, setIsMobileView] = useState(false);
 
   const navigate = useNavigate(); 
-  const formattedPrice = houseData.price.toLocaleString('es-ES');
+  
 
   useEffect(() => {
     // Llamada a la API
@@ -29,6 +29,7 @@ const Description = () => {
     fetchHouseData();
   }, [id]);
 
+  
   useEffect(() => {
     const handleResize = () => {
       setIsMobileView(window.innerWidth <= 736);
@@ -49,6 +50,8 @@ const Description = () => {
   if (!houseData) {
     return <div className="loading-message">Cargando información...</div>;
   }
+
+  const formattedPrice = houseData.price.toLocaleString('es-ES');
 
   function copyToClipboard() {
       navigator.clipboard.writeText(id).then(() => {
@@ -82,17 +85,19 @@ const Description = () => {
 
   return (
     <div className="App">
-      {isMobileView ? (
-          <NavBarMobile/>
-      ) : (
-          <NavBarComputer />
-      )}
+      <div className="nav-color-stage">
+        {isMobileView ? (
+            <NavBarMobile/>
+        ) : (
+            <NavBarComputer />
+        )}
+      </div>
       <div className="description-container">
         <div className="description-container-info">
 
           {/* Imagen de la casa */}
           <div className="house-image">
-            <img src={houseData.image} alt={houseData.title} />
+            <img src={houseData.images[0]} alt={houseData.title} />
           </div>
 
           {/* Detalles de la casa */}
@@ -137,13 +142,11 @@ const Description = () => {
             </div>
           </div>
 
-
-          
         </div>
         <div className="space-bar"></div>
         <div className="description-container-contact">
           <div className="section-contact">
-            <h2>Contacto</h2>
+            <h2>Contactáctanos</h2>
 
             <p>mar.soporte@gmail.com</p>
             <p>+34 642 773 127</p>
@@ -153,10 +156,10 @@ const Description = () => {
 
               <h2>Solicita una visita guiada</h2>
 
-              <div className="request-visit">
-                <input type="date" id="date" name="date" required/>
+              <form className="request-visit">
+                <input type="date" id="date" name="date"/>
                 <button onClick={handleRequestVisit}>Solicitar Visita</button>
-            </div>
+            </form>
           </div>
         </div>
       </div>

@@ -159,7 +159,7 @@ def house_info(id):
             'id': house.id,
             'title': house.title,
             'description': house.description,
-            'image': house.image, 
+            'images': house.images, 
             'price': house.price,
             'location': house.location,
             'size': house.size,
@@ -218,7 +218,7 @@ def get_favs():
                 'bathrooms': casa.bathrooms,
                 'bedrooms': casa.bedrooms,
                 'price': casa.price,
-                'image': casa.image
+                'images': casa.images
             }
             for casa in casas_fav
         ]

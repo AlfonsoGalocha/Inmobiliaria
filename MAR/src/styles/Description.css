@@ -43,6 +43,7 @@
     width: 100%;
     height: 15%;
     padding: 2%;
+    padding-top: 4%;
 }
 .house-details p{
     padding: calc(2% - 30px) 2%;
@@ -150,4 +151,185 @@
     background-color: transparent;
     border: none;
     font-size: 20px;
+}
+
+
+@media(max-width : 738px) {
+
+    .description-container{
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        height: auto;
+    }
+    .nav-color-stage h1,
+    .nav-color-stage .mobile-menu-icon{
+        color: #4E6682;
+
+    }
+
+    .description-container-info{
+        /* border: 1px solid red; */
+        width: 100%;
+        height: 100%;
+        padding: 3%;
+        margin-top: 15vh;
+        
+    }
+    .description-container-info h2{
+        font-size: 22px;
+        margin-bottom: 1%;
+    }
+    .description-container-info p{
+        font-size: 16px;
+        
+    }
+    .house-image{
+        overflow: hidden;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        /* border: 1px solid rgb(47, 0, 255); */
+        width: 100%;
+        height: 30vh;
+        margin-bottom: 2%;
+    }
+    .house-image img{
+        width: 90%;
+        height: 100%;
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+
+    .house-details{
+        /* border: 1px solid rgb(72, 255, 0); */
+        width: 100%;
+        height: auto;
+        min-height: 15vh;
+        max-height: 25vh;
+        padding: 2%;
+        padding-top: 4%;
+    }
+    .house-details p{
+        padding: calc(2% - 30px) 2%;
+        margin-top: 5px;
+    }
+
+    .house-features{
+        /* border: 1px solid rgb(0, 38, 255); */
+        width: 100%;
+        height: 35%;
+        padding: 2%;
+    }
+    .house-features-container{
+        /* border: 1px solid rgb(12, 206, 255); */
+        overflow: hidden;
+        width: 100%;
+        height: 80%;
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        box-sizing: border-box;
+        justify-content: center;
+        margin-top: 10px;
+        padding: calc(2% - 30px) 2%;
+    }
+    .house-features-container p{
+        margin-bottom: 22px;
+    }
+    .house-features-container h4{
+        margin-bottom: 5px;
+        font-size: 18px;
+    }
+    .ref-id-feature{
+        display: flex;
+        align-items: end;
+    }
+    .copy-id-p{
+        margin-left: 10px;
+        cursor: pointer;
+    }
+    .space-bar{
+        height: 0.1vh;
+        width: 85%;
+        background-color: black;
+        align-self: center;
+        margin-bottom: 5%;
+    }
+    .description-container-contact{
+        width: 100%;
+        height: 50vh;
+        display: flex;
+        flex-direction: column-reverse;
+    }
+    
+    .description-container-contact h2{
+        text-align: center;
+        margin-bottom: 3%;
+        font-size: 22px;
+    }
+    .description-container-contact p{
+        text-align: center;
+        font-size: 16px;
+        margin-bottom: 2%;
+    }
+    .section-contact{
+        width: 100%;
+        height: 50%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    .space-o{
+        width: 100%;
+        height: 1vh;
+    }
+    .section-meeting{
+        width: 100%;
+        height: 45%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+    }
+    .request-visit{
+        margin-top: 1%;
+        /* border: 1px solid palevioletred; */
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+    }
+    .request-visit button{
+        outline: none;
+        background-color: white;
+        padding: 8px 16px;
+        border-radius: 30px;
+        border: none;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        font-size: 16px;
+        margin-top: 15px;
+    }
+    .request-visit button:hover{
+        background-color: rgb(252, 252, 252);
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    }
+    .request-visit{
+        width: 60%;
+        display: flex;
+        justify-content: space-around;
+    }
+    .request-visit input{
+        outline: none;
+        background-color: transparent;
+        border: none;
+        width: 60%;
+        font-size: 16px;
+    }
+
 }

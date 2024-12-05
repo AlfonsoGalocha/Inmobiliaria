@@ -27,7 +27,7 @@ const Home = () => {
   const houseData = [
     {
       id: "1",
-      image: "../../public/static/img/casa_majadahonda.webp",
+      images: ["../../public/static/img/casa_majadahonda.webp","../../public/static/img/casa_majadahonda.webp","../../public/static/img/casa_majadahonda.webp"],
       title: "Casa en Majadahonda",
       description:
         "Exclusiva y moderna vivienda, con cinco dormitorios y ocho cuartos de baño...",
@@ -39,7 +39,7 @@ const Home = () => {
     },
     {
       id: "2",
-      image: "../../public/static/img/casa_majadahonda.webp",
+      images: ["../../public/static/img/casa_majadahonda.webp","../../public/static/img/casa_majadahonda.webp","../../public/static/img/casa_majadahonda.webp"],
       title: "Casa en Las Rozas",
       description:
         "Vivienda unifamiliar espectacular en una zona tranquila de Las Rozas...",
@@ -51,7 +51,7 @@ const Home = () => {
     },
     {
       id: "3",
-      image: "../../public/static/img/casa_majadahonda.webp",
+      images: ["../../public/static/img/casa_majadahonda.webp","../../public/static/img/casa_majadahonda.webp","../../public/static/img/casa_majadahonda.webp"],
       title: "Casa en Pozuelo",
       description:
         "Magnífica vivienda con amplio jardín y piscina en una urbanización exclusiva...",
@@ -161,7 +161,7 @@ const Home = () => {
               >
                 <HouseCard
                   id={house.id}
-                  image={house.image}
+                  image={house.images[0]}// Cambiar esto y quitar lo de 0
                   title={house.title}
                   description={house.description}
                   location={house.location}

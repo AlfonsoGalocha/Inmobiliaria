@@ -32,7 +32,7 @@ class House(db.Model):
     bathrooms = db.Column(db.Integer, nullable=False)
     bedrooms = db.Column(db.Integer, nullable=False)
     price = db.Column(db.Integer, nullable=False)
-    image = db.Column(db.String, nullable=True)
+    images = db.Column(ARRAY(db.String), nullable=True)
     created_at = db.Column(db.DateTime, default=db.func.current_timestamp())
     updated_at = db.Column(
         db.DateTime, default=db.func.current_timestamp(), onupdate=db.func.current_timestamp()
@@ -51,7 +51,7 @@ class House(db.Model):
             "bathrooms": self.bathrooms,
             "bedrooms": self.bedrooms,
             "price": self.price,
-            "image": self.image,
+            "images": self.images,
             "created_at": self.created_at.isoformat() if self.created_at else None,
             "updated_at": self.updated_at.isoformat() if self.updated_at else None,
             "rent":self.rent,

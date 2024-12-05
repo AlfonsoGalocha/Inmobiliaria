@@ -8,7 +8,6 @@ import PropTypes from "prop-types";
 
 function Flat({type = Children,buttonOptions = Children,rent = Children,title = Children,eslogan = Children}) {
     const [houses, setHouses] = useState([]);
-    const [isSearchOpen, setIsSearchOpen] = useState(false);
     const [isFilterOpen, setIsFilterOpen] = useState(false);
     const [filters, setFilters] = useState({
         priceRange: [0, 5000000],
@@ -172,10 +171,10 @@ function Flat({type = Children,buttonOptions = Children,rent = Children,title = 
                 <div className="global-conyainer-cards-1">
                     {(Array.isArray(houses) ? houses : []).map((house, index) => (
                         <div key={index} className="container-card-global">
-                            <div className="container-card">
+                            <a className="container-card">
                                 <HouseCard
                                     id={house.id}
-                                    image={house.image}
+                                    image={house.images[0]}
                                     title={house.title}
                                     description={house.description}
                                     location={house.location}
@@ -184,7 +183,7 @@ function Flat({type = Children,buttonOptions = Children,rent = Children,title = 
                                     bedrooms={house.bedrooms}
                                     price={house.price}
                                 />
-                            </div>
+                            </a>
                         </div>
                     ))}
                 </div>

@@ -18,7 +18,7 @@ with app.app_context():
         {
             "type": "Casa",
             "subtype": "CHALET",
-            "image": "../../public/static/img/casa_majadahonda.webp",
+            "images": ["../../public/static/img/casa_majadahonda.webp","../../public/static/img/casa_majadahonda.webp","../../public/static/img/casa_majadahonda.webp"],
             "title": "Chalet en Las Rozas",
             "description": "Amplio chalet con piscina y jardín en una zona tranquila.",
             "location": "Las Rozas, España",
@@ -31,7 +31,7 @@ with app.app_context():
         {
             "type": "Casa",
             "subtype": "CHALET",
-            "image": "../../public/static/img/casa_majadahonda.webp",
+            "images": ["../../public/static/img/casa_majadahonda.webp","../../public/static/img/casa_majadahonda.webp","../../public/static/img/casa_majadahonda.webp"],
             "title": "Chalet en Villanueva",
             "description": "Moderno chalet de diseño con vistas a la montaña.",
             "location": "Villanueva, España",
@@ -45,7 +45,7 @@ with app.app_context():
         {
             "type": "Casa",
             "subtype": "ADOSADO",
-            "image": "../../public/static/img/casa_majadahonda.webp",
+            "images": ["../../public/static/img/casa_majadahonda.webp","../../public/static/img/casa_majadahonda.webp","../../public/static/img/casa_majadahonda.webp"],
             "title": "Adosado en Majadahonda",
             "description": "Bonito adosado en urbanización con zonas comunes.",
             "location": "Majadahonda, España",
@@ -58,7 +58,7 @@ with app.app_context():
         {
             "type": "Casa",
             "subtype": "ADOSADO",
-            "image": "../../public/static/img/casa_majadahonda.webp",
+            "images": ["../../public/static/img/casa_majadahonda.webp","../../public/static/img/casa_majadahonda.webp","../../public/static/img/casa_majadahonda.webp"],
             "title": "Adosado en Pozuelo",
             "description": "Adosado renovado cerca de transporte público.",
             "location": "Pozuelo, España",
@@ -72,7 +72,7 @@ with app.app_context():
         {
             "type": "Casa",
             "subtype": "VILLA",
-            "image": "../../public/static/img/casa_majadahonda.webp",
+            "images": ["../../public/static/img/casa_majadahonda.webp","../../public/static/img/casa_majadahonda.webp","../../public/static/img/casa_majadahonda.webp"],
             "title": "Villa en Marbella",
             "description": "Exclusiva villa con vistas al mar y piscina privada.",
             "location": "Marbella, España",
@@ -85,7 +85,7 @@ with app.app_context():
         {
             "type": "Casa",
             "subtype": "VILLA",
-            "image": "../../public/static/img/casa_majadahonda.webp",
+            "images": ["../../public/static/img/casa_majadahonda.webp","../../public/static/img/casa_majadahonda.webp","../../public/static/img/casa_majadahonda.webp"],
             "title": "Villa en Ibiza",
             "description": "Villa moderna con jardín, piscina y acceso a la playa.",
             "location": "Ibiza, España",
@@ -99,7 +99,7 @@ with app.app_context():
         {
             "type": "Piso",
             "subtype": "ÁTICO",
-            "image": "../../public/static/img/casa1.jpg",
+            "images": ["../../public/static/img/casa1.jpg","../../public/static/img/casa1.jpg","../../public/static/img/casa1.jpg"],
             "title": "Ático en Chamberí",
             "description": "Ático con terraza amplia y vistas panorámicas al centro de Madrid.",
             "location": "Chamberí, España",
@@ -112,7 +112,7 @@ with app.app_context():
         {
             "type": "Piso",
             "subtype": "ÁTICO",
-            "image": "../../public/static/img/casa1.jpg",
+            "images": ["../../public/static/img/casa1.jpg","../../public/static/img/casa1.jpg","../../public/static/img/casa1.jpg"],
             "title": "Ático en Valencia",
             "description": "Ático luminoso con jardín privado y acceso al mar.",
             "location": "Valencia, España",
@@ -126,7 +126,7 @@ with app.app_context():
         {
             "type": "Piso",
             "subtype": "BAJO",
-            "image": "../../public/static/img/casa1.jpg",
+            "images": ["../../public/static/img/casa1.jpg","../../public/static/img/casa1.jpg","../../public/static/img/casa1.jpg"],
             "title": "Bajo en Alcorcón",
             "description": "Bajo con jardín privado en urbanización cerrada.",
             "location": "Alcorcón, España",
@@ -139,7 +139,7 @@ with app.app_context():
         {
             "type": "Piso",
             "subtype": "BAJO",
-            "image": "../../public/static/img/casa1.jpg",
+            "images": ["../../public/static/img/casa1.jpg","../../public/static/img/casa1.jpg","../../public/static/img/casa1.jpg"],
             "title": "Bajo en Fuenlabrada",
             "description": "Bajo con terraza y garaje incluido.",
             "location": "Fuenlabrada, España",
@@ -153,7 +153,7 @@ with app.app_context():
         {
             "type": "Piso",
             "subtype": "DUPLEX",
-            "image": "../../public/static/img/casa1.jpg",
+            "images": ["../../public/static/img/casa1.jpg","../../public/static/img/casa1.jpg","../../public/static/img/casa1.jpg"],
             "title": "Dúplex en Salamanca",
             "description": "Dúplex elegante en el centro, con acabados de lujo.",
             "location": "Salamanca, España",
@@ -166,7 +166,7 @@ with app.app_context():
         {
             "type": "Piso",
             "subtype": "DUPLEX",
-            "image": "../../public/static/img/casa1.jpg",
+            "images": ["../../public/static/img/casa1.jpg","../../public/static/img/casa1.jpg","../../public/static/img/casa1.jpg"],
             "title": "Dúplex en Barcelona",
             "description": "Dúplex moderno cerca del mar, con grandes ventanales.",
             "location": "Barcelona, España",
@@ -184,7 +184,7 @@ with app.app_context():
             house = House(
                 type=house_data["type"],
                 subtype=house_data["subtype"],
-                image=house_data["image"],
+                images=house_data["images"],
                 title=house_data["title"],
                 description=house_data["description"],
                 location=house_data["location"],
