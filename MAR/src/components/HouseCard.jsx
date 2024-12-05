@@ -8,6 +8,7 @@ import { useNavigate } from 'react-router-dom';
 const HouseCard = ({ id, image, title, description, location, size, bathrooms, bedrooms, price }) => {
   const [isFavorite, setIsFavorite] = useState(false); // Estado para controlar si la casa está en favoritos
   const [animate, setAnimate] = useState(false);
+  const [images, setImages] = useState(image);
   const navigate = useNavigate();
 
   // Sincroniza `isFavorite` con los datos del backend
@@ -25,6 +26,25 @@ const HouseCard = ({ id, image, title, description, location, size, bathrooms, b
 
     fetchFavourites();
   }, [id]);
+
+
+  useEffect(() => {
+    const fetchImages = async () => {
+      try {
+        const response = await axios.get(`http://localhost:5172/houses/${id}`, { withCredentials: true });
+        const fetchedImages = response.data.images || [];
+        if (fetchedImages.length > 0) {
+          setImages(fetchedImages); // Actualizamos las imágenes solo si hay nuevas
+        }
+      } catch (err) {
+        console.error('Error al obtener imágenes:', err);
+      }
+    };
+
+    fetchImages();
+  }, [id])
+
+  
 
   const handleFavoriteClick = async () => {
     // Activa la animación y cambia el estado inmediatamente
@@ -65,7 +85,14 @@ const HouseCard = ({ id, image, title, description, location, size, bathrooms, b
   return (
     <div className="card">
       <div className="card-image">
-        <img src={image} alt={title} className="property-image" />
+      {images.map((img, index) => {
+        console.log("Ruta de imagen:", img); // Verifica qué ruta está llegando
+        return (
+          <div key={index} className="slider-image">
+            <img src={img} alt={`Imagen ${index + 1} de ${title}`} />
+          </div>
+        );
+      })}
       </div>
       {/* Corazón para marcar como favorito */}
       <div className="favorite-icon" onClick={handleFavoriteClick}>
@@ -99,7 +126,7 @@ const HouseCard = ({ id, image, title, description, location, size, bathrooms, b
 
 HouseCard.propTypes = {
   id: PropTypes.string.isRequired,
-  image: PropTypes.string.isRequired,
+  image: PropTypes.arrayOf(PropTypes.string).isRequired,
   title: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
   location: PropTypes.string.isRequired,

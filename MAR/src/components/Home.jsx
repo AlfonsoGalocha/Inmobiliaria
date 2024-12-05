@@ -161,7 +161,7 @@ const Home = () => {
               >
                 <HouseCard
                   id={house.id}
-                  image={house.images[0]}// Cambiar esto y quitar lo de 0
+                  image={house.images}
                   title={house.title}
                   description={house.description}
                   location={house.location}

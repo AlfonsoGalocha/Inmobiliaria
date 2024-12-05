@@ -174,7 +174,7 @@ function Flat({type = Children,buttonOptions = Children,rent = Children,title = 
                             <a className="container-card">
                                 <HouseCard
                                     id={house.id}
-                                    image={house.images[0]}
+                                    image={house.images} // Cambiar esto y quitar lo de [0]
                                     title={house.title}
                                     description={house.description}
                                     location={house.location}

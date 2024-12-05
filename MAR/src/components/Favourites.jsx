@@ -93,7 +93,7 @@ const Favourites = () => {
         <div key={house.id}> 
           <HouseCard
             id={house.id}
-            image={house.image}
+            image={house.images}
             title={house.title}
             description={house.description}
             location={house.location}
