@@ -1,4 +1,5 @@
 from flask import Flask, request, jsonify, session
+from flask_mail import Mail,Message
 import psycopg2
 import datetime
 import sys
@@ -16,6 +17,18 @@ CORS(app, supports_credentials=True, resources={r"/*": {"origins": "http://local
 app.config['SECRET_KEY'] = '1234567890'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:12345@localhost:5432/mar'
 db.init_app(app)
+
+# Configuración de Flask-Mail
+app.config['MAIL_SERVER'] = 'smtp.gmail.com'  # Servidor SMTP (Gmail en este caso)
+app.config['MAIL_PORT'] = 587  # Puerto del servidor SMTP
+app.config['MAIL_USE_TLS'] = True  # Habilitar TLS
+app.config['MAIL_USE_SSL'] = False
+app.config['MAIL_USERNAME'] = 'soportecliente.mar@gmail.com'  # Tu correo electrónico
+app.config['MAIL_PASSWORD'] = 'wxue trny ourx skev'  # Contraseña o clave de aplicación
+app.config['MAIL_DEFAULT_SENDER'] = 'soportecliente.mar@gmail.com'
+
+mail = Mail(app)
+
 
 with app.app_context():
     db.create_all()
@@ -125,10 +138,11 @@ def get_houses():
         except ValueError as ve:
             return jsonify({"message": "Parámetros inválidos", "error": str(ve)}), 400
 
-        # Paginación y resultados
+        # Paginación y resultados (4 casas con mas likes)
         try:
-            paginated_houses = query.paginate(page=page, per_page=per_page)
-            result = [house.to_dict() for house in paginated_houses.items] 
+            # Casas con mas likes
+            paginated_houses = query.order_by(House.likes.desc()).paginate(page=page, per_page=per_page)
+            result = [house.to_dict() for house in paginated_houses.items]
 
             print("Query Results:")
             for house in result:
@@ -181,14 +195,41 @@ def request_visit():
     # Validar que los datos necesarios estén presentes
     house_id = data.get('houseId')
     username = data.get('username')
+    housename = data.get('housename')
+    user_email = db.session.query(User).filter_by(username=username).first().email
+    date = data.get('date')
+    
+    # user_email = user.email
 
     if not house_id or not username:
         return jsonify({"error": "Faltan parámetros: houseId o userEmail"}), 400
+    
 
     print(f"Solicitud recibida para la casa {house_id} por el usuario {username}")
 
+
+    ### AQUI
+    try:
+        # Personaliza el contenido del correo
+        subject = f"Solicitud de visita para la casa {housename} con id {house_id}"
+        body = f"Estimado/a {username},\n\n" \
+            f"Hemos recibido su solicitud de visita para la casa {housename}.\n\n " \
+            f"Su solicitud para el dia {date} está siendo procesada y se tramitará en los próximos minutos. " \
+            "Nos pondremos en contacto con usted a la mayor brevedad posible para confirmar los detalles de la visita. \n\n" \
+            f"El ID de la casa a visitar es: {house_id}, si surge algún inconveniente deberás proporcionarlo al equipo de At.Cliente\n\n" \
+            "Gracias por su interés en nuestros servicios.\n\n" \
+            "Atentamente,\n" \
+            "El equipo de atención al cliente"
+        
+        # Crear y enviar el mensaje
+        msg = Message(subject=subject, recipients=[user_email], body=body)
+        mail.send(msg)
+
+    except Exception as e:
+        return jsonify({"message": "Error al enviar el correo", "error": str(e)}), 500
+
     # Responder con éxito
-    return jsonify({"message": "Solicitud recibida con éxito"}), 200
+    return jsonify({"message": "Solicitud recibida con éxito y correo enviado"}), 200
 
         
 @app.route('/user/favs', methods=['GET','POST'])
@@ -232,6 +273,7 @@ def get_favs():
         data = request.get_json()
         house_id = str(data.get('house_id'))  # Convertir a string
         action = data.get('action')  # Puede ser 'add' o 'remove'
+        house = db.session.query(House).filter_by(id=house_id).first()
 
         if not house_id or not action:
             return jsonify({'message': 'Faltan datos'}), 400
@@ -250,14 +292,22 @@ def get_favs():
 
         if action == 'add':
             if house_id not in user.favs:
+                # Sumamos 1 a los likes de la casa
+                house.likes = house.likes + 1
+
                 user.favs = user.favs + [house_id]  # Reasignar la lista modificada
             else:
                 return jsonify({'message': 'La casa ya está en favoritos'}), 400
+            
         elif action == 'remove':
             if house_id in user.favs:
+                # Restamos 1 a los likes de la casa
+                house.likes = house.likes - 1
+
                 user.favs = [fav for fav in user.favs if fav != house_id]  # Reasignar sin el elemento
             else:
                 return jsonify({'message': 'La casa no está en favoritos'}), 400
+            
         else:
             return jsonify({'message': 'Acción no válida'}), 400
 

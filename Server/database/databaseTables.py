@@ -38,6 +38,7 @@ class House(db.Model):
         db.DateTime, default=db.func.current_timestamp(), onupdate=db.func.current_timestamp()
     )
     rent = db.Column(db.Boolean, nullable=False)
+    likes = db.Column(db.Integer, nullable=False, default=0)
     
     def to_dict(self):
         return {
@@ -55,4 +56,5 @@ class House(db.Model):
             "created_at": self.created_at.isoformat() if self.created_at else None,
             "updated_at": self.updated_at.isoformat() if self.updated_at else None,
             "rent":self.rent,
+            "likes": self.likes
         }

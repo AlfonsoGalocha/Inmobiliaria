@@ -174,7 +174,7 @@ function Flat({type = Children,buttonOptions = Children,rent = Children,title = 
                             <a className="container-card">
                                 <HouseCard
                                     id={house.id}
-                                    image={house.images} // Cambiar esto y quitar lo de [0]
+                                    image={house.images}
                                     title={house.title}
                                     description={house.description}
                                     location={house.location}
@@ -262,7 +262,7 @@ function Flat({type = Children,buttonOptions = Children,rent = Children,title = 
 
 
 Flat.propTypes = {
-    type: PropTypes.string, // Usa PropTypes en lugar de Flat
+    type: PropTypes.arrayOf(PropTypes.string), // Usa PropTypes en lugar de Flat
     buttonOptions: PropTypes.arrayOf(PropTypes.string), // Define un array de strings
     rent: PropTypes.bool, // Booleano para el alquiler
     title: PropTypes.string, // Título

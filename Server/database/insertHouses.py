@@ -27,6 +27,8 @@ with app.app_context():
             "bedrooms": 4,
             "price": 450000,
             "rent":False,
+            "likes":0,
+        
         },
         {
             "type": "Casa",
@@ -40,6 +42,7 @@ with app.app_context():
             "bedrooms": 5,
             "price": 520000,
             "rent":False,
+            "likes":0,
         },
         # Adosados
         {
@@ -54,6 +57,7 @@ with app.app_context():
             "bedrooms": 3,
             "price": 320000,
             "rent":False,
+            "likes":0,
         },
         {
             "type": "Casa",
@@ -67,6 +71,7 @@ with app.app_context():
             "bedrooms": 3,
             "price": 300000,
             "rent":False,
+            "likes":0,
         },
         # Villas
         {
@@ -81,6 +86,7 @@ with app.app_context():
             "bedrooms": 6,
             "price": 1200000,
             "rent":False,
+            "likes":0,
         },
         {
             "type": "Casa",
@@ -94,6 +100,7 @@ with app.app_context():
             "bedrooms": 5,
             "price": 1350000,
             "rent":False,
+            "likes":0,
         },
         # Áticos
         {
@@ -108,6 +115,7 @@ with app.app_context():
             "bedrooms": 3,
             "price": 750000,
             "rent":False,
+            "likes":0,
         },
         {
             "type": "Piso",
@@ -121,6 +129,7 @@ with app.app_context():
             "bedrooms": 4,
             "price": 680000,
             "rent":False,
+            "likes":0,
         },
         # Bajos
         {
@@ -135,6 +144,7 @@ with app.app_context():
             "bedrooms": 3,
             "price": 250000,
             "rent":True,
+            "likes":0,
         },
         {
             "type": "Piso",
@@ -148,6 +158,7 @@ with app.app_context():
             "bedrooms": 3,
             "price": 230000,
             "rent":False,
+            "likes":0,
         },
         # Dúplex
         {
@@ -162,6 +173,7 @@ with app.app_context():
             "bedrooms": 4,
             "price": 850000,
             "rent":True,
+            "likes":0,
         },
         {
             "type": "Piso",
@@ -175,6 +187,7 @@ with app.app_context():
             "bedrooms": 4,
             "price": 980000,
             "rent":True,
+            "likes":0,
         }
     ]
 

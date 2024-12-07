@@ -85,14 +85,7 @@ const HouseCard = ({ id, image, title, description, location, size, bathrooms, b
   return (
     <div className="card">
       <div className="card-image">
-      {images.map((img, index) => {
-        console.log("Ruta de imagen:", img); // Verifica qué ruta está llegando
-        return (
-          <div key={index} className="slider-image">
-            <img src={img} alt={`Imagen ${index + 1} de ${title}`} />
-          </div>
-        );
-      })}
+        <img src={images[0]}  />
       </div>
       {/* Corazón para marcar como favorito */}
       <div className="favorite-icon" onClick={handleFavoriteClick}>

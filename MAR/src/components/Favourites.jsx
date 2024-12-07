@@ -25,7 +25,7 @@ const Favourites = () => {
         setError(null); // Limpia cualquier error previo
       })
       .catch((err) => {
-        if (err.response?.status=== 401){
+        if (err.response?.status === 401){
           navigate('/login');
         }else{
         setError(err.response?.data?.message || "Error al cargar los favoritos");
@@ -47,6 +47,7 @@ const Favourites = () => {
       slidesToScroll: 1,
       centerMode: true,
       centerPadding: "0",
+      
       nextArrow: (
         <div className="slick-next">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
@@ -80,7 +81,7 @@ const Favourites = () => {
     };
 
   return (
-  <body className="favourites">
+  <div className="favourites">
     <div className="title-favoutites">
       <Link to="/" className="back-link"><img src={BackLink} alt="Volver" /> </Link>
       <h2>Mis favoritos</h2>
@@ -88,27 +89,27 @@ const Favourites = () => {
     </div>
 
     <div className="carousel-container">
-    <Slider {...sliderSettings}>
-      {favourites.map((house, index) => (
-        <div key={house.id}> 
-          <HouseCard
-            id={house.id}
-            image={house.images}
-            title={house.title}
-            description={house.description}
-            location={house.location}
-            size={house.size}
-            bathrooms={house.bathrooms}
-            bedrooms={house.bedrooms}
-            price={house.price}
-          />
-        </div>
-      ))}
+      <Slider {...sliderSettings}>
+        {favourites.map((house, index) => (
+          <div key={house.id}> 
+            <HouseCard
+              id={house.id}
+              image={house.images}
+              title={house.title}
+              description={house.description}
+              location={house.location}
+              size={house.size}
+              bathrooms={house.bathrooms}
+              bedrooms={house.bedrooms}
+              price={house.price}
+            />
+          </div>
+        ))}
       </Slider>
     </div>
 
 
-  </body>
+  </div>
 
 
   );

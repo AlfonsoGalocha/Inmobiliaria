@@ -29,7 +29,8 @@
     align-items: center;
     /* border: 1px solid red; */
     width: 100%;
-    height: 50%;
+    height: 55%;
+    position: relative;
 }
 .house-image img{
     width: 75%;
@@ -37,6 +38,32 @@
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+    margin-bottom: 15%;
+    
+}
+.other-house-image{
+    /* border: 1px solid red; */
+    display: flex;
+    position: absolute;
+    width: 75%;
+    height: 15%;
+    bottom: 0;
+}
+.other-image-container{
+    /* border: 1px solid rgb(0, 68, 255); */
+    width: 15%;
+    height: 100%;
+    overflow: hidden;
+    padding: 5px;
+}
+.other-image-container img{
+    /* border: 1px solid rgb(21, 255, 0); */
+    width: 100%;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    opacity: 0.7;
+    cursor: pointer;
 }
 .house-details{
     /* border: 1px solid rgb(72, 255, 0); */

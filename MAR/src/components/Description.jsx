@@ -11,6 +11,7 @@ const Description = () => {
   const [houseData, setHouseData] = useState(null); // Estado para almacenar la información de la casa
   const [error, setError] = useState(null); // Estado para manejar errores
   const [isMobileView, setIsMobileView] = useState(false);
+  const [indexToInsert, setIndexToInsert] = useState(0);
 
   const navigate = useNavigate(); 
   
@@ -61,9 +62,12 @@ const Description = () => {
   }
 
   const handleRequestVisit = async (e) => {
+
     e.preventDefault();
     const user = JSON.parse(localStorage.getItem("user"));
     const userName = user ? user.username : null;
+    const date = document.getElementById("date").value;  // Obtener la fecha seleccionada
+
     if (!userName) {
       navigate("/login");
       return;
@@ -72,7 +76,9 @@ const Description = () => {
     try {
       await axios.post("http://localhost:5172/house/requestVisit", {
         houseId: id,
+        housename: houseData.title,
         username: userName,
+        date: date,
       });
       alert("Solicitud enviada con éxito.");
     } catch (err) {
@@ -80,7 +86,29 @@ const Description = () => {
     }
   };
 
-  
+
+  function handleImageChange(index) {
+    console.log("Index principal antes:", indexToInsert);
+    console.log("Index seleccionado:", index);
+
+    // Intercambiamos las imágenes (esto cambia la imagen principal y la imagen seleccionada)
+    const newIndex = indexToInsert === index ? index : indexToInsert;
+    setIndexToInsert(index); // Cambiar el índice de la imagen principal
+
+    // Aquí intercambiamos las imágenes
+    const updatedImages = [...houseData.images];
+    const temp = updatedImages[index];
+    updatedImages[index] = updatedImages[indexToInsert];
+    updatedImages[indexToInsert] = temp;
+
+    // Actualizamos el estado de las imágenes
+    setHouseData(prevData => ({
+      ...prevData,
+      images: updatedImages
+    }));
+    
+    console.log("Index principal después:", newIndex);
+  }
 
 
   return (
@@ -97,7 +125,20 @@ const Description = () => {
 
           {/* Imagen de la casa */}
           <div className="house-image">
-            <img src={houseData.images[0]} alt={houseData.title} />
+            <img src={houseData.images[indexToInsert]} alt={houseData.title} title="Texto del tooltip" />
+
+            <div className="other-house-image">
+            {houseData.images.slice(1).map((image, index) => (
+                <div key={index} className="other-image-container">
+                    <img 
+                        src={image} 
+                        onClick={() => handleImageChange(index + 1)} 
+                        title={`Texto ${index + 1}`}
+                    />
+                </div>
+            ))}
+
+            </div>
           </div>
 
           {/* Detalles de la casa */}
@@ -148,7 +189,7 @@ const Description = () => {
           <div className="section-contact">
             <h2>Contactáctanos</h2>
 
-            <p>mar.soporte@gmail.com</p>
+            <p>soportecliente.mar@gmail.com</p>
             <p>+34 642 773 127</p>
           </div>
           <div className="space-o"><p>o</p></div>
