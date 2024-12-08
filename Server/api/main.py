@@ -113,9 +113,13 @@ def get_houses():
         rent = request.args.get('rent', None)
         page = int(request.args.get('page', 1))
         per_page = int(request.args.get('per_page', 5))
+        likes = request.args.get('likes', None)
 
 
         query = House.query 
+
+        if house_type == "":
+            house_type = None
 
         # Filtros opcionales con validación
         try:
@@ -132,8 +136,21 @@ def get_houses():
                 query = query.filter(House.bedrooms >= int(min_bedrooms))
             if min_bathrooms:
                 query = query.filter(House.bathrooms >= int(min_bathrooms))
-            # if rent:
-            #     query = query.filter(House.))
+            if rent is not None:
+                if rent.lower() == 'true':
+                    query = query.filter(House.rent.is_(True))
+                elif rent.lower() == 'false':
+                    query = query.filter(House.rent.is_(False))
+            print("Likes parameter:", likes)
+
+            if likes == "mvendidos":
+                top_liked_houses = query.order_by(House.likes.desc()).limit(3).all()
+                result = [house.to_dict() for house in top_liked_houses]
+                print(result)
+                return jsonify({
+                    "houses": result,
+                }), 200
+
 
         except ValueError as ve:
             return jsonify({"message": "Parámetros inválidos", "error": str(ve)}), 400
@@ -144,10 +161,6 @@ def get_houses():
             paginated_houses = query.order_by(House.likes.desc()).paginate(page=page, per_page=per_page)
             result = [house.to_dict() for house in paginated_houses.items]
 
-            print("Query Results:")
-            for house in result:
-                print(house)
-
             return jsonify({
                 "houses": result,
                 "total": paginated_houses.total,
@@ -155,6 +168,7 @@ def get_houses():
                 "current_page": paginated_houses.page
             }), 200
         except Exception as e:
+            print("Error al procesar la solicitud:", str(e))
             return jsonify({"message": "Error al obtener casas", "error": str(e)}), 500
         
 
@@ -178,7 +192,7 @@ def house_info(id):
             'location': house.location,
             'size': house.size,
             'bathrooms': house.bathrooms,
-            'bedrooms': house.bedrooms
+            'bedrooms': house.bedrooms,
         }
 
         return jsonify(house_data), 200
@@ -198,6 +212,10 @@ def request_visit():
     housename = data.get('housename')
     user_email = db.session.query(User).filter_by(username=username).first().email
     date = data.get('date')
+
+    user = db.session.query(User).filter_by(username=username).first()
+    if not user:
+        return jsonify({"error": "Usuario no encontrado"}), 404
     
     # user_email = user.email
 
@@ -208,7 +226,7 @@ def request_visit():
     print(f"Solicitud recibida para la casa {house_id} por el usuario {username}")
 
 
-    ### AQUI
+    ### AQUID A EL ERROR
     try:
         # Personaliza el contenido del correo
         subject = f"Solicitud de visita para la casa {housename} con id {house_id}"
@@ -220,6 +238,7 @@ def request_visit():
             "Gracias por su interés en nuestros servicios.\n\n" \
             "Atentamente,\n" \
             "El equipo de atención al cliente"
+        
         
         # Crear y enviar el mensaje
         msg = Message(subject=subject, recipients=[user_email], body=body)
@@ -265,8 +284,6 @@ def get_favs():
         ]
 
         return jsonify({'favs': casas_json}), 200
-
-        # return jsonify({'favs': user.favs or []}), 200
 
     if request.method == 'POST':
 

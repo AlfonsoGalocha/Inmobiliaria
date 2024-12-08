@@ -65,10 +65,10 @@ const Description = () => {
 
     e.preventDefault();
     const user = JSON.parse(localStorage.getItem("user"));
-    const userName = user ? user.username : null;
+    const username = user ? user.username : null;
     const date = document.getElementById("date").value;  // Obtener la fecha seleccionada
 
-    if (!userName) {
+    if (!username) {
       navigate("/login");
       return;
     }
@@ -77,7 +77,7 @@ const Description = () => {
       await axios.post("http://localhost:5172/house/requestVisit", {
         houseId: id,
         housename: houseData.title,
-        username: userName,
+        username: username,
         date: date,
       });
       alert("Solicitud enviada con éxito.");
@@ -88,27 +88,11 @@ const Description = () => {
 
 
   function handleImageChange(index) {
-    console.log("Index principal antes:", indexToInsert);
-    console.log("Index seleccionado:", index);
-
-    // Intercambiamos las imágenes (esto cambia la imagen principal y la imagen seleccionada)
-    const newIndex = indexToInsert === index ? index : indexToInsert;
-    setIndexToInsert(index); // Cambiar el índice de la imagen principal
-
-    // Aquí intercambiamos las imágenes
-    const updatedImages = [...houseData.images];
-    const temp = updatedImages[index];
-    updatedImages[index] = updatedImages[indexToInsert];
-    updatedImages[indexToInsert] = temp;
-
-    // Actualizamos el estado de las imágenes
-    setHouseData(prevData => ({
-      ...prevData,
-      images: updatedImages
-    }));
-    
-    console.log("Index principal después:", newIndex);
+    console.log("Cambiando imagen principal al índice:", index);
+    setIndexToInsert(index);
   }
+  
+  
 
 
   return (
@@ -123,23 +107,27 @@ const Description = () => {
       <div className="description-container">
         <div className="description-container-info">
 
-          {/* Imagen de la casa */}
+          {/* Imagenes de la casa */}
           <div className="house-image">
-            <img src={houseData.images[indexToInsert]} alt={houseData.title} title="Texto del tooltip" />
-
+            {/* Imagen principal */}
+            <img
+              src={houseData.images[indexToInsert]}
+              alt={houseData.title}
+              className="active"
+            />
+            {/* Imágenes secundarias */}
             <div className="other-house-image">
-            {houseData.images.slice(1).map((image, index) => (
-                <div key={index} className="other-image-container">
-                    <img 
-                        src={image} 
-                        onClick={() => handleImageChange(index + 1)} 
-                        title={`Texto ${index + 1}`}
-                    />
-                </div>
-            ))}
-
+              {houseData.images.map((image, index) => (
+                index !== indexToInsert && (
+                  <div key={index} className="other-image-container">
+                    <img src={image} onClick={() => handleImageChange(index)} alt={`Imagen ${index + 1}`}/>
+                  </div>
+                )
+              ))}
             </div>
           </div>
+
+
 
           {/* Detalles de la casa */}
           <div className="house-details">
@@ -197,9 +185,9 @@ const Description = () => {
 
               <h2>Solicita una visita guiada</h2>
 
-              <form className="request-visit">
-                <input type="date" id="date" name="date"/>
-                <button onClick={handleRequestVisit}>Solicitar Visita</button>
+              <form className="request-visit" onSubmit={handleRequestVisit}>
+                <input type="date" id="date" name="date" required/>
+                <button>Solicitar Visita</button>
             </form>
           </div>
         </div>

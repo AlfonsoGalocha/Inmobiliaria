@@ -159,12 +159,9 @@
     .card-info h2 {
         font-size: 1.1rem; 
         color: #555;
-        
-        
     }
-
     .card-info .property-description {
-        font-size: 0.7rem; 
+        font-size: 0.9rem; 
         /* border: 1px solid red; */
         width: 100%;
         height: 35%;
@@ -173,7 +170,7 @@
 
     }
     .card-info .property-location {
-        font-size: 0.9rem;
+        font-size: 0.85rem;
         
     }
 

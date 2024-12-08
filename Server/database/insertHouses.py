@@ -18,7 +18,7 @@ with app.app_context():
         {
             "type": "Casa",
             "subtype": "CHALET",
-            "images": ["../../public/static/img/casa_majadahonda.webp","../../public/static/img/casa_majadahonda.webp","../../public/static/img/casa_majadahonda.webp"],
+            "images": ["../../public/static/img/casa_majadahonda.webp","../../public/static/img/casa1.jpg","../../public/static/img/casa_majadahonda.webp"],
             "title": "Chalet en Las Rozas",
             "description": "Amplio chalet con piscina y jardín en una zona tranquila.",
             "location": "Las Rozas, España",
@@ -26,7 +26,7 @@ with app.app_context():
             "bathrooms": 3,
             "bedrooms": 4,
             "price": 450000,
-            "rent":False,
+            "rent":True,
             "likes":0,
         
         },
@@ -41,7 +41,7 @@ with app.app_context():
             "bathrooms": 4,
             "bedrooms": 5,
             "price": 520000,
-            "rent":False,
+            "rent":True,
             "likes":0,
         },
         # Adosados

@@ -19,6 +19,8 @@ function Flat({type = Children,buttonOptions = Children,rent = Children,title = 
     const [page, setPage] = useState(1); // Página actual
     const [totalPages, setTotalPages] = useState(1); // Total de páginas
     const [isMobileView, setIsMobileView] = useState(false);
+    const [istype, setType] = useState(type);
+
 
     useEffect(() => {
         const handleResize = () => {
@@ -37,22 +39,23 @@ function Flat({type = Children,buttonOptions = Children,rent = Children,title = 
     // Parametros para la consulta
     const buildQueryParams = useCallback(() => {
         const queryParams = {
-            type,
+            type: rent ? (istype !== "" ? istype : undefined) : (type !== "" ? type : undefined), // Usa type o istype según el valor de rent
             rent,
-            subtype: activeButtons.length > 0 ? activeButtons.join(",") : undefined,
-            min_price: filters.priceRange[0], 
-            max_price: filters.priceRange[1], 
-            min_bedrooms: filters.bedrooms || undefined, 
-            min_bathrooms: filters.bathrooms || undefined, 
+            subtype: rent == false && activeButtons.length > 0 ? activeButtons.join(",") : undefined, // Se usa subtype si rent es false
+            min_price: filters.priceRange[0],
+            max_price: filters.priceRange[1],
+            min_bedrooms: filters.bedrooms || undefined,
+            min_bathrooms: filters.bathrooms || undefined,
             page,
             per_page: 5,
         };
-
+    
         // Filtra los valores undefined
         return Object.fromEntries(
             Object.entries(queryParams).filter(([, value]) => value !== undefined)
         );
-    }, [activeButtons,filters, page,type,rent]); // Dependencias
+    }, [activeButtons, filters, page, type, rent, istype]); // Dependencias
+    
 
     const fetchHouses = useCallback(async () => {
         const queryParams = new URLSearchParams(buildQueryParams()).toString();
@@ -81,14 +84,44 @@ function Flat({type = Children,buttonOptions = Children,rent = Children,title = 
     }, [filters,fetchHouses]);
 
     const handleButtonClick = (buttonType) => {
-        setActiveButtons((prevButtons) => {
-            const newButtons = prevButtons.includes(buttonType)
-                ? prevButtons.filter((type) => type !== buttonType)
-                : [...prevButtons, buttonType];
-            setPage(1);
-            return newButtons;
-        });
+        if (rent) {
+            // Normaliza los valores antes de compararlos
+            if (buttonType == "CASAS" && istype == "Casa" || buttonType == "PISOS" && istype == "Piso" || buttonType === "TODOS" && istype === "" && activeButtons.includes("TODOS")) {
+                setType("");
+                setPage(1);
+                setActiveButtons([]); // Limpia los botones activos
+            } else {
+                // Si rent es true, actualizar type dinámicamente según el botón
+                switch (buttonType.toUpperCase()) {
+                    case "TODOS":
+                        setType("");
+                        break;
+                    case "CASAS":
+                        setType("Casa");
+                        break;
+                    case "PISOS":
+                        setType("Piso");
+                        break;
+                    default:
+                        setType("");
+                }
+                setPage(1);
+                setActiveButtons([buttonType]); // Establece el botón activo
+            }
+        } else {
+            // Modo de múltiples selecciones (si rent es false)
+            setActiveButtons((prevButtons) => {
+                const isAlreadyActive = prevButtons.includes(buttonType);
+                const newButtons = isAlreadyActive
+                    ? prevButtons.filter((type) => type !== buttonType) // Desactiva el botón
+                    : [...prevButtons, buttonType]; // Activa el botón
+                setPage(1); // Reinicia la paginación
+                return newButtons;
+            });
+        }
     };
+    
+    
 
     // Maneja cambios en los filtros temporales
     const handleTempFilterChange = (e) => {
@@ -262,7 +295,7 @@ function Flat({type = Children,buttonOptions = Children,rent = Children,title = 
 
 
 Flat.propTypes = {
-    type: PropTypes.arrayOf(PropTypes.string), // Usa PropTypes en lugar de Flat
+    type: PropTypes.string, // Usa PropTypes en lugar de Flat
     buttonOptions: PropTypes.arrayOf(PropTypes.string), // Define un array de strings
     rent: PropTypes.bool, // Booleano para el alquiler
     title: PropTypes.string, // Título
