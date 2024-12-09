@@ -47,7 +47,7 @@ function Flat({type = Children,buttonOptions = Children,rent = Children,title = 
             min_bedrooms: filters.bedrooms || undefined,
             min_bathrooms: filters.bathrooms || undefined,
             page,
-            per_page: 5,
+            per_page: 6,
         };
     
         // Filtra los valores undefined
@@ -148,6 +148,12 @@ function Flat({type = Children,buttonOptions = Children,rent = Children,title = 
         if (page > 1) setPage((prevPage) => prevPage - 1);
     };
 
+    const closeFilter = (e) => {
+        if (e.target.classList.contains("filter-window-overlay")) {
+            setIsFilterOpen(false);
+        }
+    };
+
     return (
         <div className="App">
             {isMobileView ? (
@@ -160,6 +166,23 @@ function Flat({type = Children,buttonOptions = Children,rent = Children,title = 
                     <h2 className="eslogan-h2">{title}</h2>
                     <p>{eslogan}</p>
                 </div>
+                {isMobileView ? (
+                    null
+                ) : (
+                    <div className="buttons">
+                        {buttonOptions.map((type) => (
+                            <button
+                                key={type}
+                                className={`buttonFilter ${
+                                    activeButtons.includes(type) ? "active" : ""
+                                }`}
+                                onClick={() => handleButtonClick(type)}
+                            >
+                                {type}
+                            </button>
+                        ))}
+                    </div>
+                )}
                 <div className="filter-container-houseflat">
                     <button className="filter" onClick={() => setIsFilterOpen(!isFilterOpen)}>
                         <svg
@@ -187,20 +210,24 @@ function Flat({type = Children,buttonOptions = Children,rent = Children,title = 
                     </button>
                 </div>
             </div>
-            <div className="section section2">
-                <div className="buttons">
-                    {buttonOptions.map((type) => (
-                        <button
-                            key={type}
-                            className={`buttonFilter ${
-                                activeButtons.includes(type) ? "active" : ""
-                            }`}
-                            onClick={() => handleButtonClick(type)}
-                        >
-                            {type}
-                        </button>
-                    ))}
-                </div>
+            <div className="section section2 section2b">
+                {isMobileView ? (
+                    <div className="buttons">
+                        {buttonOptions.map((type) => (
+                            <button
+                                key={type}
+                                className={`buttonFilter ${
+                                    activeButtons.includes(type) ? "active" : ""
+                                }`}
+                                onClick={() => handleButtonClick(type)}
+                            >
+                                {type}
+                            </button>
+                        ))}
+                    </div>
+                ) : (
+                    null
+                )}
                 <div className="global-conyainer-cards-1">
                     {(Array.isArray(houses) ? houses : []).map((house, index) => (
                         <div key={index} className="container-card-global">
@@ -221,49 +248,58 @@ function Flat({type = Children,buttonOptions = Children,rent = Children,title = 
                     ))}
                 </div>
                 <div className="pagination">
-                    <button
-                        className="pagination-button"
-                        onClick={goToPreviousPage}
-                        disabled={page === 1}
-                    >
-                        &laquo; Anterior
-                    </button>
+                    <button className="pagination-button" onClick={goToPreviousPage} disabled={page === 1}>&laquo; Anterior</button>
                     <span>Página {page} de {totalPages}</span>
-                    <button
-                        className="pagination-button"
-                        onClick={goToNextPage}
-                        disabled={page === totalPages}
-                    >
-                        Siguiente &raquo;
-                    </button>
+                    <button className="pagination-button" onClick={goToNextPage} disabled={page === totalPages}>Siguiente &raquo;</button>
                 </div>
             </div>
             {isFilterOpen && (
-                <div className="filter-window">
-                    <div className="filter-group">
-                        <label>Precio</label>
-                        <div className="price-range">
-                            <input type="range" name="minPrice" min="0" max="1000000" step="10000" value={tempFilters.priceRange[0]} onChange={(e) => setTempFilters((prev) => ({ ...prev, priceRange: [Math.min(parseInt(e.target.value), prev.priceRange[1]), prev.priceRange[1]] }))} />
-                            <input type="range" name="maxPrice" min="0" max="5000000" step="10000" value={tempFilters.priceRange[1]} onChange={(e) => setTempFilters((prev) => ({ ...prev, priceRange: [prev.priceRange[0], Math.max(parseInt(e.target.value), prev.priceRange[0])] }))} />
+                <div className="filter-window-overlay" onClick={closeFilter}>
+                    <div className="filter-window">
+                        <button className="close-button" onClick={() => setIsFilterOpen(false)}>&times;</button>
+                        <div className="filter-group">
+                            <label>Precio</label>
+                            <div className="price-range">
+                                <input type="range" name="minPrice" min="0" max="1000000" step="10000" value={tempFilters.priceRange[0]} 
+                                onChange={(e) =>
+                                        setTempFilters((prev) => ({
+                                            ...prev,
+                                            priceRange: [
+                                                Math.min(parseInt(e.target.value), prev.priceRange[1]),
+                                                prev.priceRange[1],
+                                            ],
+                                        }))
+                                    }
+                                />
+                                <input type="range" name="maxPrice" min="0" max="5000000" step="10000" value={tempFilters.priceRange[1]}
+                                    onChange={(e) =>
+                                        setTempFilters((prev) => ({
+                                            ...prev,
+                                            priceRange: [
+                                                prev.priceRange[0],
+                                                Math.max(parseInt(e.target.value), prev.priceRange[0]),
+                                            ],
+                                        }))
+                                    }
+                                />
+                            </div>
+                            <div className="price-values">
+                                <span>Min: {tempFilters.priceRange[0].toLocaleString("es-ES")}€ </span>
+                                <span>Max: {tempFilters.priceRange[1].toLocaleString("es-ES")}€ </span>
+                            </div>
                         </div>
-                        <div className="price-values">
-                            <span>Min: {tempFilters.priceRange[0].toLocaleString("es-ES")}€ </span>
-                            <span>Max: {tempFilters.priceRange[1].toLocaleString("es-ES")}€ </span>
+
+                        <div className="filter-group">
+                            <label>Habitaciones</label>
+                            <input type="number" name="bedrooms" placeholder="Mínimo habitaciones" value={tempFilters.bedrooms} onChange={handleTempFilterChange}/>
                         </div>
-                    </div>
+                        <div className="filter-group">
+                            <label>Baños</label>
+                            <input type="number" name="bathrooms" placeholder="Mínimo baños" value={tempFilters.bathrooms} onChange={handleTempFilterChange}/>
+                        </div>
 
-                    <div className="filter-group">
-                        <label>Habitaciones</label>
-                        <input type="number" name="bedrooms" placeholder="Mínimo habitaciones" value={tempFilters.bedrooms} onChange={handleTempFilterChange} />
+                        <button className="apply-filters" onClick={applyFilters}>Aplicar</button>
                     </div>
-                    <div className="filter-group">
-                        <label>Baños</label>
-                        <input type="number" name="bathrooms" placeholder="Mínimo baños" value={tempFilters.bathrooms} onChange={handleTempFilterChange} />
-                    </div>
-
-                    <button className="apply-filters" onClick={applyFilters}>
-                        Aplicar
-                    </button>
                 </div>
             )}
             <footer className='footer' id= 'footer'>

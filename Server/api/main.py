@@ -112,7 +112,7 @@ def get_houses():
         min_bathrooms = request.args.get('min_bathrooms', None)
         rent = request.args.get('rent', None)
         page = int(request.args.get('page', 1))
-        per_page = int(request.args.get('per_page', 5))
+        per_page = int(request.args.get('per_page', 6))
         likes = request.args.get('likes', None)
 
 

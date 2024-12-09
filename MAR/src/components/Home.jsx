@@ -154,28 +154,30 @@ const Home = () => {
             )}
         <h1>Viviendas destacadas</h1>
         <div className="carousel-container">
-          <Slider {...sliderSettings}>
-            {houses.map((house, index) => (
-              <div
-                key={house.id}
-                className={`carousel-item ${
-                  index === currentIndex ? "active-slide" : ""
-                }`}
-              >
-                <HouseCard
-                  id={house.id}
-                  image={house.images}
-                  title={house.title}
-                  description={house.description}
-                  location={house.location}
-                  size={house.size}
-                  bathrooms={house.bathrooms}
-                  bedrooms={house.bedrooms}
-                  price={house.price}
-                />
-              </div>
-            ))}
-          </Slider>
+          {houses.length > 0 && (
+            <Slider {...sliderSettings}>
+              {houses.map((house, index) => (
+                <div
+                  key={index}
+                  className={`carousel-item ${
+                    index === currentIndex ? "active-slide" : ""
+                  }`}
+                >
+                  <HouseCard
+                    id={house.id}
+                    image={house.images}
+                    title={house.title}
+                    description={house.description}
+                    location={house.location}
+                    size={house.size}
+                    bathrooms={house.bathrooms}
+                    bedrooms={house.bedrooms}
+                    price={house.price}
+                  />
+                </div>
+              ))}
+            </Slider>
+          )}
         </div>
       </div>
       <div className="section section3">
