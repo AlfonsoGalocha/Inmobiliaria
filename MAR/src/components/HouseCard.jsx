@@ -63,6 +63,10 @@ const HouseCard = ({ id, image, title, description, location, size, bathrooms, b
         },
         { withCredentials: true }
       );
+      // Recargar la página para actualizar la lista de favoritos cuando le des a remove
+      if (isFavorite) {
+        window.location.reload();
+      }
     } catch (error) {
       console.error('Error al actualizar favoritos:', error);
   

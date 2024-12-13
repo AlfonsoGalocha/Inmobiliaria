@@ -319,14 +319,13 @@ body {
   font-family: 'Piazzolla';
 }
 .section3 p{
-
-    font-size: 22px;  
-    font-family: serif;
-    font-style: italic;
-    color: black;
-    max-width: 600px; 
-    line-height: 1.4;
-    text-align: center;
+  font-size: 22px;  
+  font-family: serif;
+  font-style: italic;
+  color: black;
+  max-width: 600px; 
+  line-height: 1.4;
+  text-align: center;
 
 }
 .footer {

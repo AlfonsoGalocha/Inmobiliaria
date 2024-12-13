@@ -1,7 +1,8 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import '../styles/NavBarMobile.css';
 import axios from 'axios';
+
 
 const Navbar = () => {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -11,7 +12,7 @@ const Navbar = () => {
 
     const toggleMobileMenu = () => setIsMobileMenuOpen(!isMobileMenuOpen);
 
-    const handleClickOutside = (event) => {
+    const handleClickOutside = () => {
 
         setIsSearchOpen(false);
         
@@ -55,7 +56,13 @@ const Navbar = () => {
                     </>
                 )}
                 <Link to="/favoritos">Favoritos</Link>
-                <Link to="/">Contacto</Link>
+                <a href="#footer" onClick={() => {
+                    setIsMobileMenuOpen(false);
+                    const footer = document.getElementById('footer');
+                    footer.scrollIntoView({ behavior: 'smooth' });
+                    }}>
+                    Contacto
+                </a>
                 {isLoggedIn && <p className='p-a' onClick={handleLogout}>Logout</p>}
             </div>
         </nav>
@@ -63,3 +70,6 @@ const Navbar = () => {
 };
 
 export default Navbar;
+
+
+

@@ -14,13 +14,33 @@
   color: #4E6682;
   font-family: 'Piazzolla';
   font-size: 40px;
-
-
+  margin-bottom: 100px;
 }
+
+.house-card {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  height: 400px;
+  margin: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  transition: 0.3s;
+}
+
+.house-cards {
+  display: flex;
+}
+
+.house-cards .card{
+  margin: 20px;
+}
+
+
+
 @media (max-width: 768px) {
   
   .favourites-list {
-    display: flex;
     width: 90%;
     flex-wrap: wrap;
     justify-content: space-around;
@@ -28,4 +48,26 @@
     margin: 20px;
     margin-top: 15%;
   }
+
+  /* 
+  .house-cards {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+
+  .house-cards .card{
+    width: 250px;
+    margin: 20px;
+  } */
+
+  .house-cards {
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  
 }
