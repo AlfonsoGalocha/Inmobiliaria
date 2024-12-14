@@ -91,7 +91,7 @@ with app.app_context():
         {
             "type": "Casa",
             "subtype": "VILLA",
-            "images": ["../../public/static/img/casa_majadahonda.webp","../../public/static/img/casa_majadahonda.webp","../../public/static/img/casa_majadahonda.webp"],
+            "images": ["../../public/static/img/ibiza1.jpg","../../public/static/img/ibiza2.jpg","../../public/static/img/ibiza3.jpg"],
             "title": "Villa en Ibiza",
             "description": "Villa moderna con jardín, piscina y acceso a la playa.",
             "location": "Ibiza, España",

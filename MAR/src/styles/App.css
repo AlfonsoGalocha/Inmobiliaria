@@ -575,7 +575,7 @@ body {
 
   .carousel-item {
     transition: transform 0.3s ease, opacity 0.3s ease;
-    transform: scale(1);
+    transform: scale(0.9);
   
   }
   

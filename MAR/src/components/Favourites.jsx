@@ -62,7 +62,11 @@ const Favourites = () => {
 
   // Función para determinar cuántas diapositivas mostrar
   const slidesToShowfn = () => {
-    if (favourites.length < 3) {
+    // Si es media de movil sacar 1
+    if (window.innerWidth < 768) {
+      return 1;
+    }
+    else if (favourites.length < 3) {
       // no mostrar carrusel si hay menos de 3 
       return favourites.length;
     } else {
@@ -95,7 +99,7 @@ const Favourites = () => {
       </div>
 
       <div className="carousel-container">
-        {favourites.length > 2 ? (
+        {favourites.length > 3 ? (
           // Si hay más de 1 favorito, muestra el slider
           <Slider {...sliderSettings}>
             {favourites.map((house) => (
@@ -113,7 +117,7 @@ const Favourites = () => {
               />
             ))}
           </Slider>
-        ) : favourites.length === 2 ? (
+        ) : (favourites.length === 2) || (favourites.length === 3) ? (
 
               // Si hay exactamente 2 favoritos, renderiza sin slider
               <div className="house-cards">
