@@ -36,6 +36,34 @@ const Navbar = () => {
         }
     };
 
+    const scrollToSection = (sectionId) => {
+        const section = document.getElementById(sectionId);
+        if (section) {
+          section.scrollIntoView({ behavior: "smooth" });
+        }
+        // si no, que me mande al home y lo vuelva a intentar
+        else {
+            window.location.href = `/?scrollTo=${sectionId}`;
+        }
+      };
+
+        // En la página principal (Home), al cargar
+    window.onload = () => {
+        // Buscar el parámetro "scrollTo" en la URL
+        const params = new URLSearchParams(window.location.search);
+        const sectionId = params.get("scrollTo");
+
+        if (sectionId) {
+            // Intentar hacer scroll a la sección correspondiente
+            const section = document.getElementById(sectionId);
+            if (section) {
+                section.scrollIntoView({ behavior: "smooth" });
+            }
+        }
+    };
+
+
+
     return (
         <nav className={`navbar ${isMobileMenuOpen ? 'menu-active' : ''}`}>
             <div className="navbar-logo">
@@ -58,8 +86,7 @@ const Navbar = () => {
                 <Link to="/favoritos">Favoritos</Link>
                 <a href="#footer" onClick={() => {
                     setIsMobileMenuOpen(false);
-                    const footer = document.getElementById('footer');
-                    footer.scrollIntoView({ behavior: 'smooth' });
+                    scrollToSection('footer');
                     }}>
                     Contacto
                 </a>
