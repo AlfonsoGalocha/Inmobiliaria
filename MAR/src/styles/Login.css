@@ -77,9 +77,12 @@
 }
 
 .back-link {
+    text-decoration: none;
+    color: #000;
     position: absolute;
     left: 3%;
     top: 25%;
+    font-size: 20px;
 }
 .back-link:hover {
     opacity: 0.8;
@@ -142,3 +145,6 @@ input[type="submit"]:hover {
 }
 
 
+.error-message{
+    color: red;
+}

@@ -1,17 +1,20 @@
+// src/components/NavBarComputer.jsx
+
 import '../styles/NavBarComputer.css';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 const NavBarComputer = () => {
-    const [isLoggedIn, setIsLoggedIn] = useState(localStorage.getItem('user') !== null);
+    const [isLoggedIn, setIsLoggedIn] = useState(localStorage.getItem('user') !== null); // Estado para controlar si el usuario está logueado
 
+    // Función para cerrar sesión
     const handleLogout = async () => {
         try {
             const response = await axios.post('http://localhost:5172/user/logout', {}, { withCredentials: true });
             if (response.status === 200) {
-                localStorage.removeItem('user');
-                setIsLoggedIn(false);
+                localStorage.removeItem('user'); // Eliminar el usuario del almacenamiento local
+                setIsLoggedIn(false); // Actualizar el estado a false
                 console.log('User logged out');
             } else {
                 console.error('Logout failed with status:', response.status);
@@ -21,26 +24,27 @@ const NavBarComputer = () => {
         }
     };
 
+    // Función para hacer scroll a una sección
     const scrollToSection = (sectionId) => {
         const section = document.getElementById(sectionId);
         if (section) {
           section.scrollIntoView({ behavior: "smooth" });
         }
-        // si no, que me mande al home y lo vuelva a intentar
+        // Si estamos en la página principal, añadir el parámetro "scrollTo" a la URL
         else {
             window.location.href = `/?scrollTo=${sectionId}`;
         }
       };
 
-        // En la página principal (Home), al cargar
+    //Recarga la página principal (Home) y hace scroll a la sección correspondiente
     window.onload = () => {
         // Buscar el parámetro "scrollTo" en la URL
         const params = new URLSearchParams(window.location.search);
         const sectionId = params.get("scrollTo");
 
         if (sectionId) {
-            // Intentar hacer scroll a la sección correspondiente
-            const section = document.getElementById(sectionId);
+            const section = document.getElementById(sectionId); // Hacer scroll a la sección correspondiente
+
             if (section) {
                 section.scrollIntoView({ behavior: "smooth" });
             }
@@ -66,7 +70,7 @@ const NavBarComputer = () => {
                     <Link to="/favoritos">Favoritos</Link>
                 </li>
                 <li>
-                    <button onClick={() => scrollToSection("footer")}>Contacto</button>
+                    <button onClick={() => scrollToSection("footer")}>Contacto</button> 
                 </li>
             </ul>
 
@@ -74,7 +78,7 @@ const NavBarComputer = () => {
             {/* Botones de sesión */}
             <div className="nav-computer-auth-buttons">
                 {isLoggedIn ? (
-                    <button className="nav-computer-logout-button" onClick={handleLogout}>Cerrar Sesión</button>
+                    <button className="nav-computer-logout-button" onClick={handleLogout}>Cerrar Sesión</button> // Botón para cerrar sesión
                 ) : (
                     <>
                         <Link to="/login">

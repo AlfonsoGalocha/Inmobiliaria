@@ -1,39 +1,37 @@
-import { useState, useEffect, useCallback, Children } from "react";
-import NavBarMobile from "./NavBarMobile";
-import NavBarComputer from "./NavBarComputer";
-import HouseCard from "./HouseCard";
+// src/components/HouseFlat.jsx
+
 import "../styles/House.css";
+
+//importamos las librerias necesarias
+import { useState, useEffect, useCallback, Children } from "react";
 import axios from "axios";
 import PropTypes from "prop-types";
 
-function Flat({type = Children,buttonOptions = Children,rent = Children,title = Children,eslogan = Children}) {
-    const [houses, setHouses] = useState([]);
-    const [isFilterOpen, setIsFilterOpen] = useState(false);
-    const [filters, setFilters] = useState({
+//importamos los componentes necesarios
+import NavBarMobile from "./NavBarMobile";
+import NavBarComputer from "./NavBarComputer";
+import HouseCard from "./HouseCard";
+import Footer from "./Footer"
+
+
+//Hook
+import useIsMobileView from "../hooks/useIsMobileView"
+
+
+function Flat({type = Children,buttonOptions = Children,rent = Children,title = Children,eslogan = Children}) { // Cambia Flat por HouseFlat
+    const [houses, setHouses] = useState([]); // Estado para almacenar las casas
+    const [isFilterOpen, setIsFilterOpen] = useState(false); // Estado para abrir/cerrar los filtros
+    const [filters, setFilters] = useState({  // Estado para los filtros con sus valores por defecto
         priceRange: [0, 5000000],
         bedrooms: "",
         bathrooms: "",
     });
-    const [tempFilters, setTempFilters] = useState({ ...filters });
-    const [activeButtons, setActiveButtons] = useState([]);
+    const [tempFilters, setTempFilters] = useState({ ...filters }); // Estado para los filtros temporales
+    const [activeButtons, setActiveButtons] = useState([]); // Estado para los botones activos
     const [page, setPage] = useState(1); // Página actual
     const [totalPages, setTotalPages] = useState(1); // Total de páginas
-    const [isMobileView, setIsMobileView] = useState(false);
-    const [istype, setType] = useState(type);
-
-
-    useEffect(() => {
-        const handleResize = () => {
-          setIsMobileView(window.innerWidth <= 736);
-        };
-    
-        window.addEventListener("resize", handleResize);
-        handleResize();
-    
-        return () => {
-          window.removeEventListener("resize", handleResize);
-        };
-      }, []);
+    const isMobileView = useIsMobileView(); // Estado para determinar si la vista es móvil
+    const [istype, setType] = useState(type); // Estado para el tipo de propiedad
 
 
     // Parametros para la consulta
@@ -50,27 +48,27 @@ function Flat({type = Children,buttonOptions = Children,rent = Children,title = 
             per_page: 6,
         };
     
-        // Filtra los valores undefined
+        // Se filtran los valores undefined
         return Object.fromEntries(
             Object.entries(queryParams).filter(([, value]) => value !== undefined)
         );
     }, [activeButtons, filters, page, type, rent, istype]); // Dependencias
     
-
-    const fetchHouses = useCallback(async () => {
-        const queryParams = new URLSearchParams(buildQueryParams()).toString();
+    // Función para obtener las casas
+    const fetchHouses = useCallback(async () => { 
+        const queryParams = new URLSearchParams(buildQueryParams()).toString(); // Construir los parámetros de la consulta
 
         try {
             // Realizar la petición GET con axios
-            const response = await axios.get(`http://localhost:5172/houses?${queryParams}`);
+            const response = await axios.get(`http://localhost:5172/houses?${queryParams}`); 
             
             // Manejar la respuesta
-            if (response.status === 200) {
+            if (response.status === 200) {  
                 const data = response.data;
-                setHouses(Array.isArray(data.houses) ? data.houses : []);
+                setHouses(Array.isArray(data.houses) ? data.houses : []); 
                 setTotalPages(data.pages || 1);
             } else {
-                console.error("Error en la respuesta del servidor:", response.data.message);
+                console.error("Error:", response.data.message);
             }
         } catch (error) {
             console.error("Error fetching houses:", error);
@@ -78,14 +76,15 @@ function Flat({type = Children,buttonOptions = Children,rent = Children,title = 
         }
     }, [buildQueryParams]);
 
-
+    // Hook para obtener las casas
     useEffect(() => {
         fetchHouses();
     }, [filters,fetchHouses]);
 
+    // Maneja el click en los botones
     const handleButtonClick = (buttonType) => {
         if (rent) {
-            // Normaliza los valores antes de compararlos
+            // En caso de que un boton ya este pulsado
             if (buttonType == "CASAS" && istype == "Casa" || buttonType == "PISOS" && istype == "Piso" || buttonType === "TODOS" && istype === "" && activeButtons.includes("TODOS")) {
                 setType("");
                 setPage(1);
@@ -111,7 +110,7 @@ function Flat({type = Children,buttonOptions = Children,rent = Children,title = 
         } else {
             // Modo de múltiples selecciones (si rent es false)
             setActiveButtons((prevButtons) => {
-                const isAlreadyActive = prevButtons.includes(buttonType);
+                const isAlreadyActive = prevButtons.includes(buttonType); // Comprueba si el botón ya está activo
                 const newButtons = isAlreadyActive
                     ? prevButtons.filter((type) => type !== buttonType) // Desactiva el botón
                     : [...prevButtons, buttonType]; // Activa el botón
@@ -123,31 +122,33 @@ function Flat({type = Children,buttonOptions = Children,rent = Children,title = 
     
     
 
-    // Maneja cambios en los filtros temporales
+    // Cambios en los filtros temporales
     const handleTempFilterChange = (e) => {
         const { name, value } = e.target;
         setTempFilters((prevTempFilters) => ({
             ...prevTempFilters,
-            [name]: name === "priceRange" ? value.split(",").map(Number) : value,
+            [name]: name === "priceRange" ? value.split(",").map(Number) : value, // Divide el string en un array de números
         }));
     };
 
-    // Aplica los filtros desde los filtros temporales
+    // Se aplcian los filtros desde los filtros temporales
     const applyFilters = () => {
-        setFilters(tempFilters); // Actualiza los filtros
-        setPage(1); // Reinicia la paginación
-        setIsFilterOpen(false); // Cierra el modal
+        setFilters(tempFilters); // Actualizo los filtros
+        setPage(1); // Reinicio la paginación
+        setIsFilterOpen(false); // Cierro el modal
     };
     
-
+    // Función para ir a la página siguiente
     const goToNextPage = () => {
         if (page < totalPages) setPage((prevPage) => prevPage + 1);
     };
 
+    // Función para ir a la página anterior
     const goToPreviousPage = () => {
         if (page > 1) setPage((prevPage) => prevPage - 1);
     };
 
+    // Cierra el modal de filtros al hacer click fuera de él
     const closeFilter = (e) => {
         if (e.target.classList.contains("filter-window-overlay")) {
             setIsFilterOpen(false);
@@ -171,13 +172,7 @@ function Flat({type = Children,buttonOptions = Children,rent = Children,title = 
                 ) : (
                     <div className="buttons">
                         {buttonOptions.map((type) => (
-                            <button
-                                key={type}
-                                className={`buttonFilter ${
-                                    activeButtons.includes(type) ? "active" : ""
-                                }`}
-                                onClick={() => handleButtonClick(type)}
-                            >
+                            <button key={type} className={`buttonFilter ${activeButtons.includes(type) ? "active" : ""}`}  onClick={() => handleButtonClick(type)}>
                                 {type}
                             </button>
                         ))}
@@ -214,13 +209,7 @@ function Flat({type = Children,buttonOptions = Children,rent = Children,title = 
                 {isMobileView ? (
                     <div className="buttons">
                         {buttonOptions.map((type) => (
-                            <button
-                                key={type}
-                                className={`buttonFilter ${
-                                    activeButtons.includes(type) ? "active" : ""
-                                }`}
-                                onClick={() => handleButtonClick(type)}
-                            >
+                            <button key={type} className={`buttonFilter ${ activeButtons.includes(type) ? "active" : ""}`} onClick={() => handleButtonClick(type)}>
                                 {type}
                             </button>
                         ))}
@@ -242,6 +231,7 @@ function Flat({type = Children,buttonOptions = Children,rent = Children,title = 
                                     bathrooms={house.bathrooms}
                                     bedrooms={house.bedrooms}
                                     price={house.price}
+                                    rent={house.rent}
                                 />
                             </a>
                         </div>
@@ -302,40 +292,18 @@ function Flat({type = Children,buttonOptions = Children,rent = Children,title = 
                     </div>
                 </div>
             )}
-            <footer className='footer' id= 'footer'>
-                <div className="contact-section">
-                    <p id='contact'>Contáctanos</p>
-                    <p>mar.soporte@gmail.com</p>
-                    <p>+34 642 773 127</p>
-                </div>
-                <div className="social-links">
-                    <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer">
-                    <img src="../../public/static/img/instagram_logo.webp" alt="Instagram" />
-                    </a>
-                    <a href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer">
-                    <img src="../../public/static/img/linkedin_logo.png" alt="LinkedIn" />
-                    </a>
-                    <a href="https://www.tiktok.com/" target="_blank" rel="noopener noreferrer">
-                    <img src="../../public/static/img/tiktok_logo.png" alt="TikTok" className='tiktok_logo'/>
-                    </a>
-                </div>
-                <div className="footer-links">
-                    <a href="/acerca-de">Acerca de</a>
-                    <a href="/politica-de-privacidad">Política de privacidad</a>
-                    <a href="/aviso-legal">Aviso legal</a>
-                </div>
-            </footer>
+            <Footer/>
         </div>
     );
 }
 
-
+// Definimos las props
 Flat.propTypes = {
-    type: PropTypes.string, // Usa PropTypes en lugar de Flat
-    buttonOptions: PropTypes.arrayOf(PropTypes.string), // Define un array de strings
-    rent: PropTypes.bool, // Booleano para el alquiler
-    title: PropTypes.string, // Título
-    eslogan: PropTypes.string, // Eslogan
+    type: PropTypes.string, 
+    buttonOptions: PropTypes.arrayOf(PropTypes.string), 
+    rent: PropTypes.bool, 
+    title: PropTypes.string, 
+    eslogan: PropTypes.string, 
 };
 
 export default Flat;

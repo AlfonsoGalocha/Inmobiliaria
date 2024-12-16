@@ -50,17 +50,22 @@
 }
 
 .back-arrow {
-  font-size: 40px; /* Tamaño ajustable */
-  color: #333; /* Color de la flecha */
-  cursor: pointer; /* Indicar interactividad */
+  font-size: 40px; 
+  color: #333; 
+  cursor: pointer; 
 }
 
 .back-link {
   display: flex;
   align-items: center;
-  gap: 5px; /* Separación entre flecha y texto */
+  gap: 5px; 
   text-decoration: none;
   bottom: 1px;
+}
+
+.vacio{
+  justify-self: center;
+  margin-top: 300px;
 }
 
 

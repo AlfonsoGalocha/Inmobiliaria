@@ -1,40 +1,46 @@
-import '../styles/Login.css'; // Asegúrate de que la ruta sea correcta
+// src/components/Login.jsx
+
+// Importa los módulos necesarios
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import '../styles/Login.css'; 
 
-import BackLink from '../../public/static/img/go-back.png'; // Importa el componente BackLink
-
+// Define el componente funcional
 const Login = () => {
-
-  const [formData, setFormData] = useState({
-    username: '',
+  const [formData, setFormData] = useState({ // Estado para almacenar los datos del formulario
+    username: '', 
     password: ''
   });
-  
-  const navigate = useNavigate(); 
 
-  const handleSubmit = async (e) => {
+  const [errorMessage, setErrorMessage] = useState(''); // Estado para manejar el mensaje de error
+
+  const navigate = useNavigate();  // Hook para redirigir a otra página
+
+  const handleSubmit = async (e) => { // Función para manejar el envío del formulario
     e.preventDefault();
 
     try {
       const response = await axios.post('http://localhost:5172/user/login', {
         username: formData.username,
         password: formData.password
-      }, { withCredentials: true }); // Importante para que las cookies sean enviadas y recibidas
+      }, { withCredentials: true }); 
 
       console.log(response.data.message); // Muestra el mensaje de éxito
-      localStorage.setItem('user', JSON.stringify({ username: formData.username }));
+      localStorage.setItem('user', JSON.stringify({ username: formData.username })); // Almacena el usuario en el localStorage
 
       navigate('/'); // Redirige a la página principal después de iniciar sesión
         
     } catch (error) {
-      console.error('Error en el login:', error.response ? error.response.data.message : error.message);
+      console.error('Login error:', error.response ? error.response.data.message : error.message);
+      setErrorMessage(error.response ? error.response.data.message : 'Login error'); // Actualiza el estado del mensaje de error
+
     }
   };
   
+  // Función para manejar los cambios en los inputs
   const handleChange = (e) => {
-    const { id, value } = e.target;
+    const { id, value } = e.target; // Extrae el id y el valor del input
     setFormData((prevData) => ({
       ...prevData,
       [id]: value
@@ -47,7 +53,7 @@ const Login = () => {
       <div className="overlay"></div>
       <form className="login-form" onSubmit={handleSubmit}>
         <div className="top">
-          <Link to="/" className="back-link"><img src={BackLink} alt="Volver" /> </Link>
+          <Link to="/" className="back-link">🡨</Link>
           <h2>Iniciar Sesión</h2>
         </div>
         <div className="form-group">
@@ -56,6 +62,7 @@ const Login = () => {
         <div className="form-group">
           <input className='input-form' placeholder='Contraseña' type="password" id="password" value={formData.password} onChange={handleChange} required />
         </div>
+        {errorMessage && <div className="error-message">{errorMessage}</div>} {/* Muestra el mensaje de error si existe */}
         <Link to="/signup" className="register-link">¿No tienes una cuenta? Regístrate aquí</Link>
         <input type="submit" value="Iniciar Sesión" />
        

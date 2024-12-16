@@ -1,3 +1,4 @@
+# Importammos librerías necesarias
 from flask import Flask, request, jsonify, session
 from flask_mail import Mail,Message
 import psycopg2
@@ -6,15 +7,18 @@ import sys
 import os
 from flask_cors import CORS
 from werkzeug.security import generate_password_hash, check_password_hash
+from dotenv import load_dotenv  # Importa la función load_dotenv
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 from database.databaseTables import User, House, db
 from uuid import UUID
 
+load_dotenv()  # Llama a la función load_dotenv
 
+# Crear la aplicación Flask
 app = Flask(__name__)
-CORS(app, supports_credentials=True, resources={r"/*": {"origins": "http://localhost:5173"}})
+CORS(app, supports_credentials=True, resources={r"/*": {"origins": "http://localhost:5173"}}) # Habilitar CORS
 
-app.config['SECRET_KEY'] = '1234567890'
+app.config['SECRET_KEY'] =  os.getenv('SECRET_KEY')
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:12345@localhost:5432/mar'
 db.init_app(app)
 
@@ -22,35 +26,39 @@ db.init_app(app)
 app.config['MAIL_SERVER'] = 'smtp.gmail.com'  # Servidor SMTP (Gmail en este caso)
 app.config['MAIL_PORT'] = 587  # Puerto del servidor SMTP
 app.config['MAIL_USE_TLS'] = True  # Habilitar TLS
-app.config['MAIL_USE_SSL'] = False
+app.config['MAIL_USE_SSL'] = False # Deshabilitar SSL
 app.config['MAIL_USERNAME'] = 'soportecliente.mar@gmail.com'  # Tu correo electrónico
-app.config['MAIL_PASSWORD'] = 'wxue trny ourx skev'  # Contraseña o clave de aplicación
-app.config['MAIL_DEFAULT_SENDER'] = 'soportecliente.mar@gmail.com'
+app.config['MAIL_PASSWORD'] = os.getenv('MAIL_PASSWORD')  # Contraseña o clave de aplicación
+app.config['MAIL_DEFAULT_SENDER'] = 'soportecliente.mar@gmail.com' # Remitente por defecto
 
+# Inicializar la extensión Flask-Mail
 mail = Mail(app)
 
-
+# Crear la base de datos
 with app.app_context():
     db.create_all()
 
+# Rutas de la API
 
-@app.route('/user/signup', methods=['POST'])
+# Ruta para registrar un usuario
+@app.route('/user/signup', methods=['POST']) 
+# Función para registrar un usuario
 def signup():
     data = request.get_json()
 
-    if not data or not 'username' in data or not 'password' in data or not 'email' in data:
+    if not data or not 'username' in data or not 'password' in data or not 'email' in data: # Validar que los datos estén present
         return jsonify({'message': 'Faltan datos'}), 400
 
     username = data['username']
     email = data['email']
     password = data['password']
 
-    try:
-        existing_user = User.query.filter((User.username == username) | (User.email == email)).first()
+    try: 
+        existing_user = User.query.filter((User.username == username) | (User.email == email)).first() # Verificar si el usuario o el correo ya existen
         if existing_user:
             return jsonify({'message': 'El usuario o el correo ya existe'}), 400
 
-        hashed_password = generate_password_hash(password)
+        hashed_password = generate_password_hash(password) # Generar el hash de la contraseña
         new_user = User(
             id=str(datetime.datetime.now(datetime.timezone.utc).timestamp()),
             username=username,
@@ -58,9 +66,9 @@ def signup():
             password=hashed_password,
             created_at=datetime.datetime.now(datetime.timezone.utc)
         )
-
-        db.session.add(new_user)
-        db.session.commit()
+ 
+        db.session.add(new_user) # Agregar el usuario a la base de datos
+        db.session.commit() # Confirmar la transacción
     except Exception as e:
         db.session.rollback()
         return jsonify({'message': 'Error en el registro', 'error': str(e)}), 500
@@ -69,20 +77,21 @@ def signup():
 
     return jsonify({'message': 'Usuario registrado con éxito'}), 201
 
-
+# Ruta para iniciar sesión
 @app.route('/user/login', methods=['POST'])
+ # Función para iniciar sesión
 def login():
-    data = request.get_json()
+    data = request.get_json() # Obtener los datos del cuerpo de la solicitud
 
-    if not data or not 'username' in data or not 'password' in data:
+    if not data or not 'username' in data or not 'password' in data:  # Validar que los datos estén presentes
         return jsonify({'message': 'Faltan datos'}), 400
 
     username = data['username']
     password = data['password']
 
-    user = User.query.filter_by(username=username).first()
+    user = User.query.filter_by(username=username).first() # Buscar el usuario en la base de datos
 
-    if not user or not check_password_hash(user.password, password):
+    if not user or not check_password_hash(user.password, password): # Verificar si el usuario existe y la contraseña es correcta
         return jsonify({'message': 'Usuario o contraseña incorrectos'}), 401
 
     session['login'] = True
@@ -93,18 +102,20 @@ def login():
 
     return response
 
-
+# Ruta para cerrar sesión
 @app.route('/user/logout', methods=['POST'])
-def logout():
-    session.clear()
+
+def logout(): # Función para cerrar sesión
+    session.clear() # Limpiar la sesión
     return jsonify({'message': 'Logout exitoso'}), 200
 
 
-
-@app.route('/houses', methods=['GET', 'POST'])
+# Ruta para obtener información del usuario
+@app.route('/houses', methods=['GET', 'POST']) 
+# Ruta para obtener información de las casas
 def get_houses():
-    if request.method == 'GET':
-        house_type = request.args.get('type', None)
+    if request.method == 'GET': # Si la solicitud es GET obtenemos las propiedades de las casas
+        house_type = request.args.get('type', None)  
         subtype = request.args.get('subtype', None)  
         min_price = request.args.get('min_price', None)
         max_price = request.args.get('max_price', None)
@@ -116,12 +127,12 @@ def get_houses():
         likes = request.args.get('likes', None)
 
 
-        query = House.query 
+        query = House.query  # Consulta base
 
         if house_type == "":
             house_type = None
 
-        # Filtros opcionales con validación
+        #Consultas de los filtros opcionales con validación
         try:
             if house_type:
                 query = query.filter(House.type == house_type)
@@ -143,6 +154,7 @@ def get_houses():
                     query = query.filter(House.rent.is_(False))
             print("Likes parameter:", likes)
 
+            # Casas con mas likes para la página principal
             if likes == "mvendidos":
                 top_liked_houses = query.order_by(House.likes.desc()).limit(3).all()
                 result = [house.to_dict() for house in top_liked_houses]
@@ -151,7 +163,7 @@ def get_houses():
                     "houses": result,
                 }), 200
 
-
+        # Manejo de errores
         except ValueError as ve:
             return jsonify({"message": "Parámetros inválidos", "error": str(ve)}), 400
 
@@ -171,16 +183,15 @@ def get_houses():
             print("Error al procesar la solicitud:", str(e))
             return jsonify({"message": "Error al obtener casas", "error": str(e)}), 500
         
-
+# Ruta para agregar una casa
 @app.route('/houses/<id>', methods=['GET'])
+# Función para obtener información de una casa
 def house_info(id):
     try:
-
-        # Obtener la información de la casa desde la base de datos
-        house = House.query.filter_by(id=id).first() 
+        house = House.query.filter_by(id=id).first()  # Obtener la información de la casa desde la base de datos
 
         if not house:
-            return jsonify({'message': 'Casa no encontrada'}), 404
+            return jsonify({'message': 'Casa no encontrada'}), 404 # Responder con un error si la casa no existe
 
         # Construir la respuesta con los datos de la casa
         house_data = {
@@ -193,6 +204,7 @@ def house_info(id):
             'size': house.size,
             'bathrooms': house.bathrooms,
             'bedrooms': house.bedrooms,
+            'rent':house.rent,
         }
 
         return jsonify(house_data), 200
@@ -201,8 +213,9 @@ def house_info(id):
         print(f"Error al obtener la información de la casa: {str(e)}") 
         return jsonify({'message': 'Error al obtener la información de la casa', 'error': str(e)}), 500
 
-
+# Ruta para agregar una casa
 @app.route('/house/requestVisit', methods=['POST'])
+# Función para solicitar una visita
 def request_visit():
     data = request.json 
     
@@ -210,23 +223,17 @@ def request_visit():
     house_id = data.get('houseId')
     username = data.get('username')
     housename = data.get('housename')
-    user_email = db.session.query(User).filter_by(username=username).first().email
+    user_email = db.session.query(User).filter_by(username=username).first().email  # Buscar el email del usuario en la base de datos
     date = data.get('date')
 
-    user = db.session.query(User).filter_by(username=username).first()
+    user = db.session.query(User).filter_by(username=username).first() # Buscar el usuario en la base de datos
     if not user:
         return jsonify({"error": "Usuario no encontrado"}), 404
     
-    # user_email = user.email
-
     if not house_id or not username:
         return jsonify({"error": "Faltan parámetros: houseId o userEmail"}), 400
     
 
-    print(f"Solicitud recibida para la casa {house_id} por el usuario {username}")
-
-
-    ### AQUID A EL ERROR
     try:
         # Personaliza el contenido del correo
         subject = f"Solicitud de visita para la casa {housename} con id {house_id}"
@@ -245,21 +252,22 @@ def request_visit():
         mail.send(msg)
 
     except Exception as e:
-        return jsonify({"message": "Error al enviar el correo", "error": str(e)}), 500
+        return jsonify({"message": "Error al enviar el correo", "error": str(e)}), 500 # Responder con un error si falla el envío del correo
 
     # Responder con éxito
     return jsonify({"message": "Solicitud recibida con éxito y correo enviado"}), 200
 
-        
+# Ruta para la vista de favoritos
 @app.route('/user/favs', methods=['GET','POST'])
+# Función para obtener y modificar la lista de favoritos
 def get_favs():
 
     if request.method == 'GET':
-        if 'login' not in session:
+        if 'login' not in session: # Verificar si el usuario ha iniciado sesión
             return jsonify({'message': 'Tienes que registrarte para ver esta función'}), 401
 
         usuario = session['identifier']
-        user = db.session.query(User).filter_by(id=usuario).first()
+        user = db.session.query(User).filter_by(id=usuario).first() # Buscar el usuario en la base de datos
 
         if not user:
             return jsonify({'message': 'Usuario no encontrado'}), 404
@@ -285,12 +293,13 @@ def get_favs():
 
         return jsonify({'favs': casas_json}), 200
 
+    # Modificar la lista de favoritos
     if request.method == 'POST':
 
-        data = request.get_json()
+        data = request.get_json() # Obtener los datos del cuerpo de la solicitud
         house_id = str(data.get('house_id'))  # Convertir a string
         action = data.get('action')  # Puede ser 'add' o 'remove'
-        house = db.session.query(House).filter_by(id=house_id).first()
+        house = db.session.query(House).filter_by(id=house_id).first() # Buscar la casa en la base de datos
 
         if not house_id or not action:
             return jsonify({'message': 'Faltan datos'}), 400
@@ -305,8 +314,9 @@ def get_favs():
             return jsonify({'message': 'Usuario no encontrado'}), 404
 
         if user.favs is None:
-            user.favs = []
+            user.favs = [] # Inicializar la lista de favoritos si está vacía
 
+        # Si la acción es 'add', agregar la casa a favoritos
         if action == 'add':
             if house_id not in user.favs:
                 # Sumamos 1 a los likes de la casa
@@ -315,7 +325,8 @@ def get_favs():
                 user.favs = user.favs + [house_id]  # Reasignar la lista modificada
             else:
                 return jsonify({'message': 'La casa ya está en favoritos'}), 400
-            
+        
+        # Si la acción es 'remove', eliminar la casa de favoritos
         elif action == 'remove':
             if house_id in user.favs:
                 # Restamos 1 a los likes de la casa
@@ -329,12 +340,13 @@ def get_favs():
             return jsonify({'message': 'Acción no válida'}), 400
 
         try:
-            db.session.commit()
+            db.session.commit() # Confirmar la transacción
             return jsonify({'message': 'Lista de favoritos actualizada con éxito', 'favs': user.favs}), 200
         except Exception as e:
-            db.session.rollback()
+            db.session.rollback() # Revertir la transacción
             return jsonify({'message': 'Error al actualizar favoritos', 'error': str(e)}), 500
 
 
+# Ruta para inicializar el backend
 if __name__ == '__main__':
     app.run(port=5172, debug=True)

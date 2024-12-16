@@ -1,47 +1,56 @@
-import { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import axios from "axios";
-import Slider from "react-slick";
-import HouseCard from "./HouseCard"; // Asegúrate de que la ruta sea correcta
+// src/components/Favourites.jsx
+
 import "../styles/Favourites.css";
+
+// Importa los módulos necesarios
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+
+import axios from "axios";
 import PropTypes from "prop-types";
+import Slider from "react-slick";
+
+// Importa los componentes necesarios
+import HouseCard from "./HouseCard";
 import NavBarMobile from "./NavBarMobile";
 import NavBarComputer from "./NavBarComputer";
-import BackLink from "../../public/static/img/go-back.png"; // Importa el componente BackLink
+import useIsMobileView from "../hooks/useIsMobileView"
+import CustomNextArrow from "./CustomNextArrow"
+import CustomPrevArrow from "./CustomPrevArrow"
 
+// Define y exporta el componente
 const Favourites = () => {
-  const [favourites, setFavourites] = useState([]);
-  const [error, setError] = useState(null);
-  const navigate = useNavigate();
-  const [isMobileView, setIsMobileView] = useState(false);
-  const [slidesToShow, setSlidesToShow] = useState(1);
-  const [currentIndex, setCurrentIndex] = useState(1);
+  const [favourites, setFavourites] = useState([]); // Estado para almacenar los favoritos
+  const [error, setError] = useState(null); // Estado para manejar errores
+  const navigate = useNavigate(); // Hook para la navegación 
+  const isMobileView = useIsMobileView(); // Estado para determinar si la vista es móvil
+  const [slidesToShow, setSlidesToShow] = useState(1); // Estado para determinar cuántas diapositivas mostrar
+  const [currentIndex, setCurrentIndex] = useState(1); // Estado para determinar el índice actual
 
 
   // Función para determinar cuántas diapositivas mostrar
   const slidesToShowfn = () => {
-    if (window.innerWidth < 768) {
+    if (window.innerWidth < 768) { 
       return 1;
-    } else if (favourites.length < 3) {
+    } else if (favourites.length < 3) { 
       return favourites.length;
     } else {
       return 3;
     }
   };
 
+  // Actualiza el estado de `slidesToShow` cuando cambia el tamaño de la ventana
   useEffect(() => {
     const handleResize = () => {
-      setSlidesToShow(slidesToShowfn());
-      setIsMobileView(window.innerWidth <= 736);
+      setSlidesToShow(slidesToShowfn()); // Actualiza el estado de `slidesToShow` llamando a la funcion slidesToShowfn
     };
-
     window.addEventListener("resize", handleResize);
     handleResize();
 
     return () => {
       window.removeEventListener("resize", handleResize);
     };
-  }, [favourites]);
+  },);
 
   // Función para obtener los favoritos
   const fetchFavourites = () => {
@@ -52,47 +61,28 @@ const Favourites = () => {
         setError(null);
       })
       .catch((err) => {
-        if (err.response?.status === 401) {
+        if (err.response?.status === 401) { // Si no está autorizado, redirige a la página de inicio de sesión
           navigate("/login");
         } else {
-          setError(err.response?.data?.message || "Error al cargar los favoritos");
+          setError(err.response?.data?.message || "Error loading favorites");
         }
       });
   };
 
+  // Efecto para obtener los favoritos
   useEffect(() => {
     fetchFavourites();
-  }, []);
+  },[]);
 
+  // Redirige a la descripción de la casa si solo hay un favorito
   useEffect(() => {
     if (favourites.length === 1) {
       navigate(`/description/${favourites[0]?.id}`);
     }
-  }, [favourites, navigate]);
+  }, [favourites, navigate]); // Se ejecuta cuando cambia la lista de favoritos o la función de navegación
+
 
   // Configuración del slider
-  const CustomNextArrow = (props) => {
-    const { className, onClick } = props;
-    return (
-      <div className={className} onClick={onClick}>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-          <path d="M8.59 16.59L13.17 12L8.59 7.41L10 6L16 12L10 18L8.59 16.59Z" />
-        </svg>
-      </div>
-    );
-  };
-
-  const CustomPrevArrow = (props) => {
-    const { className, onClick } = props;
-    return (
-      <div className={className} onClick={onClick}>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-          <path d="M15.41 16.59L10.83 12L15.41 7.41L14 6L8 12L14 18L15.41 16.59Z" />
-        </svg>
-      </div>
-    );
-  };
-
   const sliderSettings = {
     dots: false,
     infinite: favourites.length > 1,
@@ -101,10 +91,11 @@ const Favourites = () => {
     slidesToScroll: 1,
     centerMode: false,
     afterChange: (current) => {
-      const centerIndex = current + Math.floor(sliderSettings.slidesToShow / 2);
+      const centerIndex = current + Math.floor(sliderSettings.slidesToShow / 2); // Calcular el índice central
       setCurrentIndex(centerIndex % favourites.length);
     },
-    nextArrow: favourites.length > 1 ? <CustomNextArrow /> : null,
+    // Muestra las flechas solo si hay más de un favorito
+    nextArrow: favourites.length > 1 ? <CustomNextArrow /> : null, 
     prevArrow: favourites.length > 1 ? <CustomPrevArrow /> : null,
   };
 
@@ -118,16 +109,13 @@ const Favourites = () => {
         )}
       </div>
       <div className="title-favourites">
-        {/* <Link to="/" className="back-link">
-          <span className="back-arrow">🡨</span>
-        </Link> */}
         <h2>Mis favoritos</h2>
         {error && <div className="error">{error}</div>}
       </div>
 
       <div className="carousel-container carrousel2">
         {favourites.length === 0 ? (
-          <p>No tienes favoritos todavía.</p>
+          <p className="vacio">Vacio.</p>
         ) : favourites.length < 4 ? (
           <div className="house-cards">
             {favourites.map((house) => (
@@ -141,6 +129,7 @@ const Favourites = () => {
                 bathrooms={house.bathrooms}
                 bedrooms={house.bedrooms}
                 price={house.price}
+                rent={house.rent}
                 key={house.id}
               />
             ))}
@@ -164,6 +153,7 @@ const Favourites = () => {
                     bathrooms={house.bathrooms}
                     bedrooms={house.bedrooms}
                     price={house.price}
+                    rent={house.rent}
                   />
                 </div>
               ))}
@@ -174,16 +164,17 @@ const Favourites = () => {
   );
 };
 
+// Propiedades del componente Favourites
 Favourites.propTypes = {
-  id: PropTypes.string.isRequired,
-  image: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired,
-  description: PropTypes.string.isRequired,
-  location: PropTypes.string.isRequired,
-  size: PropTypes.number.isRequired,
-  bathrooms: PropTypes.number.isRequired,
-  bedrooms: PropTypes.number.isRequired,
-  price: PropTypes.number.isRequired,
+  id: PropTypes.string,
+  image: PropTypes.string,
+  title: PropTypes.string,
+  description: PropTypes.string,
+  location: PropTypes.string,
+  size: PropTypes.number,
+  bathrooms: PropTypes.number,
+  bedrooms: PropTypes.number,
+  price: PropTypes.number,
   className: PropTypes.string,
   onClick: PropTypes.func,
 };

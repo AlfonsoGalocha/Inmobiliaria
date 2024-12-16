@@ -7,7 +7,6 @@
 }
 
 .description-container-info{
-    /* border: 1px solid red; */
     width: 59.9%;
     height: 100%;
     padding: 3%;
@@ -27,7 +26,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    /* border: 1px solid red; */
     width: 100%;
     height: 55%;
     position: relative;
@@ -42,7 +40,6 @@
     
 }
 .other-house-image{
-    /* border: 1px solid red; */
     display: flex;
     position: absolute;
     width: 75%;
@@ -50,14 +47,12 @@
     bottom: 0;
 }
 .other-image-container{
-    /* border: 1px solid rgb(0, 68, 255); */
     width: 15%;
     height: 100%;
     overflow: hidden;
     padding: 5px;
 }
 .other-image-container img{
-    /* border: 1px solid rgb(21, 255, 0); */
     width: 100%;
     background-position: center;
     background-size: cover;
@@ -66,7 +61,6 @@
     cursor: pointer;
 }
 .house-details{
-    /* border: 1px solid rgb(72, 255, 0); */
     width: 100%;
     height: 15%;
     padding: 2%;
@@ -76,13 +70,11 @@
     padding: calc(2% - 30px) 2%;
 }
 .house-features{
-    /* border: 1px solid rgb(0, 38, 255); */
     width: 100%;
     height: 35%;
     padding: 2%;
 }
 .house-features-container{
-    /* border: 1px solid rgb(12, 206, 255); */
     overflow: hidden;
     width: 100%;
     height: 80%;
@@ -115,7 +107,6 @@
     align-self: center;
 }
 .description-container-contact{
-    /* border: 1px solid rgb(3, 39, 240); */
     width: 40%;
     height: 100%;
     display: flex;
@@ -179,6 +170,21 @@
     border: none;
     font-size: 20px;
 }
+.loader {
+    width: 40px;
+    height: 40px;
+    border: 5px solid rgba(0, 0, 0, 0.1);
+    border-left-color: #4E6682;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+  }
+  
+  @keyframes spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  
 
 
 @media(max-width : 738px) {
@@ -197,7 +203,6 @@
     }
 
     .description-container-info{
-        /* border: 1px solid red; */
         width: 100%;
         height: 100%;
         padding: 3%;
@@ -218,7 +223,6 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        /* border: 1px solid rgb(47, 0, 255); */
         width: 100%;
         height: 35vh;
         margin-bottom: 2%;
@@ -229,10 +233,8 @@
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
-        /* border: 1px solid rgb(115, 255, 0); */
     }
     .other-house-image{
-        /* border: 1px solid red; */
         display: flex;
         position: absolute;
         width: 90%;
@@ -240,14 +242,12 @@
         bottom: 0;
     }
     .other-image-container{
-        /* border: 1px solid rgb(0, 68, 255); */
         width: 20%;
         height: 100%;
         overflow: hidden;
         padding: 1px;
     }
     .other-image-container img{
-        /* border: 1px solid rgb(21, 255, 0); */
         width: 100%;
         height: 100%;
         background-position: center;
@@ -258,7 +258,6 @@
     }
 
     .house-details{
-        /* border: 1px solid rgb(72, 255, 0); */
         width: 100%;
         height: auto;
         min-height: 15vh;
@@ -272,13 +271,11 @@
     }
 
     .house-features{
-        /* border: 1px solid rgb(0, 38, 255); */
         width: 100%;
         height: 35%;
         padding: 2%;
     }
     .house-features-container{
-        /* border: 1px solid rgb(12, 206, 255); */
         overflow: hidden;
         width: 100%;
         height: 80%;
@@ -351,7 +348,6 @@
     }
     .request-visit{
         margin-top: 1%;
-        /* border: 1px solid palevioletred; */
         display: flex;
         flex-direction: column;
         justify-content: center;

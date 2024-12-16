@@ -1,21 +1,30 @@
+// src/components/Description.jsx
+
+// Importamos las librerías necesarias
 import  { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams,useNavigate } from "react-router-dom";
 import "../styles/Description.css";
-import NavBarMobile from "./NavBarMobile";
-import NavBarComputer from "./NavBarComputer";
 import copy from "../../public/static/img/copy.svg"
 
+// importamos componentes
+import NavBarMobile from "./NavBarMobile";
+import NavBarComputer from "./NavBarComputer";
+
+//Hook para la vista del móvil
+import useIsMobileView from "../hooks/useIsMobileView"
+
+// Componente funcional Description
 const Description = () => {
-  const { id } = useParams(); // Obtener el ID de la casa desde la URL
+  const { id } = useParams(); // Estado para obtener el ID de la casa desde la URL
   const [houseData, setHouseData] = useState(null); // Estado para almacenar la información de la casa
   const [error, setError] = useState(null); // Estado para manejar errores
-  const [isMobileView, setIsMobileView] = useState(false);
-  const [indexToInsert, setIndexToInsert] = useState(0);
+  const isMobileView = useIsMobileView(); // Estado para determinar si la vista es móvil
+  const [indexToInsert, setIndexToInsert] = useState(0); // Estado para manejar la imagen principal
 
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();  // Hook para navegar entre páginas
   
-
+  // Efecto para obtener los datos de la casa
   useEffect(() => {
     // Llamada a la API
     const fetchHouseData = async () => {
@@ -30,51 +39,42 @@ const Description = () => {
     fetchHouseData();
   }, [id]);
 
-  
-  useEffect(() => {
-    const handleResize = () => {
-      setIsMobileView(window.innerWidth <= 736);
-    };
-
-    window.addEventListener("resize", handleResize);
-    handleResize();
-
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
-
+  // Manejo de errores
   if (error) {
     return <div className="error-message">Error: {error}</div>;
   }
 
   if (!houseData) {
-    return <div className="loading-message">Cargando información...</div>;
+    return <div className="loader"></div>;
   }
 
-  const formattedPrice = houseData.price.toLocaleString('es-ES');
+  const formattedPrice = houseData.price.toLocaleString('es-ES'); // Formatear el precio
 
+  // Función para copiar el ID al portapapeles
   function copyToClipboard() {
       navigator.clipboard.writeText(id).then(() => {
       }).catch(err => {
-          console.error("Error al copiar el ID: ", err);
+          console.error("Error al copiar el ID: ", err); // Manejo de errores
       });
   }
 
+  // Función para enviar la solicitud de visita
   const handleRequestVisit = async (e) => {
 
     e.preventDefault();
-    const user = JSON.parse(localStorage.getItem("user"));
-    const username = user ? user.username : null;
+    const user = JSON.parse(localStorage.getItem("user")); // Obtener el usuario
+    const username = user ? user.username : null; // Obtener el nombre de usuario
     const date = document.getElementById("date").value;  // Obtener la fecha seleccionada
 
+    // Verificar si el usuario está logueado
     if (!username) {
       navigate("/login");
       return;
     }
 
+    // Enviar la solicitud
     try {
-      await axios.post("http://localhost:5172/house/requestVisit", {
+      await axios.post("http://localhost:5172/house/requestVisit", { 
         houseId: id,
         housename: houseData.title,
         username: username,
@@ -82,13 +82,12 @@ const Description = () => {
       });
       alert("Solicitud enviada con éxito.");
     } catch (err) {
-      alert("Hubo un error al enviar la solicitud.");
+      alert("Error: ", err); // Manejo de errores
     }
   };
 
-
+  // Función para cambiar la imagen principal
   function handleImageChange(index) {
-    console.log("Cambiando imagen principal al índice:", index);
     setIndexToInsert(index);
   }
   
@@ -157,7 +156,7 @@ const Description = () => {
               </div>
               <div className="group">
                 <h4>Precio:</h4>
-                <p>{formattedPrice} €</p>
+                <p>{formattedPrice} € {houseData.rent && " / mes"}</p>
               </div>
               <div className="ref-id-feature">
                 <div className="group">
