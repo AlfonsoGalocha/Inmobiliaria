@@ -1,7 +1,7 @@
 
 .fondoIR {
     position: absolute;
-    background-image: url('../../public/static/img/casa_pricipio_movil.jpg'); 
+    background-image: url('../../public/static/img/casa3.webp'); 
     width: 100vw;
     height: 100vh;
     background-size: cover;
@@ -15,7 +15,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    backdrop-filter: blur(10px); 
+    backdrop-filter: blur(13px); 
     z-index: 1; 
 }
   

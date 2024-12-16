@@ -7,7 +7,6 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 from api.main import app
 from database.databaseTables import db, House
 
-# Asegúrate de que `db` esté correctamente inicializado
 with app.app_context():
     # Crear las tablas si no existen
     db.create_all()
@@ -18,7 +17,7 @@ with app.app_context():
         {
             "type": "Casa",
             "subtype": "CHALET",
-            "images": ["../../public/static/img/casa_majadahonda.webp","../../public/static/img/cocina1.jpg","../../public/static/img/salon1.jpg"],
+            "images": ["../../public/static/img/casa_majadahonda.webp","../../public/static/img/cocina1.webp","../../public/static/img/salon1.jpeg"],
             "title": "Chalet en Las Rozas",
             "description": "Amplio chalet con piscina y jardín en una zona tranquila.",
             "location": "Las Rozas, España",
@@ -33,7 +32,7 @@ with app.app_context():
         {
             "type": "Casa",
             "subtype": "CHALET",
-            "images": ["../../public/static/img/casa2.jpg","../../public/static/img/cocina2.jpg","../../public/static/img/dormitorio1.jpg"],
+            "images": ["../../public/static/img/casa2.webp","../../public/static/img/cocina2.webp","../../public/static/img/dormitorio1.jpg"],
             "title": "Chalet en Villanueva",
             "description": "Moderno chalet de diseño con vistas a la montaña.",
             "location": "Villanueva, España",
@@ -47,7 +46,7 @@ with app.app_context():
         {
             "type": "Casa",
             "subtype": "CHALET",
-            "images": ["../../public/static/img/casa3.jpg","../../public/static/img/cocina4.jpg","../../public/static/img/dormitorio2.jpg"],
+            "images": ["../../public/static/img/casa3.webp","../../public/static/img/cocina4.jpg","../../public/static/img/dormitorio2.webp"],
             "title": "Chalet en Boadilla",
             "description": "Chalet moderno con garaje y bien ubicado.",
             "location": "Boadilla, España",
@@ -62,7 +61,7 @@ with app.app_context():
         {
             "type": "Casa",
             "subtype": "ADOSADO",
-            "images": ["../../public/static/img/adosado1.webp","../../public/static/img/cocina5.jpg","../../public/static/img/salon3.jpg", "../../public/static/img/dormitorio1.jpg", "../../public/static/img/entrada1.jpg"],
+            "images": ["../../public/static/img/adosado1.webp","../../public/static/img/cocina5.jpg","../../public/static/img/salon3.webp", "../../public/static/img/dormitorio1.jpg", "../../public/static/img/entrada1.jpg"],
             "title": "Adosado en Majadahonda",
             "description": "Bonito adosado en urbanización con zonas comunes.",
             "location": "Majadahonda, España",
@@ -91,7 +90,7 @@ with app.app_context():
         {
             "type": "Casa",
             "subtype": "VILLA",
-            "images": ["../../public/static/img/villa1.jpg","../../public/static/img/bano2.png","../../public/static/img/salon6.jpg"],
+            "images": ["../../public/static/img/villa1.webp","../../public/static/img/bano2.webp","../../public/static/img/salon6.webp"],
             "title": "Villa en Marbella",
             "description": "Exclusiva villa con vistas al mar y piscina privada.",
             "location": "Marbella, España",
@@ -105,7 +104,7 @@ with app.app_context():
         {
             "type": "Casa",
             "subtype": "VILLA",
-            "images": ["../../public/static/img/ibiza1.jpg","../../public/static/img/ibiza2.jpg","../../public/static/img/ibiza3.jpg", "../../public/static/img/baño1.jpg"],
+            "images": ["../../public/static/img/ibiza1.webp","../../public/static/img/ibiza2.webp","../../public/static/img/ibiza3.webp", "../../public/static/img/baño1.webp"],
             "title": "Villa en Ibiza",
             "description": "Villa moderna con jardín, piscina y acceso a la playa.",
             "location": "Ibiza, España",
@@ -121,7 +120,7 @@ with app.app_context():
         {
             "type": "Casa",
             "subtype": "PAREADO",
-            "images": ["../../public/static/img/pareado1.png","../../public/static/img/cocina5.jpg","../../public/static/img/salon3.jpg", "../../public/static/img/dormitorio1.jpg", "../../public/static/img/bano1.png"],
+            "images": ["../../public/static/img/pareado1.webp","../../public/static/img/cocina5.jpg","../../public/static/img/salon3.webp", "../../public/static/img/dormitorio1.jpg", "../../public/static/img/bano1.webp"],
             "title": "Pareado en Majadahonda",
             "description": "Bonito pareado en urbanización con zonas comunes.",
             "location": "Majadahonda, España",
@@ -137,7 +136,7 @@ with app.app_context():
         {
             "type": "Piso",
             "subtype": "ÁTICO",
-            "images": ["../../public/static/img/piso1.jpg","../../public/static/img/bano1.png","../../public/static/img/salon4.jpg"],
+            "images": ["../../public/static/img/piso1.webp","../../public/static/img/bano1.webp","../../public/static/img/salon4.webp"],
             "title": "Ático en Chamberí",
             "description": "Ático con terraza amplia y vistas panorámicas al centro de Madrid.",
             "location": "Chamberí, España",
@@ -151,7 +150,7 @@ with app.app_context():
         {
             "type": "Piso",
             "subtype": "ÁTICO",
-            "images": ["../../public/static/img/piso2.png","../../public/static/img/bano2.png","../../public/static/img/salon7.webp"],
+            "images": ["../../public/static/img/piso2.webp","../../public/static/img/bano2.webp","../../public/static/img/salon7.webp"],
             "title": "Ático en Valencia",
             "description": "Ático luminoso con jardín privado y acceso al mar.",
             "location": "Valencia, España",
@@ -167,7 +166,7 @@ with app.app_context():
         {
             "type": "Piso",
             "subtype": "ENTREPLANTA",
-            "images": ["../../public/static/img/entreplanta1.webp","../../public/static/img/salon5.jpg","../../public/static/img/cocina5.jpg"],
+            "images": ["../../public/static/img/entreplanta1.webp","../../public/static/img/salon5.webp","../../public/static/img/cocina5.jpg"],
             "title": "Entreplanta en Madrid",
             "description": "Entreplanta con terraza y vistas al parque.",
             "location": "Madrid, España",
@@ -182,7 +181,7 @@ with app.app_context():
         {
             "type": "Piso",
             "subtype": "BAJO",
-            "images": ["../../public/static/img/entrada1.jpg","../../public/static/img/salon6.jpg","../../public/static/img/cocina6.jpg"],
+            "images": ["../../public/static/img/entrada1.jpg","../../public/static/img/salon6.webp","../../public/static/img/cocina6.jpg"],
             "title": "Bajo en Alcorcón",
             "description": "Bajo con jardín privado en urbanización cerrada.",
             "location": "Alcorcón, España",
@@ -196,7 +195,7 @@ with app.app_context():
         {
             "type": "Piso",
             "subtype": "BAJO",
-            "images": ["../../public/static/img/bajo1.webp","../../public/static/img/baño1.jpg","../../public/static/img/casa1.jpg"],
+            "images": ["../../public/static/img/bajo1.webp","../../public/static/img/baño1.webp","../../public/static/img/casa1.webp"],
             "title": "Bajo en Fuenlabrada",
             "description": "Bajo con terraza y garaje incluido.",
             "location": "Fuenlabrada, España",
@@ -211,7 +210,7 @@ with app.app_context():
         {
             "type": "Piso",
             "subtype": "DUPLEX",
-            "images": ["../../public/static/img/piso3.jpg","../../public/static/img/salon4.jpg","../../public/static/img/bano2.png"],
+            "images": ["../../public/static/img/piso3.webp","../../public/static/img/salon4.webp","../../public/static/img/bano2.webp"],
             "title": "Dúplex en Salamanca",
             "description": "Dúplex elegante en el centro, con acabados de lujo.",
             "location": "Salamanca, España",
@@ -225,7 +224,7 @@ with app.app_context():
         {
             "type": "Piso",
             "subtype": "DUPLEX",
-            "images": ["../../public/static/img/casa1.jpg","../../public/static/img/salon3.jpg","../../public/static/img/cocina5.jpg"],
+            "images": ["../../public/static/img/casa1.webp","../../public/static/img/salon3.webp","../../public/static/img/cocina5.jpg"],
             "title": "Dúplex en Barcelona",
             "description": "Dúplex moderno cerca del mar, con grandes ventanales.",
             "location": "Barcelona, España",

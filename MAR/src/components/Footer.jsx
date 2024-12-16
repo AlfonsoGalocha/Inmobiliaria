@@ -15,7 +15,7 @@ const Footer = () => {
             <img src="../../public/static/img/instagram_logo.webp" alt="Instagram" />
         </a>
         <a href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer">
-            <img src="../../public/static/img/linkedin_logo.png" alt="LinkedIn" />
+            <img src="../../public/static/img/linkedin_logo.webp" alt="LinkedIn" />
         </a>
         <a href="https://www.tiktok.com/" target="_blank" rel="noopener noreferrer">
             <img
