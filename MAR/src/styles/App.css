@@ -175,6 +175,12 @@ body {
   position: relative;
 }
 
+.carousel-item .card-image{
+  height: 310px;
+  width: 550px;
+}
+
+
 .slick-slide {
   display: flex !important;
   justify-content: center;
@@ -549,7 +555,8 @@ body {
 
   .section2 .house-card{
     margin-top: 20px; 
-    max-width: 350px; 
+    max-width: 350px;
+    max-height: 380px;
   }
   
   .container-card{
@@ -575,16 +582,20 @@ body {
 
   .carousel-item {
     transition: transform 0.3s ease, opacity 0.3s ease;
-    transform: scale(0.9);
-  
-  }
-  
-  .carousel-item.active-slide {
     transform: scale(1);
-    z-index: 1;
+  
   }
 
- 
+  .carousel-container .carousel-item .card{
+      max-width: 370px;
+      max-height: 300px;
+      height: 300px;
+  }
+  .carousel-item .card-image{
+    height: auto;
+    width: auto;
+  }
+  
   .section3 {
     margin-top: -30%;
     background-color: #FFFCF6;

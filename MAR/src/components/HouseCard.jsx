@@ -88,7 +88,7 @@ const HouseCard = ({ id, image, title, description, location, size, bathrooms, b
 
   return (
     <div className="card">
-      <div className="card-image">
+      <div className="card-image" onClick={handleCardClick}>
         <img src={images[0]}  />
       </div>
       {/* Corazón para marcar como favorito */}

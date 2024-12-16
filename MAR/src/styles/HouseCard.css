@@ -10,26 +10,20 @@
     flex-direction: column;
     box-sizing: border-box;
     position: relative;
+    /* border: 1px solid blue; */
+    cursor: pointer;
 }
 
   
 .card-image {
     /* que se ajuste la imagen al hueco */
-    height: 100%;
-    max-height: 60%;
+    height: 60%;
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
     /* border: 1px solid blue; */
     overflow: hidden;
-}
-.house-card-slider{
-    /* background-color: aqua; */
-    height: 100%;
-    width: 100%;
-    overflow: hidden;
-    background-position: center;  
 }
 .card-image img {
     /* Tamaño de la imagen ajustado el hueco */
@@ -49,7 +43,7 @@
     box-sizing: border-box;
     margin-left: 12px;
     margin-right: 12px;
-    cursor: pointer;
+    
 }
 
 .card-info h2 {
@@ -57,7 +51,6 @@
     margin-bottom: 8px;
     line-height: 1.2;
     white-space: normal;
-    overflow: hidden;
     text-overflow: ellipsis;
     color: #555;
 }
@@ -74,7 +67,7 @@
     font-size: 1rem;
     margin-bottom: 8px;
     color: #666;
-    overflow: hidden;
+    /* overflow: hidden; */
     white-space: normal;
 }
 
@@ -161,6 +154,7 @@
 
     .card-info h2 {
         font-size: 1.1rem; 
+        margin-bottom: 5px;
         color: #555;
     }
     .card-info .property-description {
@@ -168,12 +162,14 @@
         /* border: 1px solid red; */
         width: 100%;
         height: 35%;
+        margin-bottom: 2px;
 
         overflow: hidden;
 
     }
     .card-info .property-location {
-        font-size: 0.85rem;
+        font-size: 0.9rem;
+        height: auto;
         
     }
 
@@ -184,11 +180,11 @@
     .property-details {
         gap: 35px;
 
-        font-size: 1.1rem
+        font-size: 1.08rem
     }
 
     .property-price {
-        font-size: 1.1rem; 
+        font-size: 1.08rem; 
     }
 
 
